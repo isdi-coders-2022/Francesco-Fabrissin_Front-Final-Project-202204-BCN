@@ -1,8 +1,12 @@
 import React from "react";
-import "./App.css";
+import LoginForm from "./components/LoginForm/LoginForm";
 
 function App() {
-  return <h2>Hello</h2>;
+  return (
+    <div className="d-flex flex-column align-items-center justify-content-center h-100">
+      <LoginForm />
+    </div>
+  );
 }
 
 export default App;
