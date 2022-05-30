@@ -1,8 +1,10 @@
 import { Form } from "react-bootstrap";
+import FormStyled from "./FormStyled";
 
 const LoginForm = (): JSX.Element => {
   return (
-    <div>
+    <FormStyled>
+      <img className="logo" src="/images/RecordSwapp-logo.png" alt="" />
       <Form className="login-form">
         <label className="form-label" htmlFor="username">
           Username
@@ -28,19 +30,22 @@ const LoginForm = (): JSX.Element => {
           onChange={() => {}}
           type="password"
         />
-        <button
-          disabled={false}
-          className="button-main"
-          type="submit"
-          onClick={() => {}}
-        >
-          Login
-        </button>
+        <div className="containr text-center">
+          <button
+            disabled={false}
+            className="btn button-main"
+            type="submit"
+            onClick={() => {}}
+          >
+            LOGIN
+          </button>
+        </div>
       </Form>
+      <span>New on RecordSwapp?</span>
       <button className="button-secondary" onClick={() => {}}>
-        Sign up
+        Create an account
       </button>
-    </div>
+    </FormStyled>
   );
 };
 
