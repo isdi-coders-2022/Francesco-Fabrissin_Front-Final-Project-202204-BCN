@@ -22,6 +22,10 @@ const FormStyled = styled.div`
     margin: 0 2rem;
   }
 
+  label {
+    margin: 0;
+  }
+
   .button-main {
     margin-top: 1rem;
     width: 10rem;

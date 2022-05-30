@@ -1,7 +1,22 @@
+import { useState } from "react";
 import { Form } from "react-bootstrap";
 import FormStyled from "./FormStyled";
 
 const LoginForm = (): JSX.Element => {
+  const blankData = {
+    username: "",
+    password: "",
+  };
+
+  const [formData, setFormData] = useState(blankData);
+
+  const changeFormData = (event: { target: { id: string; value: string } }) => {
+    setFormData({
+      ...formData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
   return (
     <FormStyled>
       <img className="logo" src="/images/RecordSwapp-logo.png" alt="" />
@@ -14,8 +29,8 @@ const LoginForm = (): JSX.Element => {
           autoComplete="off"
           placeholder="Type your username"
           id="username"
-          value=""
-          onChange={() => {}}
+          value={formData.username}
+          onChange={changeFormData}
           type="text"
         />
         <label className="form-label" htmlFor="password">
@@ -26,8 +41,8 @@ const LoginForm = (): JSX.Element => {
           autoComplete="off"
           placeholder="******"
           id="password"
-          value=""
-          onChange={() => {}}
+          value={formData.password}
+          onChange={changeFormData}
           type="password"
         />
         <div className="containr text-center">
