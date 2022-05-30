@@ -47,7 +47,7 @@ const LoginForm = (): JSX.Element => {
         />
         <div className="containr text-center">
           <button
-            disabled={false}
+            disabled={formData.username === "" || formData.password === ""}
             className="btn button-main"
             type="submit"
             onClick={() => {}}
