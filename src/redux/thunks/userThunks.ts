@@ -53,7 +53,7 @@ export const registerThunk =
 
       if (data) {
         const newUser = {
-          username: data.newUser.username,
+          username: data.new_user.username,
           password: password,
         };
         dispatch(loginThunk(newUser));
