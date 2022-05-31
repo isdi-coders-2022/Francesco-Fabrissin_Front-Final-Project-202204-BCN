@@ -28,7 +28,11 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <FormStyled>
-      <img className="logo" src="/images/RecordSwapp-logo.png" alt="" />
+      <img
+        className="logo"
+        src="/images/RecordSwapp-logo.png"
+        alt="recordswapp logo"
+      />
       <Form onSubmit={submitLogin} className="login-form">
         <label className="form-label" htmlFor="username">
           Username
@@ -57,7 +61,7 @@ const LoginForm = (): JSX.Element => {
         <div className="containr text-center">
           <button
             disabled={formData.username === "" || formData.password === ""}
-            className="btn button-main"
+            className="button-main"
             type="submit"
           >
             LOGIN
@@ -65,9 +69,7 @@ const LoginForm = (): JSX.Element => {
         </div>
       </Form>
       <span>New on RecordSwapp?</span>
-      <button className="button-secondary" onClick={() => {}}>
-        Create an account
-      </button>
+      <button className="button-secondary">Create an account</button>
     </FormStyled>
   );
 };
