@@ -13,6 +13,16 @@ const RegisterForm = (): JSX.Element => {
 
   const [formData, setFormData] = useState(blankData);
 
+  const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [event.target.id]:
+        event.target.type === "file"
+          ? event.target.files?.[0] || null
+          : event.target.value,
+    });
+  };
+
   return (
     <FormStyled>
       <img
@@ -30,7 +40,7 @@ const RegisterForm = (): JSX.Element => {
           placeholder="Type your username"
           id="username"
           value={formData.username}
-          //onChange={changeFormData}
+          onChange={changeFormData}
           type="text"
         />
         <label className="form-label" htmlFor="email">
@@ -42,7 +52,7 @@ const RegisterForm = (): JSX.Element => {
           placeholder="ex. john1234@recordswapp.com"
           id="email"
           value={formData.email}
-          // onChange={changeFormData}
+          onChange={changeFormData}
           type="text"
         />
         <label className="form-label" htmlFor="password">
@@ -54,7 +64,7 @@ const RegisterForm = (): JSX.Element => {
           placeholder="******"
           id="password"
           value={formData.password}
-          // onChange={changeFormData}
+          onChange={changeFormData}
           type="password"
         />
         <label className="form-label" htmlFor="location">
@@ -66,22 +76,22 @@ const RegisterForm = (): JSX.Element => {
           placeholder="Ex. Milan"
           id="location"
           value={formData.location}
-          // onChange={changeFormData}
+          onChange={changeFormData}
           type="text"
         />
         <label className="form-label" htmlFor="image">
           Profile image
         </label>
-        <input
-          className="form-control"
-          id="image"
-          //onChange={changeFormData}
-          type="file"
-        />
+        <input className="form-control" id="image" type="file" />
         <div className="containr text-center">
           <button
-            disabled={formData.username === "" || formData.password === ""}
-            className="button-main"
+            disabled={
+              formData.username === "" ||
+              formData.password === "" ||
+              formData.location === "" ||
+              formData.email === ""
+            }
+            className="btn button-main"
             type="submit"
           >
             Register
