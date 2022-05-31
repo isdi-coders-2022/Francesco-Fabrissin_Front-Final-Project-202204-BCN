@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useAppDispatch } from "../../redux/hooks";
+import { loginThunk } from "../../redux/thunks/userThunks";
 import FormStyled from "./FormStyled";
 
 const LoginForm = (): JSX.Element => {
@@ -9,6 +11,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   const [formData, setFormData] = useState(blankData);
+  const dispatch = useAppDispatch();
 
   const changeFormData = (event: { target: { id: string; value: string } }) => {
     setFormData({
@@ -17,10 +20,15 @@ const LoginForm = (): JSX.Element => {
     });
   };
 
+  const submitLogin = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    dispatch(loginThunk(formData));
+  };
+
   return (
     <FormStyled>
       <img className="logo" src="/images/RecordSwapp-logo.png" alt="" />
-      <Form className="login-form">
+      <Form onSubmit={submitLogin} className="login-form">
         <label className="form-label" htmlFor="username">
           Username
         </label>
@@ -50,7 +58,6 @@ const LoginForm = (): JSX.Element => {
             disabled={formData.username === "" || formData.password === ""}
             className="btn button-main"
             type="submit"
-            onClick={() => {}}
           >
             LOGIN
           </button>
