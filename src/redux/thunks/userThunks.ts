@@ -31,7 +31,6 @@ export const loginThunk =
       if (token) {
         const { username, image }: DecodeToken = jwtDecode(token);
         dispatch(loginActionCreator({ username, image }));
-        debugger;
         localStorage.setItem("token", token);
       }
     } catch (error: any) {
