@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const FormStyled = styled.div`
-  margin-top: 8rem;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@ const FormStyled = styled.div`
 
   .logo {
     width: 12rem;
-    margin: 2.5rem;
+    margin: 1.5rem;
   }
 
   .login-form {
