@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import store from "../../redux/store/store";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a FormLogin component function", () => {
   describe("When invoked", () => {
@@ -10,9 +11,11 @@ describe("Given a FormLogin component function", () => {
       const expectedNumberOfButtons = 2;
 
       render(
-        <Provider store={store}>
-          <LoginForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const usernameInput = screen.getByLabelText("Username");
@@ -30,9 +33,11 @@ describe("Given a FormLogin component function", () => {
       const inputText = "Gino";
 
       render(
-        <Provider store={store}>
-          <LoginForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const inputField = screen.getByLabelText("Username");
@@ -48,9 +53,11 @@ describe("Given a FormLogin component function", () => {
   describe("When the user doesn't type any username or password", () => {
     test("Then the login button should be disabled", () => {
       render(
-        <Provider store={store}>
-          <LoginForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const button = screen.getByRole("button", { name: "LOGIN" });
@@ -65,9 +72,11 @@ describe("Given a FormLogin component function", () => {
       const password = "piero";
 
       render(
-        <Provider store={store}>
-          <LoginForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const usernameInput = screen.getByLabelText("Username");
