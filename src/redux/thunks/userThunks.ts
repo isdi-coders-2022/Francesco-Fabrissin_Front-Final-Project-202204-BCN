@@ -8,7 +8,7 @@ interface UserLogin {
   password: string;
 }
 
-interface ResponseApi {
+interface ResponseApiLogin {
   data: {
     token: string;
   };
@@ -26,12 +26,37 @@ export const loginThunk =
     try {
       const {
         data: { token },
-      }: ResponseApi = await axios.post(`${url}user/login` as string, userData);
+      }: ResponseApiLogin = await axios.post(
+        `${url}user/login` as string,
+        userData
+      );
 
       if (token) {
         const { username, image }: DecodeToken = jwtDecode(token);
         dispatch(loginActionCreator({ username, image }));
         localStorage.setItem("token", token);
+      }
+    } catch (error: any) {
+      return error.message;
+    }
+  };
+
+export const registerThunk =
+  (userData: any, password: string) => async (dispatch: AppDispatch) => {
+    const url: string | undefined = process.env.REACT_APP_API_URL;
+
+    try {
+      const { data } = await axios.post(
+        `${url}user/register` as string,
+        userData
+      );
+
+      if (data) {
+        const newUser = {
+          username: data.newUser.username,
+          password: password,
+        };
+        dispatch(loginThunk(newUser));
       }
     } catch (error: any) {
       return error.message;
