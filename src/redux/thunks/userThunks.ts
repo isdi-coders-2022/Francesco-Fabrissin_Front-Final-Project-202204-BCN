@@ -1,6 +1,5 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { isErrored } from "stream";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
@@ -32,7 +31,7 @@ export const loginThunk =
       if (token) {
         const { username, image }: DecodeToken = jwtDecode(token);
         dispatch(loginActionCreator({ username, image }));
-
+        debugger;
         localStorage.setItem("token", token);
       }
     } catch (error: any) {

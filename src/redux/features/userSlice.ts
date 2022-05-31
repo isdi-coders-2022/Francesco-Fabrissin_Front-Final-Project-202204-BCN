@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/types";
 interface State {
   userInfo: User;
-  logged: Boolean;
+  logged: boolean;
 }
 
 const initialState: State = {

@@ -1,16 +1,16 @@
 export interface Record {
   title: String;
-  artist: String;
-  year: Number;
-  genre: String;
-  price: Number;
-  conditions: String;
-  youtube_url: String;
-  image: String;
+  artist: string;
+  year: number;
+  genre: string;
+  price: number;
+  conditions: string;
+  youtube_url: string;
+  image: string;
   owner: User;
 }
 
 export interface User {
-  username: String;
-  image: String;
+  username: string;
+  image: string;
 }
