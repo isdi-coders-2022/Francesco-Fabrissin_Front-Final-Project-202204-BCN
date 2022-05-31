@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { registerThunk } from "../../redux/thunks/userThunks";
 import FormStyled from "../LoginForm/FormStyled";
 
 const RegisterForm = (): JSX.Element => {
@@ -12,21 +14,40 @@ const RegisterForm = (): JSX.Element => {
     image: "",
   };
 
-  const navigate = useNavigate();
   const [formData, setFormData] = useState(blankData);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [event.target.id]:
         event.target.type === "file"
-          ? event.target.files?.[0] || null
+          ? event.target.files?.[0] || "image.png"
           : event.target.value,
     });
   };
 
+  const clearData = () => {
+    setFormData(blankData);
+  };
+
   const navigateToLogin = () => {
     navigate("/user/login");
+  };
+
+  const submitRegister = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    const newFormData = new FormData();
+    newFormData.append("username", formData.username);
+    newFormData.append("password", formData.password);
+    newFormData.append("email", formData.email);
+    newFormData.append("location", formData.location);
+    newFormData.append("image", formData.image);
+
+    dispatch(registerThunk(newFormData, formData.password));
+    clearData();
   };
 
   return (
@@ -36,7 +57,7 @@ const RegisterForm = (): JSX.Element => {
         src="/images/RecordSwapp-logo.png"
         alt="recordswapp logo"
       />
-      <Form onSubmit={() => {}} className="login-form">
+      <Form onSubmit={submitRegister} className="login-form">
         <label className="form-label" htmlFor="username">
           Username
         </label>
@@ -83,7 +104,7 @@ const RegisterForm = (): JSX.Element => {
           className="form-control"
           formNoValidate
           autoComplete="off"
-          placeholder="Ex. Milan"
+          placeholder="ex. Milan"
           id="location"
           value={formData.location}
           onChange={changeFormData}
@@ -92,7 +113,12 @@ const RegisterForm = (): JSX.Element => {
         <label className="form-label" htmlFor="image">
           Profile image
         </label>
-        <input className="form-control" id="image" type="file" />
+        <input
+          className="form-control"
+          id="image"
+          type="file"
+          onChange={changeFormData}
+        />
         <div className="containr text-center">
           <button
             disabled={

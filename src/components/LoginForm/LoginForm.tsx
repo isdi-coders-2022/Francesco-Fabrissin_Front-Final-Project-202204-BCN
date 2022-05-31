@@ -23,6 +23,10 @@ const LoginForm = (): JSX.Element => {
     });
   };
 
+  const clearData = () => {
+    setFormData(blankData);
+  };
+
   const navigateToRegister = () => {
     navigate("/user/register");
   };
@@ -30,6 +34,7 @@ const LoginForm = (): JSX.Element => {
   const submitLogin = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     dispatch(loginThunk(formData));
+    clearData();
   };
 
   return (

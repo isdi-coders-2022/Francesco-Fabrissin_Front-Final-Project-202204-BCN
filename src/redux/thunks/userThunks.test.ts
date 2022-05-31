@@ -1,6 +1,6 @@
 import { mockUserLogin } from "../../mocks/mockUser";
 import { loginActionCreator } from "../features/userSlice";
-import { loginThunk } from "./userThunks";
+import { loginThunk, registerThunk } from "./userThunks";
 
 jest.mock("jwt-decode", () => () => ({ username: "fra432", image: "image" }));
 
@@ -21,6 +21,27 @@ describe("Given a loginThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(loginAction);
+    });
+  });
+});
+
+describe("Given a registerThunk function", () => {
+  describe("When it's called", () => {
+    test("It should dispatch the loginThunk with the new user data", async () => {
+      const dispatch = jest.fn();
+
+      const userData = {
+        username: "fra432",
+        password: "fra432",
+        email: "frafra@gmail.com",
+        location: "Barcelona",
+      };
+
+      const thunk = registerThunk(userData, userData.password);
+
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalled();
     });
   });
 });
