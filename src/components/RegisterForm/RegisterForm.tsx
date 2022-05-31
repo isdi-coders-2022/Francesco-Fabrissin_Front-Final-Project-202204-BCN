@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import FormStyled from "../LoginForm/FormStyled";
 
 const RegisterForm = (): JSX.Element => {
@@ -11,6 +12,7 @@ const RegisterForm = (): JSX.Element => {
     image: "",
   };
 
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(blankData);
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +23,10 @@ const RegisterForm = (): JSX.Element => {
           ? event.target.files?.[0] || null
           : event.target.value,
     });
+  };
+
+  const navigateToLogin = () => {
+    navigate("/user/login");
   };
 
   return (
@@ -36,6 +42,7 @@ const RegisterForm = (): JSX.Element => {
         </label>
         <input
           className="form-control"
+          formNoValidate
           autoComplete="off"
           placeholder="Type your username"
           id="username"
@@ -48,6 +55,7 @@ const RegisterForm = (): JSX.Element => {
         </label>
         <input
           className="form-control"
+          formNoValidate
           autoComplete="off"
           placeholder="ex. john1234@recordswapp.com"
           id="email"
@@ -60,6 +68,7 @@ const RegisterForm = (): JSX.Element => {
         </label>
         <input
           className="form-control"
+          formNoValidate
           autoComplete="off"
           placeholder="******"
           id="password"
@@ -72,6 +81,7 @@ const RegisterForm = (): JSX.Element => {
         </label>
         <input
           className="form-control"
+          formNoValidate
           autoComplete="off"
           placeholder="Ex. Milan"
           id="location"
@@ -98,7 +108,9 @@ const RegisterForm = (): JSX.Element => {
           </button>
         </div>
       </Form>
-      <button className="button-secondary">Already have an account?</button>
+      <button className="button-secondary" onClick={navigateToLogin}>
+        Already have an account?
+      </button>
     </FormStyled>
   );
 };

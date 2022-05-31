@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import RegisterForm from "./RegisterForm";
 
@@ -10,9 +11,11 @@ describe("Given a FormLogin component function", () => {
       const expectedNumberOfButtons = 2;
 
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const usernameInput = screen.getByLabelText("Username");
@@ -30,9 +33,11 @@ describe("Given a FormLogin component function", () => {
       const inputText = "fra432";
 
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const inputField = screen.getByLabelText("Username");
@@ -48,9 +53,11 @@ describe("Given a FormLogin component function", () => {
   describe("When the user doesn't fill the name, username or password field", () => {
     test("Then the register button should be disabled", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const registerButton = screen.getByRole("button", { name: "Register" });
@@ -64,9 +71,11 @@ describe("Given a FormLogin component function", () => {
       const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
 
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       const usernameField = screen.getByLabelText("Username");
