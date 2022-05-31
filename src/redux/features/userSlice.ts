@@ -1,26 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Record {
-  title: String;
-  artist: String;
-  year: Number;
-  genre: String;
-  price: Number;
-  conditions: String;
-  youtube_url: String;
-  image: String;
-  owner: User;
-}
-
-interface User {
-  username: String;
-  email: String;
-  image: String;
-  location: String;
-  records_collection: Record[];
-  wantlist: Record[];
-}
-
+import { User } from "../../types/types";
 interface State {
   userInfo: User;
   logged: Boolean;
@@ -29,11 +8,7 @@ interface State {
 const initialState: State = {
   userInfo: {
     username: "",
-    email: "",
     image: "",
-    location: "",
-    records_collection: [],
-    wantlist: [],
   },
   logged: false,
 };
