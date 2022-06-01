@@ -61,7 +61,8 @@
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
       "!src/react-app-env.d.ts",
-      "!src/types/types.ts"
+      "!src/types/types.ts",
+      "!src/redux/thunks/types/thunkTypes.ts"
     ]
   }
 }
