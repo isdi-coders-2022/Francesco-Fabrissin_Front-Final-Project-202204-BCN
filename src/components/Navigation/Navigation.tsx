@@ -1,10 +1,10 @@
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import NavbarStyled from "./NavbarStyled";
+import NavigationStyled from "./NavigationStyled";
 
 const Navigation = () => {
   return (
-    <NavbarStyled>
+    <NavigationStyled>
       <Navbar
         collapseOnSelect
         expand="md"
@@ -32,7 +32,7 @@ const Navigation = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </NavbarStyled>
+    </NavigationStyled>
   );
 };
 

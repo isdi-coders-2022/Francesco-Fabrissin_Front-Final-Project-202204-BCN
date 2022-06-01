@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NavbarStyled = styled.div`
+const NavigationStyled = styled.div`
   background-color: #3a4042!;
   width: 100%;
   color: white;
@@ -35,4 +35,4 @@ const NavbarStyled = styled.div`
   }
 `;
 
-export default NavbarStyled;
+export default NavigationStyled;
