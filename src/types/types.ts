@@ -1,5 +1,5 @@
 export interface Record {
-  title: String;
+  title: string;
   artist: string;
   year: number;
   genre: string;
@@ -14,5 +14,3 @@ export interface User {
   username: string;
   image: string;
 }
-
-

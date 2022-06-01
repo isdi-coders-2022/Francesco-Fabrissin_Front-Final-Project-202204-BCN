@@ -2,22 +2,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
-
-interface UserLogin {
-  username: string;
-  password: string;
-}
-
-interface ResponseApiLogin {
-  data: {
-    token: string;
-  };
-}
-
-interface DecodeToken {
-  username: string;
-  image: string;
-}
+import { DecodeToken, ResponseApiLogin, UserLogin } from "./types/thunkTypes";
 
 export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {
