@@ -5,22 +5,23 @@ import Controller from "./components/Controller/Controller";
 import AccessFormPage from "./pages/AccesFormPage";
 import { DecodeToken } from "./redux/thunks/types/thunkTypes";
 import jwtDecode from "jwt-decode";
-import { useAppDispatch } from "./redux/hooks";
-import { loginActionCreator } from "./redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "./redux/hooks";
+import { loginActionCreator, State } from "./redux/features/userSlice";
 
 function App() {
   const dispatch = useAppDispatch();
+  const { logged } = useAppSelector((state: { user: State }) => state.user);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      const { username, image }: DecodeToken = jwtDecode(token);
+    if (token as string) {
+      const { username, image }: DecodeToken = jwtDecode(token as string);
       dispatch(loginActionCreator({ username, image }));
       navigate("/users/collections");
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, logged, navigate]);
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center h-100">
