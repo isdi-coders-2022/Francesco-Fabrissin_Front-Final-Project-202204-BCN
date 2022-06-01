@@ -5,6 +5,13 @@ import { Provider } from "react-redux";
 import store from "../../redux/store/store";
 import { BrowserRouter } from "react-router-dom";
 
+const mockDispatch = jest.fn();
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+}));
+
 describe("Given a FormLogin component function", () => {
   describe("When invoked", () => {
     test("Then it should render 2 input fields and 2 buttons", () => {
@@ -87,6 +94,32 @@ describe("Given a FormLogin component function", () => {
       userEvent.type(passwordInput, password);
 
       expect(loginButton).not.toBeDisabled();
+    });
+  });
+
+  describe("When the user fill the username and password input fields and the user clicks on the login button", () => {
+    test("Then the dispatch should be invoked", () => {
+      const username = "Piero";
+      const password = "piero";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const usernameInput = screen.getByLabelText("Username");
+      const passwordInput = screen.getByLabelText("Password");
+      const loginButton = screen.getByRole("button", { name: "LOGIN" });
+
+      userEvent.type(usernameInput, username);
+      userEvent.type(passwordInput, password);
+
+      userEvent.click(loginButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });

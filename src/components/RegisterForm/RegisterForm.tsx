@@ -38,7 +38,7 @@ const RegisterForm = (): JSX.Element => {
 
   const submitRegister = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
+    debugger;
     const newFormData = new FormData();
     newFormData.append("username", formData.username);
     newFormData.append("password", formData.password);
@@ -51,13 +51,13 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <FormStyled>
+    <FormStyled onSubmit={submitRegister} className="login-form">
       <img
         className="logo"
         src="/images/RecordSwapp-logo.png"
         alt="recordswapp logo"
       />
-      <Form onSubmit={submitRegister} className="login-form">
+      <Form>
         <label className="form-label" htmlFor="username">
           Username
         </label>
