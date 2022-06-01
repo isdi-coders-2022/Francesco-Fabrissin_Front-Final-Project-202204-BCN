@@ -6,10 +6,16 @@ import store from "../../redux/store/store";
 import RegisterForm from "./RegisterForm";
 
 const mockDispatch = jest.fn();
+const mockUseNavigate = jest.fn();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
+}));
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe("Given a FormLogin component function", () => {
@@ -130,6 +136,28 @@ describe("Given a FormLogin component function", () => {
       userEvent.click(registerButton);
 
       expect(mockDispatch).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the user clicks on the 'Already have an account' button", () => {
+    test("Then the dispatch should be invoked", () => {
+      const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const goToLoginButton = screen.getByRole("button", {
+        name: "Already have an account?",
+      });
+
+      userEvent.click(goToLoginButton);
+
+      expect(mockUseNavigate).toHaveBeenCalled();
     });
   });
 });

@@ -6,7 +6,7 @@ import { DecodeToken, ResponseApiLogin, UserLogin } from "./types/thunkTypes";
 
 export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {
-    const url: string | undefined = process.env.REACT_APP_API_URL;
+    const url = process.env.REACT_APP_API_URL;
 
     try {
       const {
@@ -28,7 +28,7 @@ export const loginThunk =
 
 export const registerThunk =
   (userData: any, password: string) => async (dispatch: AppDispatch) => {
-    const url: string | undefined = process.env.REACT_APP_API_URL;
+    const url = process.env.REACT_APP_API_URL;
 
     try {
       const { data } = await axios.post(

@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import Controller from "./components/Controller/Controller";
-import AccessFormPage from "./pages/AccesFormPage";
 import { DecodeToken } from "./redux/thunks/types/thunkTypes";
 import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
+import AccessFormPage from "./pages/AccessFormPage";
 
 function App() {
   const dispatch = useAppDispatch();
