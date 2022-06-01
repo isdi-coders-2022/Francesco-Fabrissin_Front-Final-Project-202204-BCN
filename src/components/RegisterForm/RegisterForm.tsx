@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
@@ -23,7 +23,7 @@ const RegisterForm = (): JSX.Element => {
       ...formData,
       [event.target.id]:
         event.target.type === "file"
-          ? event.target.files?.[0] || "image.png"
+          ? event.target.files?.[0] || ""
           : event.target.value,
     });
   };
@@ -36,7 +36,7 @@ const RegisterForm = (): JSX.Element => {
     navigate("/user/login");
   };
 
-  const submitRegister = (event: { preventDefault: () => void }) => {
+  const submitRegister = (event: React.FormEvent) => {
     event.preventDefault();
 
     const newFormData = new FormData();
