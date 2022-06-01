@@ -23,7 +23,7 @@ const RegisterForm = (): JSX.Element => {
       ...formData,
       [event.target.id]:
         event.target.type === "file"
-          ? event.target.files?.[0] || "image.png"
+          ? event.target.files?.[0] || ""
           : event.target.value,
     });
   };
