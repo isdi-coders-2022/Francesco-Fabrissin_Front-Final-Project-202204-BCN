@@ -21,9 +21,17 @@ const userSlice = createSlice({
       userInfo: { ...action.payload },
       logged: true,
     }),
+    logout: (user) => ({
+      userInfo: {
+        username: "",
+        image: "",
+      },
+      logged: false,
+    }),
   },
 });
 
-export const { login: loginActionCreator } = userSlice.actions;
+export const { login: loginActionCreator, logout: logoutActionCreator } =
+  userSlice.actions;
 
 export default userSlice.reducer;

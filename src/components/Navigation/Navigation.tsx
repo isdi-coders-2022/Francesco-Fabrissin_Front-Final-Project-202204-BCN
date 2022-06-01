@@ -1,8 +1,17 @@
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { logoutActionCreator } from "../../redux/features/userSlice";
+import { useAppDispatch } from "../../redux/hooks";
 import NavigationStyled from "./NavigationStyled";
 
 const Navigation = () => {
+  const dispatch = useAppDispatch();
+
+  const logout = () => {
+    dispatch(logoutActionCreator());
+    localStorage.removeItem("token");
+  };
+
   return (
     <NavigationStyled>
       <Navbar
@@ -26,7 +35,9 @@ const Navigation = () => {
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <button className="button-logout">Logout</button>
+                <button className="button-logout" onClick={logout}>
+                  Logout
+                </button>
               </li>
             </ul>
           </Nav>
