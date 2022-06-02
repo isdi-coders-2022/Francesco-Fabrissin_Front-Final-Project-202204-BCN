@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const UserCollectionStyled = styled.div`
+const UserCollectionStyled = styled.li`
   position: relative;
   margin-top: 1rem;
   width: 30rem;
