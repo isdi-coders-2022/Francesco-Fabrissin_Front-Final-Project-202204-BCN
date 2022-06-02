@@ -16,10 +16,12 @@ export interface User {
 }
 
 export interface IUserCollection {
-  username: string;
-  image: string;
-  location: string;
-  genre: string;
+  user: {
+    username: string;
+    image: string;
+    location: string;
+    genre: string;
+  };
 }
 
 export interface UserLogin {

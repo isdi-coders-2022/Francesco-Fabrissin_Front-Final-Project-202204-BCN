@@ -1,4 +1,3 @@
-import { Toaster } from "react-hot-toast";
 import { useAppSelector } from "../../redux/hooks";
 import UserStyled from "./UserStyled";
 

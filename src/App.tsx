@@ -8,8 +8,8 @@ import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
 //import User from "./components/User/User";
 import { Toaster } from "react-hot-toast";
-import UserCollection from "./components/UserCollection/UserCollection";
 import { DecodeToken } from "./types/types";
+import User from "./components/User/User";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -37,12 +37,7 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <UserCollection
-                username="Fra432"
-                image=""
-                location="Barcelona"
-                genre="Electronic"
-              />
+              <User></User>
             </Controller>
           }
         />

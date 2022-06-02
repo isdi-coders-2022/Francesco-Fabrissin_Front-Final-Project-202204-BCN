@@ -2,10 +2,7 @@ import { IUserCollection } from "../../types/types";
 import UserCollectionStyled from "./UserCollectionStyled";
 
 const UserCollection = ({
-  username,
-  location,
-  image,
-  genre,
+  user: { username, location, image, genre },
 }: IUserCollection) => {
   return (
     <UserCollectionStyled className="card">
@@ -16,8 +13,8 @@ const UserCollection = ({
       />
       <div className="card-body">
         <h3 className="card-title">{username} Collection</h3>
-        <span className="location">Location: {location}</span>
-        <span className="genre">Genre: {genre}</span>
+        <h4 className="location">Location: {location}</h4>
+        <h4 className="genre">Genre: {genre}</h4>
       </div>
     </UserCollectionStyled>
   );
