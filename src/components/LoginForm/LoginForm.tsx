@@ -86,7 +86,6 @@ const LoginForm = (): JSX.Element => {
       <button className="button-secondary" onClick={navigateToRegister}>
         Create an account
       </button>
-      <Toaster position="bottom-center" reverseOrder={false} />
     </FormStyled>
   );
 };

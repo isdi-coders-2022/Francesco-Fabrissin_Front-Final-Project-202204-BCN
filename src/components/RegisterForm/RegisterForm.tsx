@@ -138,7 +138,6 @@ const RegisterForm = (): JSX.Element => {
       <button className="button-secondary" onClick={navigateToLogin}>
         Already have an account?
       </button>
-      <Toaster />
     </FormStyled>
   );
 };

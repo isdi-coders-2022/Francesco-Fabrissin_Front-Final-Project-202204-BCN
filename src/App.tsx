@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import Controller from "./components/Controller/Controller";
-import { DecodeToken } from "./redux/thunks/types/thunkTypes";
 import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
+//import User from "./components/User/User";
+import { Toaster } from "react-hot-toast";
+import { DecodeToken } from "./types/types";
 import User from "./components/User/User";
 
 function App() {
@@ -35,11 +37,12 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <User />
+              <User></User>
             </Controller>
           }
         />
       </Routes>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }
