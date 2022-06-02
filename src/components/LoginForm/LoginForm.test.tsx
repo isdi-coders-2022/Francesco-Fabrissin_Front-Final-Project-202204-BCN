@@ -79,30 +79,6 @@ describe("Given a FormLogin component function", () => {
     });
   });
 
-  describe("When the user fill the username and password input fields", () => {
-    test("Then the login button should be enabled", () => {
-      const username = "Piero";
-      const password = "piero";
-
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <LoginForm />
-          </Provider>
-        </BrowserRouter>
-      );
-
-      const usernameInput = screen.getByLabelText("Username");
-      const passwordInput = screen.getByLabelText("Password");
-      const loginButton = screen.getByRole("button", { name: "LOGIN" });
-
-      userEvent.type(usernameInput, username);
-      userEvent.type(passwordInput, password);
-
-      expect(loginButton).not.toBeDisabled();
-    });
-  });
-
   describe("When the user fill the username and password input fields and the user clicks on the login button", () => {
     test("Then the dispatch should be invoked", () => {
       const username = "Piero";
@@ -122,6 +98,8 @@ describe("Given a FormLogin component function", () => {
 
       userEvent.type(usernameInput, username);
       userEvent.type(passwordInput, password);
+
+      expect(loginButton).not.toBeDisabled();
 
       userEvent.click(loginButton);
 
