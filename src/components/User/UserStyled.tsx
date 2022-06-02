@@ -5,6 +5,7 @@ const UserStyled = styled.div`
   width: 100%;
   height: 4.5rem;
   background-color: #3a4042;
+  margin-top: -1px;
 
   .user {
     position: absolute;
@@ -23,7 +24,7 @@ const UserStyled = styled.div`
 
     &__username {
       color: #4f4f4f;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 600;
     }
   }
