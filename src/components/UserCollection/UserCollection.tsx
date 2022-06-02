@@ -3,7 +3,9 @@ import UserCollectionStyled from "./UserCollectionStyled";
 
 const UserCollection = ({
   user: { username, location, image, genre },
-}: IUserCollection) => {
+}: {
+  user: IUserCollection;
+}) => {
   return (
     <UserCollectionStyled className="card">
       <img
