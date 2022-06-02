@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { useAppSelector } from "../../redux/hooks";
 import UserStyled from "./UserStyled";
 
@@ -15,6 +16,7 @@ const User = () => {
         />
         <h2 className="user__username">{username}</h2>
       </div>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </UserStyled>
   );
 };
