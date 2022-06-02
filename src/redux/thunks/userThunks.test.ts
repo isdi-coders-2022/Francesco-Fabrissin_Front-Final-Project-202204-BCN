@@ -1,9 +1,6 @@
-import axios from "axios";
-import toast from "react-hot-toast";
 import { mockUserLogin } from "../../mocks/mockUser";
 import { loginActionCreator } from "../features/userSlice";
 import { loginThunk, registerThunk } from "./userThunks";
-const mockToastError = jest.fn();
 
 jest.mock("jwt-decode", () => () => ({ username: "fra432", image: "image" }));
 

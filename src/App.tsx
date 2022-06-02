@@ -6,7 +6,6 @@ import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
-//import User from "./components/User/User";
 import { Toaster } from "react-hot-toast";
 import { DecodeToken } from "./types/types";
 import User from "./components/User/User";
@@ -17,14 +16,15 @@ function App() {
 
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token as string) {
       const { username, image }: DecodeToken = jwtDecode(token as string);
       dispatch(loginActionCreator({ username, image }));
       navigate("/users/collections");
     }
-  }, [dispatch, logged, navigate]);
+  }, [dispatch, logged, navigate, token]);
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center h-100">
