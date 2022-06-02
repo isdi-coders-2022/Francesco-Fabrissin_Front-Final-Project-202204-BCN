@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
 import User from "./components/User/User";
+import Button from "./components/Button/Button";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className="d-flex flex-column align-items-center justify-content-center h-100">
       {logged && <Navigation />}
+      <Button text="see collection" action={() => {}} />
       <Routes>
         <Route path="/" element={<Navigate to="/user/login" />} />
         <Route path="/user/login" element={<AccessFormPage />} />
