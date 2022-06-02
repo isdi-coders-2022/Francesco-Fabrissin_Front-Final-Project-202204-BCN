@@ -5,10 +5,10 @@ import Controller from "./components/Controller/Controller";
 import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
-import AccessFormPage from "./pages/AccessFormPage";
+import AccessFormPage from "./pages/AccessFormPage/AccessFormPage";
 import { Toaster } from "react-hot-toast";
 import { DecodeToken } from "./types/types";
-import User from "./components/User/User";
+import UsersCollectionsPage from "./pages/UsersCollectionsPage/UsersCollectionsPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -27,7 +27,7 @@ function App() {
   }, [dispatch, logged, navigate, token]);
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center h-100">
+    <div className="d-flex flex-column align-items-center h-100">
       {logged && <Navigation />}
       <Routes>
         <Route path="/" element={<Navigate to="/user/login" />} />
@@ -37,7 +37,7 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <User />
+              <UsersCollectionsPage />
             </Controller>
           }
         />

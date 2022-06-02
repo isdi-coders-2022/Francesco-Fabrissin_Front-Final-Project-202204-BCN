@@ -3,7 +3,7 @@ import { loadCollectionsActionCreator } from "../features/usersSlice";
 import { loadCollectionsThunk } from "./usersThunks";
 
 describe("Given a loadCollectionsThunk function", () => {
-  describe("When it's called", () => {
+  describe("When it's called with an authorized token", () => {
     test("It should dispatch the loadCollectionsActionCreator with the data from the api", async () => {
       const dispatch = jest.fn();
       const usersCollectionsData = mockUsers;

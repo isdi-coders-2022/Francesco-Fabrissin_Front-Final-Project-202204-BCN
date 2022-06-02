@@ -1,10 +1,7 @@
-import { useAppSelector } from "../../redux/hooks";
+import { IUser } from "../../types/types";
 import UserStyled from "./UserStyled";
 
-const User = () => {
-  const {
-    userInfo: { username, image },
-  } = useAppSelector((state) => state.user);
+const User = ({ userInfo: { username, image } }: { userInfo: IUser }) => {
   return (
     <UserStyled>
       <div className="user">

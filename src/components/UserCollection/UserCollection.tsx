@@ -7,7 +7,7 @@ const UserCollection = ({
   user: IUserCollection;
 }) => {
   return (
-    <UserCollectionStyled className="card">
+    <UserCollectionStyled className="card col-xs-8 col-sm-10 col-md-5 col-lg-5">
       <img
         src={image ? image : "/images/no-photo-available.png"}
         alt=""
