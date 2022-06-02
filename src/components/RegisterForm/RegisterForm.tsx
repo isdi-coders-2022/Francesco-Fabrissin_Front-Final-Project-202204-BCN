@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { registerThunk } from "../../redux/thunks/userThunks";
@@ -137,6 +138,7 @@ const RegisterForm = (): JSX.Element => {
       <button className="button-secondary" onClick={navigateToLogin}>
         Already have an account?
       </button>
+      <Toaster />
     </FormStyled>
   );
 };

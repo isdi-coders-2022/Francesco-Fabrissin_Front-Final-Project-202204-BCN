@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import toast, { Toaster } from "react-hot-toast";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 import { DecodeToken, ResponseApiLogin, UserLogin } from "./types/thunkTypes";
@@ -9,6 +10,7 @@ export const loginThunk =
     const url = process.env.REACT_APP_API_URL;
 
     try {
+      toast.loading("Loading...");
       const {
         data: { token },
       }: ResponseApiLogin = await axios.post(
@@ -20,8 +22,12 @@ export const loginThunk =
         const { username, image }: DecodeToken = jwtDecode(token);
         dispatch(loginActionCreator({ username, image }));
         localStorage.setItem("token", token);
+        toast.dismiss();
+        toast.success("Successfully loggedIn");
       }
     } catch (error: any) {
+      toast.dismiss();
+      toast.error("Wrong username or password");
       return error.message;
     }
   };
@@ -31,10 +37,14 @@ export const registerThunk =
     const url = process.env.REACT_APP_API_URL;
 
     try {
+      toast.loading("Loading...");
       const { data } = await axios.post(
         `${url}user/register` as string,
         userData
       );
+
+      toast.dismiss();
+      toast.success("You have succesfully registered!");
 
       if (data) {
         const newUser = {
@@ -44,6 +54,8 @@ export const registerThunk =
         dispatch(loginThunk(newUser));
       }
     } catch (error: any) {
+      toast.dismiss();
+      toast.error("Something went wrong");
       return error.message;
     }
   };
