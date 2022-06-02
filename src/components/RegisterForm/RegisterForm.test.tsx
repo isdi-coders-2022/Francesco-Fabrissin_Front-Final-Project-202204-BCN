@@ -79,35 +79,6 @@ describe("Given a FormLogin component function", () => {
     });
   });
 
-  describe("When the user fills the name, username and password fields", () => {
-    test("Then the register button should be enabled", () => {
-      const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
-
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <RegisterForm />
-          </Provider>
-        </BrowserRouter>
-      );
-
-      const usernameField = screen.getByLabelText("Username");
-      const passwordField = screen.getByLabelText("Password");
-      const emailField = screen.getByLabelText("Email");
-      const locationField = screen.getByLabelText(
-        "Location (City or closer city)"
-      );
-      const registerButton = screen.getByRole("button", { name: "Register" });
-
-      userEvent.type(usernameField, textInput[0]);
-      userEvent.type(passwordField, textInput[1]);
-      userEvent.type(emailField, textInput[2]);
-      userEvent.type(locationField, textInput[3]);
-
-      expect(registerButton).not.toBeDisabled();
-    });
-  });
-
   describe("When the user fills the name, username and password fields and clicks on the submit button", () => {
     test("Then the dispatch should be invoked", () => {
       const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
@@ -133,6 +104,8 @@ describe("Given a FormLogin component function", () => {
       userEvent.type(emailField, textInput[2]);
       userEvent.type(locationField, textInput[3]);
 
+      expect(registerButton).not.toBeDisabled();
+
       userEvent.click(registerButton);
 
       expect(mockDispatch).toHaveBeenCalled();
@@ -141,8 +114,6 @@ describe("Given a FormLogin component function", () => {
 
   describe("When the user clicks on the 'Already have an account' button", () => {
     test("Then the dispatch should be invoked", () => {
-      const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
-
       render(
         <BrowserRouter>
           <Provider store={store}>

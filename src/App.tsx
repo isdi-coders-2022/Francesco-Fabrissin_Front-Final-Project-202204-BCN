@@ -7,6 +7,7 @@ import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
+import User from "./components/User/User";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center h-100">
-      <Navigation />
+      {logged && <Navigation />}
       <Routes>
         <Route path="/" element={<Navigate to="/user/login" />} />
         <Route path="/user/login" element={<AccessFormPage />} />
@@ -34,7 +35,7 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <p>Hola</p>
+              <User />
             </Controller>
           }
         />
