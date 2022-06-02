@@ -1,9 +1,9 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import { DecodeToken, ResponseApiLogin, UserLogin } from "../../types/types";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
-import { DecodeToken, ResponseApiLogin, UserLogin } from "./types/thunkTypes";
 
 export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {

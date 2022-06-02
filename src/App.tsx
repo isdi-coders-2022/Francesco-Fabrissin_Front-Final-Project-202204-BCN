@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import Controller from "./components/Controller/Controller";
-import { DecodeToken } from "./redux/thunks/types/thunkTypes";
 import jwtDecode from "jwt-decode";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { loginActionCreator, State } from "./redux/features/userSlice";
 import AccessFormPage from "./pages/AccessFormPage";
-import User from "./components/User/User";
+//import User from "./components/User/User";
+import { Toaster } from "react-hot-toast";
+import UserCollection from "./components/UserCollection/UserCollection";
+import { DecodeToken } from "./types/types";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -35,11 +37,17 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <User />
+              <UserCollection
+                username="Fra432"
+                image=""
+                location="Barcelona"
+                genre="Electronic"
+              />
             </Controller>
           }
         />
       </Routes>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }
