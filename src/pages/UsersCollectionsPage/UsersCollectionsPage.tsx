@@ -9,6 +9,11 @@ const UsersCollectionsPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .list-type {
+    color: #4f4f4f;
+    margin-bottom: 3rem;
+  }
 `;
 
 const UsersCollectionsPage = () => {
@@ -26,6 +31,7 @@ const UsersCollectionsPage = () => {
   return (
     <UsersCollectionsPageStyled>
       <User userInfo={userInfo} />
+      <h3 className="list-type">Users collections</h3>
       <UsersCollectionsList users={users} />
     </UsersCollectionsPageStyled>
   );
