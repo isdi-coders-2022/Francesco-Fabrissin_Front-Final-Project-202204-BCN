@@ -37,7 +37,7 @@ function App() {
           path="/users/collections"
           element={
             <Controller>
-              <User></User>
+              <User />
             </Controller>
           }
         />
