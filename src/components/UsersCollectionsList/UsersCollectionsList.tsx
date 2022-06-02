@@ -4,8 +4,8 @@ import UserCollection from "../UserCollection/UserCollection";
 const UsersCollectionsList = ({ users }: { users: IUserCollection[] }) => {
   return (
     <ul className="users-list row justify-content-md-center">
-      {users.map((user) => {
-        return <UserCollection user={user} />;
+      {users.map((user, position) => {
+        return <UserCollection key={position} user={user} />;
       })}
     </ul>
   );
