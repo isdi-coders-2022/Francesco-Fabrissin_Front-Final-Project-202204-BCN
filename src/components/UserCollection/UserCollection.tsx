@@ -1,4 +1,5 @@
 import { IUserCollection } from "../../types/types";
+import Button from "../Button/Button";
 import UserCollectionStyled from "./UserCollectionStyled";
 
 const UserCollection = ({
@@ -18,6 +19,7 @@ const UserCollection = ({
         <h4 className="location">Location: {location}</h4>
         <h4 className="genre">Genre: {genre}</h4>
       </div>
+      <Button text="See collection" action={() => {}} />
     </UserCollectionStyled>
   );
 };

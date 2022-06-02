@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const UserCollectionStyled = styled.li`
   position: relative;
-  margin: 1rem;
+  margin: 1.5rem;
   height: 10rem;
   background-image: url("/images/records-banner.jpeg");
   background-size: cover;
@@ -19,12 +19,23 @@ const UserCollectionStyled = styled.li`
     }
   }
   .card-body {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 400;
-    z-index: 1;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 400;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 400;
+      z-index: 1;
+    }
   }
 
   .card-title {

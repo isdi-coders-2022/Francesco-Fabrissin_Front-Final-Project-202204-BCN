@@ -13,10 +13,7 @@ export const loginThunk =
       toast.loading("Loading...");
       const {
         data: { token },
-      }: ResponseApiLogin = await axios.post(
-        `${url}user/login` as string,
-        userData
-      );
+      }: ResponseApiLogin = await axios.post(`${url}user/login`, userData);
 
       if (token) {
         const { username, image }: DecodeToken = jwtDecode(token);
@@ -38,10 +35,7 @@ export const registerThunk =
 
     try {
       toast.loading("Loading...");
-      const { data } = await axios.post(
-        `${url}user/register` as string,
-        userData
-      );
+      const { data } = await axios.post(`${url}user/register`, userData);
 
       toast.dismiss();
       toast.success("You have succesfully registered!");
