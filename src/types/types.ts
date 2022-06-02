@@ -7,10 +7,10 @@ export interface Record {
   conditions: string;
   youtube_url: string;
   image: string;
-  owner: User;
+  owner: IUser;
 }
 
-export interface User {
+export interface IUser {
   username: string;
   image: string;
 }

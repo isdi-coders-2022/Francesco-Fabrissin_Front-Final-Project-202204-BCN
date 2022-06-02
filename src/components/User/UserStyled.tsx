@@ -6,6 +6,7 @@ const UserStyled = styled.div`
   height: 4.5rem;
   background-color: #3a4042;
   margin-top: -1px;
+  margin-bottom: 10rem;
 
   .user {
     position: absolute;

@@ -1,16 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { mockUserLogin } from "../../mocks/mockUser";
 import store from "../../redux/store/store";
 import User from "./User";
 
 describe("Given a User component function", () => {
   describe("When invoked and a the user 'Nico' is logged but he has no profile picture", () => {
     test("Then it should render an unknown profile picture image and an heading with 'Nico' inside", () => {
+      const userInfo = mockUserLogin;
+
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <User />
+            <User userInfo={userInfo} />
           </Provider>
         </BrowserRouter>
       );

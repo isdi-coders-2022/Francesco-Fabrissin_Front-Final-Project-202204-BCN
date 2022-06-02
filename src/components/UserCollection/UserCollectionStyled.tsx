@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const UserCollectionStyled = styled.li`
   position: relative;
-  margin-top: 1rem;
-  width: 30rem;
+  margin: 1rem;
   height: 10rem;
   background-image: url("/images/records-banner.jpeg");
   background-size: cover;
