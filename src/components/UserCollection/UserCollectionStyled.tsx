@@ -14,6 +14,7 @@ const UserCollectionStyled = styled.li`
       right: 0;
       transform: translate(0, -3.5rem);
       width: 7rem;
+      height: 7rem;
       border: 2px solid white;
       border-radius: 3.5rem;
     }
