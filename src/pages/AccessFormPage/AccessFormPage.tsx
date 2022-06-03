@@ -12,7 +12,7 @@ const AccessFormPageStyle = styled.div`
   align-items: center;
 `;
 
-const AccessFormPage = () => {
+const AccessFormPage = (): JSX.Element => {
   const { register } = useParams();
 
   return (
