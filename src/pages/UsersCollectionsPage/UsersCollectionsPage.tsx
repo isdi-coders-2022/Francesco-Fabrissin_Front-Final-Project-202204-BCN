@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
@@ -18,6 +19,7 @@ const UsersCollectionsPageStyled = styled.div`
 
 const UsersCollectionsPage = () => {
   const users = useAppSelector((state) => state.users);
+  const { myCollection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
@@ -31,7 +33,9 @@ const UsersCollectionsPage = () => {
   return (
     <UsersCollectionsPageStyled>
       <User userInfo={userInfo} />
-      <h3 className="list-type">Users collections</h3>
+      <h3 className="list-type">
+        {myCollection ? "My Collection" : "Users collections"}
+      </h3>
       <UsersCollectionsList users={users} />
     </UsersCollectionsPageStyled>
   );

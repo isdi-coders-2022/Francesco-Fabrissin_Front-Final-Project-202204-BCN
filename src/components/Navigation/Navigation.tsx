@@ -32,8 +32,15 @@ const Navigation = () => {
                   Users Collection
                 </NavLink>
               </li>
-            </ul>
-            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <NavLink
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/myCollection"
+                >
+                  My Collection
+                </NavLink>
+              </li>
               <li className="nav-item">
                 <button className="button-logout" onClick={logout}>
                   Logout

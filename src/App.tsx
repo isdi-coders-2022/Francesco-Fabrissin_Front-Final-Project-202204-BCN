@@ -9,6 +9,7 @@ import AccessFormPage from "./pages/AccessFormPage/AccessFormPage";
 import { Toaster } from "react-hot-toast";
 import { DecodeToken } from "./types/types";
 import UsersCollectionsPage from "./pages/UsersCollectionsPage/UsersCollectionsPage";
+import AntiController from "./components/AntiController/AntiCOntroller";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,7 +23,6 @@ function App() {
     if (token as string) {
       const { username, image }: DecodeToken = jwtDecode(token as string);
       dispatch(loginActionCreator({ username, image }));
-      navigate("/users/collections");
     }
   }, [dispatch, logged, navigate, token]);
 
@@ -31,10 +31,32 @@ function App() {
       {logged && <Navigation />}
       <Routes>
         <Route path="/" element={<Navigate to="/user/login" />} />
-        <Route path="/user/login" element={<AccessFormPage />} />
-        <Route path="/user/:register" element={<AccessFormPage />} />
+        <Route
+          path="/user/login"
+          element={
+            <AntiController>
+              <AccessFormPage />
+            </AntiController>
+          }
+        />
+        <Route
+          path="/user/:register"
+          element={
+            <AntiController>
+              <AccessFormPage />
+            </AntiController>
+          }
+        />
         <Route
           path="/users/collections"
+          element={
+            <Controller>
+              <UsersCollectionsPage />
+            </Controller>
+          }
+        />
+        <Route
+          path="/:myCollection"
           element={
             <Controller>
               <UsersCollectionsPage />
