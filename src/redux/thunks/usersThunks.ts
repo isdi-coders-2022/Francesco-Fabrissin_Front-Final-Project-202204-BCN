@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IUserCollection } from "../../types/types";
 import { loadCollectionsActionCreator } from "../features/usersSlice";
 import { AppDispatch } from "../store/store";
 
@@ -12,5 +13,10 @@ export const loadCollectionsThunk =
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    dispatch(loadCollectionsActionCreator(usersCollection));
+    const dataCollections = usersCollection.map((user: IUserCollection) => ({
+      ...user,
+      image: `${url}${user.image}`,
+    }));
+
+    dispatch(loadCollectionsActionCreator(dataCollections));
   };
