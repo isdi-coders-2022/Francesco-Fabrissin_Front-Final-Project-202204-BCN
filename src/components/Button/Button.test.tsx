@@ -7,7 +7,15 @@ describe("Given a Button component function", () => {
   const action = jest.fn();
   describe("When invoked with the text 'See collection'", () => {
     test("Then it should render a button with the text 'See collection'", () => {
-      render(<Button text={buttonText} action={action} />);
+      render(
+        <Button
+          edit={true}
+          add={false}
+          className="button"
+          text={buttonText}
+          action={action}
+        />
+      );
 
       const button = screen.getByRole("button", { name: "See collection" });
 
@@ -17,7 +25,15 @@ describe("Given a Button component function", () => {
 
   describe("When invoked with the text 'See collection' and an action, and the user click on it", () => {
     test("Then it should render a button with the text 'See collection' and it should invoke the received action", () => {
-      render(<Button text={buttonText} action={action} />);
+      render(
+        <Button
+          edit={true}
+          add={false}
+          className="button"
+          text={buttonText}
+          action={action}
+        />
+      );
 
       const button = screen.getByRole("button", { name: "See collection" });
       userEvent.click(button);

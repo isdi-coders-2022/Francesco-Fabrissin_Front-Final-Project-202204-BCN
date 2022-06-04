@@ -19,7 +19,13 @@ const UserCollection = ({
         <h4 className="location">Location: {location}</h4>
         <h4 className="genre">Genre: {genre}</h4>
       </div>
-      <Button text="See collection" action={() => {}} />
+      <Button
+        edit={false}
+        add={false}
+        className="button button--see-collection"
+        text="See collection"
+        action={() => {}}
+      />
     </UserCollectionStyled>
   );
 };

@@ -3,29 +3,30 @@ import styled from "styled-components";
 const UserStyled = styled.div`
   position: relative;
   width: 100%;
-  height: 4.5rem;
+  height: 2.5rem;
   background-color: #3a4042;
   margin-top: -1px;
-  margin-bottom: 10rem;
+  margin-bottom: 6.5rem;
 
   .user {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-5rem, -2.5rem);
+    transform: translate(-4rem, -3rem);
     display: flex;
     flex-direction: column;
     align-items: center;
 
     &__avatar {
-      width: 10rem;
+      width: 8rem;
+      height: 8rem;
       border: 2px solid #fff;
       border-radius: 5rem;
     }
 
     &__username {
       color: #4f4f4f;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 600;
     }
   }

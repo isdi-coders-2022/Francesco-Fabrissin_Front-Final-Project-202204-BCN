@@ -4,6 +4,7 @@ const NavigationStyled = styled.div`
   background-color: #3a4042!;
   width: 100%;
   color: white;
+  font-size: 1.1rem;
 
   .navbar-dark {
     background-color: #3a4042 !important;
@@ -25,13 +26,12 @@ const NavigationStyled = styled.div`
   }
 
   .button-logout {
-    width: 4.5rem;
-    height: 2rem;
-    border: 1px solid white;
+    border: none;
     border-radius: 0.5rem;
     background-color: #3a4042;
     color: white;
     padding: 0;
+    margin-bottom: 1.5rem;
   }
 `;
 
