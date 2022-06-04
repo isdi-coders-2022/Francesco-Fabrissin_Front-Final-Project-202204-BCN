@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button/Button";
-import Record from "../../components/Record/Record";
+import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
 import { mockRecords } from "../../mocks/mockRecords";
@@ -36,7 +36,7 @@ const UsersCollectionsPage = () => {
     dispatch(loadCollectionsThunk(token as string));
   }, [dispatch, token]);
 
-  const record = mockRecords[0];
+  const records = mockRecords;
 
   return (
     <UsersCollectionsPageStyled>
@@ -54,7 +54,7 @@ const UsersCollectionsPage = () => {
         />
       )}
       {myCollection ? (
-        <Record record={record} />
+        <RecordsList records={records} />
       ) : (
         <UsersCollectionsList users={users} />
       )}
