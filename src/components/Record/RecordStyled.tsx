@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RecordStyled = styled.div`
+const RecordStyled = styled.li`
   width: 90%;
   height: 15rem;
   border-bottom: 1px solid #ccc;

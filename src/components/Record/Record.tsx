@@ -7,7 +7,7 @@ const Record = ({
   record: { image, title, artist, year, genre, conditions },
 }: {
   record: IRecord;
-}) => {
+}): JSX.Element => {
   return (
     <RecordStyled className="record">
       <div className="body">
