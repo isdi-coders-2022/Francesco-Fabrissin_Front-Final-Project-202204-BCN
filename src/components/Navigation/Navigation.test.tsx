@@ -37,7 +37,7 @@ describe("Given a Navbar component function", () => {
     });
   });
 
-  describe("When invoked and the user click on the 'My Collection' link", () => {
+  describe("When invoked and the user clicks on the 'My Collection' link", () => {
     test("Then it should invoke the closeNav function", () => {
       render(
         <BrowserRouter>
@@ -57,7 +57,7 @@ describe("Given a Navbar component function", () => {
     });
   });
 
-  describe("When invoked and the user click on the 'My Collection' link", () => {
+  describe("When invoked and the user clicks Nav toggle button", () => {
     test("Then it should invoke the closeNav function", () => {
       render(
         <BrowserRouter>
