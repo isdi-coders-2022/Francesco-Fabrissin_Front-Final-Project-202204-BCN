@@ -53,5 +53,19 @@ const UserCollectionStyled = styled.li`
     background-color: black;
     opacity: 0.3;
   }
+
+  .button {
+    &--see-collection {
+      @media (max-width: 768px) {
+        transform: translate(-16vw, 1.6rem);
+      }
+      @media (min-width: 768px) {
+        transform: translate(-4rem, 1.6rem);
+      }
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+    }
+  }
 `;
 export default UserCollectionStyled;

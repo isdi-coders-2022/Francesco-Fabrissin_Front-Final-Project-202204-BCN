@@ -1,13 +1,10 @@
-export interface Record {
+export interface IRecord {
   title: string;
   artist: string;
   year: number;
   genre: string;
-  price: number;
   conditions: string;
-  youtube_url: string;
   image: string;
-  owner: IUser;
 }
 
 export interface IUser {
