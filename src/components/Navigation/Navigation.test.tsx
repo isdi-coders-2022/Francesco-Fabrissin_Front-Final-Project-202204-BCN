@@ -6,6 +6,12 @@ import store from "../../redux/store/store";
 import Navigation from "./Navigation";
 
 const mockDispatch = jest.fn();
+const mockSetState = jest.fn();
+
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: (initial: any) => [initial, mockSetState],
+}));
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
@@ -28,6 +34,46 @@ describe("Given a Navbar component function", () => {
 
       expect(navbar).toBeInTheDocument();
       expect(logoutButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When invoked and the user click on the 'My Collection' link", () => {
+    test("Then it should invoke the closeNav function", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Navigation />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const myCollectionLink = screen.getByRole("link", {
+        name: "My Collection",
+      });
+
+      userEvent.click(myCollectionLink);
+
+      expect(mockSetState).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked and the user click on the 'My Collection' link", () => {
+    test("Then it should invoke the closeNav function", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Navigation />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const navToggle = screen.getByRole("button", {
+        name: "Toggle navigation",
+      });
+
+      userEvent.click(navToggle);
+
+      expect(mockSetState).toHaveBeenCalled();
     });
   });
 

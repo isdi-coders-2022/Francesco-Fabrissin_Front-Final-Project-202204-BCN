@@ -4,7 +4,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { IRecord } from "../../types/types";
 
 const Record = ({
-  record: { image, title, artist, year, genre },
+  record: { image, title, artist, year, genre, conditions },
 }: {
   record: IRecord;
 }) => {
@@ -15,19 +15,19 @@ const Record = ({
           <div className="image">
             <img
               src={image ? image : "/images/generic-record.png"}
-              alt="record"
+              alt="record cover"
               className="record__img"
             />
           </div>
           <div className="record__info">
             <div className="title-artist">
-              <span className="title">{"Brace & Bit"}</span>
-              <span className="artist">Earth To Mickey</span>
+              <span className="title">{title}</span>
+              <span className="artist">{artist}</span>
             </div>
             <div className="details">
-              <span>Released in 1999</span>
-              <span>Genre: Electronic</span>
-              <span>Conditions: VG</span>
+              <span>Released in {year}</span>
+              <span>Genre: {genre}</span>
+              <span>Conditions: {conditions}</span>
             </div>
           </div>
         </div>
