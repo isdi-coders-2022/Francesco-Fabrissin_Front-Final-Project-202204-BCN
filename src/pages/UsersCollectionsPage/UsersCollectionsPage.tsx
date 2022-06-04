@@ -7,6 +7,7 @@ import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
 import { mockRecords } from "../../mocks/mockRecords";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { loadMyRecordsThunk } from "../../redux/thunks/recordsThunks";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
 
 const UsersCollectionsPageStyled = styled.div`
@@ -27,6 +28,7 @@ const UsersCollectionsPage = () => {
   const users = useAppSelector((state) => state.users);
   const { myCollection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
+  const records = useAppSelector((state) => state.records);
 
   const dispatch = useAppDispatch();
 
@@ -36,7 +38,9 @@ const UsersCollectionsPage = () => {
     dispatch(loadCollectionsThunk(token as string));
   }, [dispatch, token]);
 
-  const records = mockRecords;
+  useEffect(() => {
+    dispatch(loadMyRecordsThunk(token as string));
+  }, [dispatch, token]);
 
   return (
     <UsersCollectionsPageStyled>
