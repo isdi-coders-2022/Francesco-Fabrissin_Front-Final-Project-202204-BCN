@@ -8,9 +8,13 @@ const recordsSlice = createSlice({
   initialState,
   reducers: {
     loadRecords: (records, action) => [...action.payload],
+    addRecord: (records, action) => [...records, action.payload],
   },
 });
 
-export const { loadRecords: loadRecordsActionCreator } = recordsSlice.actions;
+export const {
+  loadRecords: loadRecordsActionCreator,
+  addRecord: addRecordActionCreator,
+} = recordsSlice.actions;
 
 export default recordsSlice.reducer;
