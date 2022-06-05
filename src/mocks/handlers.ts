@@ -40,4 +40,13 @@ export const handlers = [
       })
     );
   }),
+
+  rest.post(`${process.env.REACT_APP_API_URL}myCollection`, (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        new_record: mockRecords[0],
+      })
+    );
+  }),
 ];

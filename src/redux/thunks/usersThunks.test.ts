@@ -8,7 +8,9 @@ describe("Given a loadCollectionsThunk function", () => {
       const dispatch = jest.fn();
       const usersCollectionsData = mockUsers.map((user) => ({
         ...user,
-        image: `${process.env.REACT_APP_API_URL}${user.image}`,
+        image: user.image
+          ? `${process.env.REACT_APP_API_URL}${user.image}`
+          : "",
       }));
       const token = "right token";
 
