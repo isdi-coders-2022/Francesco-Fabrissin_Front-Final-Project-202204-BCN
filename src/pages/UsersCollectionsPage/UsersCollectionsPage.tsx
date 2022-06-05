@@ -55,9 +55,7 @@ const UsersCollectionsPage = () => {
       {myCollection && (
         <Button
           type="button"
-          disabled={false}
           add={true}
-          edit={false}
           className="button"
           text="Add record"
           action={navigateToAddForm}

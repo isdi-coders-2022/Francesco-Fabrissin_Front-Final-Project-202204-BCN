@@ -19,6 +19,6 @@ export const loadCollectionsThunk =
       image: user.image ? `${url}${user.image}` : "",
     }));
 
-    dispatch(loadCollectionsActionCreator(dataCollections));
     toast.dismiss();
+    dispatch(loadCollectionsActionCreator(dataCollections));
   };
