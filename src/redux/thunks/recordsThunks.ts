@@ -1,12 +1,16 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { IRecord } from "../../types/types";
-import { loadRecordsActionCreator } from "../features/recordsSlice";
+import {
+  addRecordActionCreator,
+  loadRecordsActionCreator,
+} from "../features/recordsSlice";
 import { AppDispatch } from "../store/store";
+
+const url = process.env.REACT_APP_API_URL;
 
 export const loadMyRecordsThunk =
   (token: string) => async (dispatch: AppDispatch) => {
-    const url = process.env.REACT_APP_API_URL;
-
     try {
       const {
         data: { records },
@@ -16,10 +20,30 @@ export const loadMyRecordsThunk =
 
       const dataRecords = records.map((record: IRecord) => ({
         ...record,
-        image: `${url}${record.image}`,
+        image: record.image ? `${url}${record.image}` : "",
       }));
 
       dispatch(loadRecordsActionCreator(dataRecords));
+    } catch (error: any) {
+      return error.message;
+    }
+  };
+
+export const addRecordThunk =
+  (recordData: any) => async (dispatch: AppDispatch) => {
+    try {
+      toast.loading("Loading...");
+      const {
+        data: { new_record },
+      } = await axios.post(`${url}myCollection`, recordData, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+
+      if (new_record) {
+        dispatch(addRecordActionCreator(new_record));
+        toast.dismiss();
+        toast.success("Record succesfully added to your collection");
+      }
     } catch (error: any) {
       return error.message;
     }

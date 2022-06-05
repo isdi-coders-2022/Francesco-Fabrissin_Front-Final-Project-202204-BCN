@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useAppDispatch } from "../../redux/hooks";
+import { addRecordThunk } from "../../redux/thunks/recordsThunks";
 import Button from "../Button/Button";
 import FormStyled from "../LoginForm/FormStyled";
 
@@ -12,6 +14,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
     title: "",
     artist: "",
     year: "",
+    genre: "",
     conditions: "",
     price: "",
     youtube_url: "",
@@ -19,6 +22,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
   };
 
   const [formData, setFormData] = useState(blankData);
+  const dispatch = useAppDispatch();
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -35,13 +39,33 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
       formData.title === "" ||
       formData.artist === "" ||
       formData.year === "" ||
+      formData.genre === "" ||
       formData.conditions === "" ||
-      formData.price === "" ||
-      formData.youtube_url === ""
+      formData.price === ""
     ) {
       return true;
     }
     return false;
+  };
+
+  const clearData = () => {
+    setFormData(blankData);
+  };
+
+  const submitAddRecord = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const newFormData = new FormData();
+    newFormData.append("title", formData.title);
+    newFormData.append("artist", formData.artist);
+    newFormData.append("year", formData.year);
+    newFormData.append("genre", formData.genre);
+    newFormData.append("conditions", formData.conditions);
+    newFormData.append("price", formData.price);
+    newFormData.append("youtube_url", formData.youtube_url ?? "");
+    newFormData.append("image", formData.image);
+    dispatch(addRecordThunk(newFormData));
+    clearData();
   };
 
   return (
@@ -51,7 +75,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
         src="/images/Black-logo.png"
         alt="recordswapp logo"
       />
-      <Form className="login-form add-edit-form">
+      <Form className="login-form add-edit-form" onSubmit={submitAddRecord}>
         <span>Details</span>
         <label className="form-label hidden" htmlFor="title">
           Title
@@ -89,6 +113,19 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
           placeholder="Year of Release"
           id="year"
           value={formData.year}
+          onChange={changeFormData}
+          type="text"
+        />
+        <label className="form-label hidden" htmlFor="genre">
+          Genre
+        </label>
+        <input
+          className="form-control"
+          formNoValidate
+          autoComplete="off"
+          placeholder="Genre"
+          id="genre"
+          value={formData.genre}
           onChange={changeFormData}
           type="text"
         />
@@ -142,6 +179,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
         />
         <div className="container text-center">
           <Button
+            type="submit"
             disabled={buttonDisabled()}
             className="button"
             add={edit ? false : true}

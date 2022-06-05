@@ -31,7 +31,7 @@ const NavigationStyled = styled.div`
     background-color: #3a4042;
     color: white;
     padding: 0;
-    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
   }
 `;
 

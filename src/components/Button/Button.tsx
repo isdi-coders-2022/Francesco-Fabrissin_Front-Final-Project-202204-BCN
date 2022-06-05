@@ -2,7 +2,10 @@ import ButtonStyled from "./ButtonStyled";
 import { RiAddFill } from "react-icons/ri";
 import { FiEdit2 } from "react-icons/fi";
 
+type ButtonType = "button" | "submit" | "reset";
+
 const Button = ({
+  type,
   disabled,
   edit,
   add,
@@ -10,6 +13,7 @@ const Button = ({
   text,
   action,
 }: {
+  type: ButtonType;
   disabled: boolean;
   edit: boolean;
   add: boolean;

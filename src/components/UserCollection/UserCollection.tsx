@@ -20,6 +20,7 @@ const UserCollection = ({
         <h4 className="genre">Genre: {genre}</h4>
       </div>
       <Button
+        type="button"
         disabled={false}
         edit={false}
         add={false}
