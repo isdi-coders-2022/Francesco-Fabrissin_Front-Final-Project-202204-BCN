@@ -9,12 +9,15 @@ const recordsSlice = createSlice({
   reducers: {
     loadRecords: (records, action) => [...action.payload],
     addRecord: (records, action) => [...records, action.payload],
+    deleteRecord: (records, action) =>
+      records.filter((record) => record.id !== action.payload),
   },
 });
 
 export const {
   loadRecords: loadRecordsActionCreator,
   addRecord: addRecordActionCreator,
+  deleteRecord: deleteRecordActionCreator,
 } = recordsSlice.actions;
 
 export default recordsSlice.reducer;
