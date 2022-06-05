@@ -1,5 +1,7 @@
+import AddEditRecordForm from "../../components/AddEditRecordForm/AddEditRecordForm";
+
 const AddEditFormPage = () => {
-  return <AddEditFormPage />;
+  return <AddEditRecordForm />;
 };
 
 export default AddEditFormPage;

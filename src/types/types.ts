@@ -1,7 +1,8 @@
 export interface IRecord {
+  id: string;
   title: string;
   artist: string;
-  year: number;
+  year: string;
   genre: string;
   conditions: string;
   image: string;

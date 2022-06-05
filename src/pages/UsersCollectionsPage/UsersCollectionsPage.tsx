@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button/Button";
 import RecordsList from "../../components/RecordsList/RecordsList";
@@ -30,6 +30,11 @@ const UsersCollectionsPage = () => {
   const records = useAppSelector((state) => state.records);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const navigateToAddForm = () => {
+    navigate("/myCollection/addRecord");
+  };
 
   const token = localStorage.getItem("token");
 
@@ -53,7 +58,7 @@ const UsersCollectionsPage = () => {
           edit={false}
           className="button"
           text="Add record"
-          action={() => {}}
+          action={navigateToAddForm}
         />
       )}
       {myCollection ? (
