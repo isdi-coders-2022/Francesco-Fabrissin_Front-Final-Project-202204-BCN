@@ -4,7 +4,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { IRecord } from "../../types/types";
 
 const Record = ({
-  record: { image, title, artist, year, genre, conditions },
+  record: { id, image, title, artist, year, genre, conditions },
 }: {
   record: IRecord;
 }): JSX.Element => {

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../components/Button/Button";
 import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
-import { mockRecords } from "../../mocks/mockRecords";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadMyRecordsThunk } from "../../redux/thunks/recordsThunks";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
@@ -31,6 +30,11 @@ const UsersCollectionsPage = () => {
   const records = useAppSelector((state) => state.records);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const navigateToAddForm = () => {
+    navigate("/myCollection/addRecord");
+  };
 
   const token = localStorage.getItem("token");
 
@@ -50,11 +54,12 @@ const UsersCollectionsPage = () => {
       </h3>
       {myCollection && (
         <Button
+          disabled={false}
           add={true}
           edit={false}
           className="button"
           text="Add record"
-          action={() => {}}
+          action={navigateToAddForm}
         />
       )}
       {myCollection ? (

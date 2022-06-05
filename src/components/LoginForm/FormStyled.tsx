@@ -24,8 +24,25 @@ const FormStyled = styled.div`
     margin: 0 2rem;
   }
 
+  .add-edit-form {
+    margin-top: -2rem;
+
+    input {
+      margin: 0.3rem 0;
+    }
+  }
+
+  .add-edit-logo {
+    margin: 0.5rem;
+    width: 10rem;
+  }
+
   label {
     margin: 0;
+  }
+
+  .button {
+    margin-top: 1rem;
   }
 
   .button-main {
@@ -49,6 +66,10 @@ const FormStyled = styled.div`
     cursor: pointer;
     font-size: 0.9rem;
     margin-bottom: 2rem;
+  }
+
+  .hidden {
+    display: none;
   }
 `;
 
