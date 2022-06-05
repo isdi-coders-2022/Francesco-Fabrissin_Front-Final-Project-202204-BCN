@@ -185,7 +185,6 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
             add={edit ? false : true}
             edit={edit ? true : false}
             text={edit ? "Edit" : "Add record"}
-            action={() => {}}
           />
         </div>
       </Form>

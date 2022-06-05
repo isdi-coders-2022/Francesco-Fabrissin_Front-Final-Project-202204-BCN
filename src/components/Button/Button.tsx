@@ -14,12 +14,12 @@ const Button = ({
   action,
 }: {
   type: ButtonType;
-  disabled: boolean;
-  edit: boolean;
-  add: boolean;
+  disabled?: boolean;
+  edit?: boolean;
+  add?: boolean;
   className: string;
   text: string;
-  action: () => void;
+  action?: () => void;
 }) => {
   return (
     <ButtonStyled disabled={disabled} className={className} onClick={action}>
