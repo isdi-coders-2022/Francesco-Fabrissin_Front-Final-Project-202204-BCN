@@ -7,8 +7,8 @@ import AddEditRecordForm from "./AddEditRecordForm";
 
 describe("Given a AddEditRecordForm component function", () => {
   describe("When invoked", () => {
-    test("Then it should render 6 input fields and 1 button", () => {
-      const expectedNumberOfInputs = 6;
+    test("Then it should render 7 input fields and 1 button", () => {
+      const expectedNumberOfInputs = 7;
 
       render(
         <BrowserRouter>

@@ -16,6 +16,7 @@ const UserStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 1.2rem;
 
     &__avatar {
       width: 8rem;

@@ -9,6 +9,7 @@ describe("Given a Button component function", () => {
     test("Then it should render a button with the text 'See collection'", () => {
       render(
         <Button
+          type="button"
           disabled={false}
           edit={true}
           add={false}
@@ -28,6 +29,7 @@ describe("Given a Button component function", () => {
     test("Then it should render a button with the text 'See collection' and it should invoke the received action", () => {
       render(
         <Button
+          type="button"
           disabled={false}
           edit={true}
           add={false}
