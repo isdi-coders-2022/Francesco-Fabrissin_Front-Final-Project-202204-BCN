@@ -49,4 +49,23 @@ export const handlers = [
       })
     );
   }),
+
+  rest.delete(
+    `${process.env.REACT_APP_API_URL}myCollection/1`,
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          deleted_record: mockRecords[0],
+        })
+      );
+    }
+  ),
+
+  rest.delete(
+    `${process.env.REACT_APP_API_URL}myCollection/4`,
+    (req, res, ctx) => {
+      return res(ctx.status(404));
+    }
+  ),
 ];

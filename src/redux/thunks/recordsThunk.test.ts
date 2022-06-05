@@ -1,9 +1,14 @@
 import { mockRecords } from "../../mocks/mockRecords";
 import {
   addRecordActionCreator,
+  deleteRecordActionCreator,
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
-import { addRecordThunk, loadMyRecordsThunk } from "./recordsThunks";
+import {
+  addRecordThunk,
+  deleteRecordThunk,
+  loadMyRecordsThunk,
+} from "./recordsThunks";
 
 describe("Given a loadMyRecordsThunk function", () => {
   describe("When it's called with an authorized token", () => {
@@ -34,8 +39,6 @@ describe("Given a addRecordThunk function", () => {
       const dispatch = jest.fn();
       const recordData = mockRecords[0];
 
-      // jest.spyOn(Storage.prototype, "getItem").mockReturnValue("token");
-
       const addRecordAction = addRecordActionCreator(recordData);
 
       const thunk = addRecordThunk(recordData);
@@ -43,6 +46,38 @@ describe("Given a addRecordThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(addRecordAction);
+    });
+  });
+});
+
+describe("Given a delteRecordThunk function", () => {
+  describe("When it's called with a record id", () => {
+    test("Then it should dispatch the addRecordActionCreator with the same record id", async () => {
+      const dispatch = jest.fn();
+      const recordId = "1";
+
+      const deleteRecordAction = deleteRecordActionCreator(recordId);
+
+      const thunk = deleteRecordThunk(recordId);
+
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(deleteRecordAction);
+    });
+  });
+
+  describe("When it's called with a record id 4 which does not correspond to any record in the database", () => {
+    test("Then it should not call the dispatch", async () => {
+      const dispatch = jest.fn();
+      const recordId = "4";
+
+      const deleteRecordAction = deleteRecordActionCreator(recordId);
+
+      const thunk = deleteRecordThunk(recordId);
+
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalledWith(deleteRecordAction);
     });
   });
 });

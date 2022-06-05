@@ -2,12 +2,19 @@ import RecordStyled from "./RecordStyled";
 import { TiDeleteOutline } from "react-icons/ti";
 import { FiEdit2 } from "react-icons/fi";
 import { IRecord } from "../../types/types";
+import { deleteRecordThunk } from "../../redux/thunks/recordsThunks";
+import { useAppDispatch } from "../../redux/hooks";
 
 const Record = ({
   record: { id, image, title, artist, year, genre, conditions },
 }: {
   record: IRecord;
 }): JSX.Element => {
+  const dispatch = useAppDispatch();
+
+  const deleteRecord = () => {
+    dispatch(deleteRecordThunk(id));
+  };
   return (
     <RecordStyled className="record">
       <div className="body">
@@ -32,7 +39,11 @@ const Record = ({
           </div>
         </div>
         <div className="icons">
-          <TiDeleteOutline className="icon-delete" size={30} />
+          <TiDeleteOutline
+            className="icon-delete"
+            size={30}
+            onClick={deleteRecord}
+          />
           <FiEdit2 className="icon-edit" size={30} />
         </div>
       </div>

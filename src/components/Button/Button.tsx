@@ -22,7 +22,12 @@ const Button = ({
   action?: () => void;
 }) => {
   return (
-    <ButtonStyled disabled={disabled} className={className} onClick={action}>
+    <ButtonStyled
+      type={type}
+      disabled={disabled}
+      className={className}
+      onClick={action}
+    >
       {add && <RiAddFill size={30} />}
       {edit && <FiEdit2 size={30} />}
       {text}

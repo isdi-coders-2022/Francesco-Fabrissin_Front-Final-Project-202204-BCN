@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { IRecord } from "../../types/types";
 import {
   addRecordActionCreator,
+  deleteRecordActionCreator,
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
 import { AppDispatch } from "../store/store";
@@ -45,6 +46,23 @@ export const addRecordThunk =
         toast.success("Record succesfully added to your collection");
       }
     } catch (error: any) {
+      return error.message;
+    }
+  };
+
+export const deleteRecordThunk =
+  (recordId: string) => async (dispatch: AppDispatch) => {
+    try {
+      const { status } = await axios.delete(`${url}myCollection/${recordId}`, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+
+      if (status === 200) {
+        dispatch(deleteRecordActionCreator(recordId));
+        toast.success("Record succesfully deleted from your collection");
+      }
+    } catch (error: any) {
+      toast.error("Unable to delete the record");
       return error.message;
     }
   };
