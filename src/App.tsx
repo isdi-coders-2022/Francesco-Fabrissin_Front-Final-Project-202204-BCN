@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { DecodeToken } from "./types/types";
 import UsersCollectionsPage from "./pages/UsersCollectionsPage/UsersCollectionsPage";
 import AntiController from "./components/AntiController/AntiCOntroller";
+import AddEditFormPage from "./pages/AddEditFormPage/AddEditFormPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -60,6 +61,14 @@ function App() {
           element={
             <Controller>
               <UsersCollectionsPage />
+            </Controller>
+          }
+        />
+        <Route
+          path="/myCollection/addRecord"
+          element={
+            <Controller>
+              <AddEditFormPage />
             </Controller>
           }
         />

@@ -5,7 +5,6 @@ import Button from "../../components/Button/Button";
 import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
-import { mockRecords } from "../../mocks/mockRecords";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadMyRecordsThunk } from "../../redux/thunks/recordsThunks";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
