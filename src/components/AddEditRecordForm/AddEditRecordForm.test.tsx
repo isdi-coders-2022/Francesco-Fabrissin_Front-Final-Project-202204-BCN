@@ -6,7 +6,6 @@ import store from "../../redux/store/store";
 import AddEditRecordForm from "./AddEditRecordForm";
 
 const mockDispatch = jest.fn();
-const mockSetState = jest.fn();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
