@@ -2,6 +2,7 @@ import { mockRecords } from "../../mocks/mockRecords";
 import { IRecord } from "../../types/types";
 import recordsSlice, {
   addRecordActionCreator,
+  deleteRecordActionCreator,
   loadRecordsActionCreator,
 } from "./recordsSlice";
 
@@ -31,6 +32,21 @@ describe("Given a recordsReducer", () => {
       const addRecordAction = addRecordActionCreator(recordPayload);
 
       const newState = recordsSlice(initialStatus, addRecordAction);
+
+      expect(newState).toEqual(expectedNewState);
+    });
+  });
+
+  describe("When it receives an initial state with 3 records and a delete record action with the id of one of he 2 records", () => {
+    test("Then it should return a new records state with an array without the record of the id in the action payloas", () => {
+      const initialStatus: IRecord[] = mockRecords;
+      const idPayload = "6294b3fc8ee0cb91581a8ce9";
+
+      const expectedNewState = [mockRecords[1], mockRecords[2]];
+
+      const delteRecordAction = deleteRecordActionCreator(idPayload);
+
+      const newState = recordsSlice(initialStatus, delteRecordAction);
 
       expect(newState).toEqual(expectedNewState);
     });
