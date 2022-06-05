@@ -30,6 +30,20 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
     });
   };
 
+  const buttonDisabled = () => {
+    if (
+      formData.title === "" ||
+      formData.artist === "" ||
+      formData.year === "" ||
+      formData.conditions === "" ||
+      formData.price === "" ||
+      formData.youtube_url === ""
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <FormStyled>
       <img
@@ -76,7 +90,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
           id="year"
           value={formData.year}
           onChange={changeFormData}
-          type="password"
+          type="text"
         />
         <label className="form-label hidden" htmlFor="conditions">
           Record Conditions
@@ -128,6 +142,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
         />
         <div className="container text-center">
           <Button
+            disabled={buttonDisabled()}
             className="button"
             add={edit ? false : true}
             edit={edit ? true : false}

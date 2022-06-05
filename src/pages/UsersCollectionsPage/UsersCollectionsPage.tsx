@@ -54,6 +54,7 @@ const UsersCollectionsPage = () => {
       </h3>
       {myCollection && (
         <Button
+          disabled={false}
           add={true}
           edit={false}
           className="button"
