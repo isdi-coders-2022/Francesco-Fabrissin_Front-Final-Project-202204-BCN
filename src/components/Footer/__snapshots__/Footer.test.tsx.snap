@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a Footer component function When invoked Then it should render correctly a footer with the app logo and a span with '© 2022 RecordSwapp®<' 1`] = `
+<div
+  className="sc-bczRLJ ddCIfR"
+>
+  <img
+    alt="RecordSwapp logo"
+    className="logo"
+    src="/images/RecordSwapp-logo.png"
+  />
+  <span>
+    © 2022 RecordSwapp®
+  </span>
+</div>
+`;

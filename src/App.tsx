@@ -11,6 +11,7 @@ import { DecodeToken } from "./types/types";
 import UsersCollectionsPage from "./pages/UsersCollectionsPage/UsersCollectionsPage";
 import AntiController from "./components/AntiController/AntiCOntroller";
 import AddEditFormPage from "./pages/AddEditFormPage/AddEditFormPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -73,6 +74,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
       <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
