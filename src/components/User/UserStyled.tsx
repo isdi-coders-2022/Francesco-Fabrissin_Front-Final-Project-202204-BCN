@@ -7,12 +7,16 @@ const UserStyled = styled.div`
   background-color: #3a4042;
   margin-top: -1px;
   margin-bottom: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .user {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-4rem, -3rem);
+    width: 18rem;
+    transform: translate(-9rem, -3rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,6 +33,7 @@ const UserStyled = styled.div`
       color: #4f4f4f;
       font-size: 1.5rem;
       font-weight: 600;
+      width: fit-content;
     }
   }
 `;
