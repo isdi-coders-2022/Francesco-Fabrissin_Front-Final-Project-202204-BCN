@@ -14,6 +14,7 @@ export interface IUser {
 }
 
 export interface IUserCollection {
+  id: string;
   username: string;
   image: string;
   location: string;

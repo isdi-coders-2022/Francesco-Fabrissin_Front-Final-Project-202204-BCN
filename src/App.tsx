@@ -12,6 +12,7 @@ import UsersCollectionsPage from "./pages/UsersCollectionsPage/UsersCollectionsP
 import AntiController from "./components/AntiController/AntiCOntroller";
 import AddEditFormPage from "./pages/AddEditFormPage/AddEditFormPage";
 import Footer from "./components/Footer/Footer";
+import UserCollectionPage from "./pages/UserCollectionPage/UserCollectionPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -70,6 +71,14 @@ function App() {
           element={
             <Controller>
               <AddEditFormPage />
+            </Controller>
+          }
+        />
+        <Route
+          path="/users/:userId"
+          element={
+            <Controller>
+              <UserCollectionPage />
             </Controller>
           }
         />

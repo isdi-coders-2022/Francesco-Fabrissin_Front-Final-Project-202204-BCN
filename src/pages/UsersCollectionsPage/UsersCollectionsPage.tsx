@@ -8,20 +8,7 @@ import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCol
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadMyRecordsThunk } from "../../redux/thunks/recordsThunks";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
-
-const UsersCollectionsPageStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-
-  .list-type {
-    color: #4f4f4f;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
-`;
+import UsersCollectionsPageStyled from "./UsersCollectionPageStyled";
 
 const UsersCollectionsPage = () => {
   const users = useAppSelector((state) => state.users);

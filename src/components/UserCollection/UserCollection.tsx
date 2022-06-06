@@ -1,12 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { IUserCollection } from "../../types/types";
 import Button from "../Button/Button";
 import UserCollectionStyled from "./UserCollectionStyled";
 
 const UserCollection = ({
-  user: { username, location, image, genre },
+  user: { id, username, location, image, genre },
 }: {
   user: IUserCollection;
 }) => {
+  const navigate = useNavigate();
+
+  const navigateAndLoadRecords = () => {
+    navigate(`/users/${id}`);
+  };
+
   return (
     <UserCollectionStyled className="card col-xs-8 col-sm-10 col-md-5 col-lg-5">
       <img
@@ -26,7 +33,7 @@ const UserCollection = ({
         add={false}
         className="button button--see-collection"
         text="See collection"
-        action={() => {}}
+        action={navigateAndLoadRecords}
       />
     </UserCollectionStyled>
   );

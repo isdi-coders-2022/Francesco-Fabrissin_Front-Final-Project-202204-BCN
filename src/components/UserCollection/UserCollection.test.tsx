@@ -8,6 +8,7 @@ describe("Given a UserCollection component", () => {
   describe("When invoked with the username 'Nico', location 'Barcelona', and genre 'Electronic'", () => {
     test("Then it should render a card with the information received and an avatar", () => {
       const user = {
+        id: "1",
         username: "Nico",
         image: "",
         location: "Barcelona",
