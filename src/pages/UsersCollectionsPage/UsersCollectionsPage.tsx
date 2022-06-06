@@ -7,7 +7,7 @@ import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCol
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadMyRecordsThunk } from "../../redux/thunks/recordsThunks";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
-import UsersCollectionsPageStyled from "./UsersCollectionPageStyled";
+import UsersCollectionsPageStyled from "./UsersCollectionsPageStyled";
 
 const UsersCollectionsPage = () => {
   const users = useAppSelector((state) => state.users);
@@ -30,7 +30,7 @@ const UsersCollectionsPage = () => {
 
   useEffect(() => {
     dispatch(loadMyRecordsThunk(token as string));
-  }, [dispatch, token, records, navigate]);
+  }, [dispatch, token, navigate]);
 
   return (
     <UsersCollectionsPageStyled>
