@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FooterStlyed = styled.div`
+  margin-top: 1rem;
   width: 100%;
   height: 5rem;
   background-color: #dae1e9;

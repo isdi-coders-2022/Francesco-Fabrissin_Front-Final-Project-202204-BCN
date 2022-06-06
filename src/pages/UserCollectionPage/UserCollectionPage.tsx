@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
 import { useAppSelector } from "../../redux/hooks";
-import UsersCollectionsPageStyled from "../UsersCollectionsPage/UsersCollectionPageStyled";
+import UsersCollectionsPageStyled from "../UsersCollectionsPage/UsersCollectionsPageStyled";
 
 const UserCollectionPage = () => {
   const { userId } = useParams();

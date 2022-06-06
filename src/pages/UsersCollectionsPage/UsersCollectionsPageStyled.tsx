@@ -9,6 +9,7 @@ const UsersCollectionsPageStyled = styled.div`
 
   .list-type {
     color: #4f4f4f;
+    margin-top: 0.6rem;
     margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: 400;

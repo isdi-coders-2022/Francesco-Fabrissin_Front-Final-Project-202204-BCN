@@ -42,6 +42,7 @@ export const addRecordThunk =
 
       if (new_record) {
         dispatch(addRecordActionCreator(new_record));
+        dispatch(loadMyRecordsThunk(localStorage.token));
         toast.dismiss();
         toast.success("Record succesfully added to your collection");
       }
