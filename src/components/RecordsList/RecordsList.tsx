@@ -9,11 +9,23 @@ const RecordsListStyled = styled.ul`
   width: 100%;
 `;
 
-const RecordsList = ({ records }: { records: IRecord[] }) => {
+const RecordsList = ({
+  records,
+  ownCollection,
+}: {
+  records: IRecord[];
+  ownCollection: boolean;
+}) => {
   return (
     <RecordsListStyled>
       {records.map((record, position) => {
-        return <Record key={position} record={record} />;
+        return (
+          <Record
+            ownCollection={ownCollection}
+            key={position}
+            record={record}
+          />
+        );
       })}
     </RecordsListStyled>
   );

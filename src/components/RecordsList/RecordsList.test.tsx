@@ -14,7 +14,7 @@ describe("Given a RecordsList component function", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <RecordsList records={records} />
+            <RecordsList ownCollection={false} records={records} />
           </Provider>
         </BrowserRouter>
       );

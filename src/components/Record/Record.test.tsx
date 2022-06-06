@@ -15,7 +15,7 @@ describe("Given a Record component function", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <Record record={record} />
+            <Record ownCollection={false} record={record} />
           </Provider>
         </BrowserRouter>
       );

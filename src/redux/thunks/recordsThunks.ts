@@ -66,3 +66,14 @@ export const deleteRecordThunk =
       return error.message;
     }
   };
+
+export const loadUserCollectionThunk =
+  (userId: string) => async (dispatch: AppDispatch) => {
+    const {
+      data: { records },
+    } = await axios.get(`${url}users/${userId}`, {
+      headers: { Authorization: `Bearer ${localStorage.token}` },
+    });
+
+    dispatch(loadRecordsActionCreator(records));
+  };

@@ -1,7 +1,9 @@
+import { useParams } from "react-router-dom";
 import { IUser } from "../../types/types";
 import UserStyled from "./UserStyled";
 
 const User = ({ userInfo: { username, image } }: { userInfo: IUser }) => {
+  const { userId } = useParams();
   return (
     <UserStyled>
       <div className="user">
@@ -10,7 +12,10 @@ const User = ({ userInfo: { username, image } }: { userInfo: IUser }) => {
           alt={image ? `${username} avatar` : "unknown avatar"}
           className="user__avatar"
         />
-        <h2 className="user__username">{username}</h2>
+        <h2 className="user__username">
+          {username}
+          {userId && " Collection"}
+        </h2>
       </div>
     </UserStyled>
   );

@@ -7,8 +7,10 @@ import { useAppDispatch } from "../../redux/hooks";
 
 const Record = ({
   record: { id, image, title, artist, year, genre, conditions },
+  ownCollection,
 }: {
   record: IRecord;
+  ownCollection: boolean;
 }): JSX.Element => {
   const dispatch = useAppDispatch();
 
@@ -39,12 +41,14 @@ const Record = ({
           </div>
         </div>
         <div className="icons">
-          <TiDeleteOutline
-            className="icon-delete"
-            size={30}
-            onClick={deleteRecord}
-          />
-          <FiEdit2 className="icon-edit" size={30} />
+          {ownCollection && (
+            <TiDeleteOutline
+              className="icon-delete"
+              size={30}
+              onClick={deleteRecord}
+            />
+          )}
+          {ownCollection && <FiEdit2 className="icon-edit" size={30} />}
         </div>
       </div>
     </RecordStyled>

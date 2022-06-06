@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Button from "../../components/Button/Button";
 import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
@@ -31,7 +30,7 @@ const UsersCollectionsPage = () => {
 
   useEffect(() => {
     dispatch(loadMyRecordsThunk(token as string));
-  }, [dispatch, token]);
+  }, [dispatch, token, records, navigate]);
 
   return (
     <UsersCollectionsPageStyled>
@@ -49,7 +48,7 @@ const UsersCollectionsPage = () => {
         />
       )}
       {myCollection ? (
-        <RecordsList records={records} />
+        <RecordsList ownCollection={true} records={records} />
       ) : (
         <UsersCollectionsList users={users} />
       )}

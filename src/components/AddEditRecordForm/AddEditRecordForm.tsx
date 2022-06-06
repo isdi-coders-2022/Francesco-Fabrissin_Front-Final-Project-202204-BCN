@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { addRecordThunk } from "../../redux/thunks/recordsThunks";
 import Button from "../Button/Button";
@@ -23,6 +24,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
 
   const [formData, setFormData] = useState(blankData);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -65,6 +67,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
     newFormData.append("youtube_url", formData.youtube_url ?? "");
     newFormData.append("image", formData.image);
     dispatch(addRecordThunk(newFormData));
+    navigate("/myCollection");
     clearData();
   };
 
