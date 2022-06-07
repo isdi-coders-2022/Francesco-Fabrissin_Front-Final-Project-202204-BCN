@@ -5,7 +5,6 @@ import { AppDispatch } from "../store/store";
 export const loadRecordThunk =
   (recordId: string) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
-
     try {
       const {
         data: { recordInfo },

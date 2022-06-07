@@ -32,6 +32,9 @@ const NavigationStyled = styled.div`
     color: white;
     padding: 0;
     padding-left: 0.5rem;
+    @media (max-width: 768px) {
+      padding-bottom: 2rem;
+    }
   }
 `;
 

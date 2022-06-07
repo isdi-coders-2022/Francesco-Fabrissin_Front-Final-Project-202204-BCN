@@ -41,6 +41,19 @@ export const handlers = [
     );
   }),
 
+  rest.get(`${process.env.REACT_APP_API_URL}records/1`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        recordInfo: mockRecords[0],
+      })
+    );
+  }),
+
+  rest.get(`${process.env.REACT_APP_API_URL}records/4`, (req, res, ctx) => {
+    return res(ctx.status(404));
+  }),
+
   rest.post(`${process.env.REACT_APP_API_URL}myCollection`, (req, res, ctx) => {
     return res(
       ctx.status(201),

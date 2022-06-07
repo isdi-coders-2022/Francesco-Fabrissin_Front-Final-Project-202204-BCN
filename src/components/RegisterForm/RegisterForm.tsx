@@ -11,6 +11,7 @@ const RegisterForm = (): JSX.Element => {
     password: "",
     email: "",
     location: "",
+    genre: "",
     image: "",
   };
 
@@ -44,6 +45,7 @@ const RegisterForm = (): JSX.Element => {
     newFormData.append("password", formData.password);
     newFormData.append("email", formData.email);
     newFormData.append("location", formData.location);
+    newFormData.append("genre", formData.genre);
     newFormData.append("image", formData.image);
 
     dispatch(registerThunk(newFormData, formData.password));
@@ -110,6 +112,19 @@ const RegisterForm = (): JSX.Element => {
           onChange={changeFormData}
           type="text"
         />
+        <label className="form-label" htmlFor="genre">
+          Collection music genre
+        </label>
+        <input
+          className="form-control"
+          formNoValidate
+          autoComplete="off"
+          placeholder="ex. Electronic"
+          id="genre"
+          value={formData.genre}
+          onChange={changeFormData}
+          type="text"
+        />
         <label className="form-label" htmlFor="image">
           Profile image
         </label>
@@ -125,7 +140,8 @@ const RegisterForm = (): JSX.Element => {
               formData.username === "" ||
               formData.password === "" ||
               formData.location === "" ||
-              formData.email === ""
+              formData.email === "" ||
+              formData.genre === ""
             }
             className="btn button-main"
             type="submit"

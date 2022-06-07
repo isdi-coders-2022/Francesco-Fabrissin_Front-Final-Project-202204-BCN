@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation/Navigation";
 import Controller from "./components/Controller/Controller";
 import jwtDecode from "jwt-decode";
@@ -18,8 +18,6 @@ function App() {
   const dispatch = useAppDispatch();
   const { logged } = useAppSelector((state: { user: State }) => state.user);
 
-  const navigate = useNavigate();
-
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -27,7 +25,7 @@ function App() {
       const { username, image }: DecodeToken = jwtDecode(token as string);
       dispatch(loginActionCreator({ username, image }));
     }
-  }, [dispatch, logged, navigate, token]);
+  }, [dispatch, logged, token]);
 
   return (
     <div className="d-flex flex-column align-items-center h-100">
