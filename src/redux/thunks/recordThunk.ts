@@ -13,12 +13,7 @@ export const loadRecordThunk =
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
 
-      const dataRecords = {
-        ...recordInfo,
-        image: recordInfo.image ? `${url}${recordInfo.image}` : "",
-      };
-
-      dispatch(loadRecordActionCreator(dataRecords));
+      dispatch(loadRecordActionCreator(recordInfo));
     } catch (error: any) {
       return error.message;
     }

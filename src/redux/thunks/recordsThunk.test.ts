@@ -87,7 +87,7 @@ describe("Given a delteRecordThunk function", () => {
 describe("Given a editRecordThunk function", () => {
   describe("When it's called with an id of a record to edit and a new edited record", () => {
     test("Then it should dispatch the editRecordActionCreator with the new edited record received from the api", async () => {
-      /*  const dispatch = jest.fn();
+      const dispatch = jest.fn();
       const idToEdit = "1";
       const recordData = {
         title: "Neptune's Lairs",
@@ -109,7 +109,21 @@ describe("Given a editRecordThunk function", () => {
 
       await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(editRecordAction); */
+      expect(dispatch).toHaveBeenCalledWith(editRecordAction);
+    });
+  });
+
+  describe("When it's called with an id 4 not present in the database", () => {
+    test("Then it should not call the dispatch", async () => {
+      const dispatch = jest.fn();
+      const idToEdit = "4";
+      const recordData = mockRecords[0];
+
+      const thunk = editRecordThunk(idToEdit, recordData);
+
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });

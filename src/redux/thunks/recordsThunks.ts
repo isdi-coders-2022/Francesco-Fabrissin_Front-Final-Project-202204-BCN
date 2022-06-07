@@ -90,7 +90,8 @@ export const editRecordThunk =
       });
 
       if (updatedRecord) {
-        dispatch(editRecordActionCreator(recordData));
+        dispatch(editRecordActionCreator(updatedRecord));
+        dispatch(loadMyRecordsThunk(localStorage.token));
         toast.success("Record edited succesfully!");
       }
     } catch (error: any) {

@@ -13,6 +13,7 @@ const Record = ({
   record: IRecord;
   ownCollection: boolean;
 }): JSX.Element => {
+  //const url = process.env.REACT_APP_API_URL;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
