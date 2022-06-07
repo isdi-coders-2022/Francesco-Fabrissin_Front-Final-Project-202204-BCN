@@ -8,6 +8,7 @@ export interface IRecord {
   image: string;
   price: string;
   youtube_url?: string;
+  owner?: String;
 }
 
 export interface IUser {
