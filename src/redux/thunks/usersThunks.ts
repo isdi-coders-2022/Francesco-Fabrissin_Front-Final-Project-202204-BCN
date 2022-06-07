@@ -13,7 +13,7 @@ export const loadCollectionsThunk =
     } = await axios.get(`${url}users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-
+    toast.dismiss();
     const dataCollections = usersCollection.map((user: IUserCollection) => ({
       ...user,
       image: user.image ? `${url}${user.image}` : "",

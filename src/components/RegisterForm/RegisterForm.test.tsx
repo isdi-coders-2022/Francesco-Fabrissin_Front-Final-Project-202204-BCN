@@ -81,7 +81,13 @@ describe("Given a FormLogin component function", () => {
 
   describe("When the user fills the name, username and password fields and clicks on the submit button", () => {
     test("Then the dispatch should be invoked", () => {
-      const textInput = ["fra432", "fra432", "fra@gmail.com", "Barcelona"];
+      const textInput = [
+        "fra432",
+        "fra432",
+        "fra@gmail.com",
+        "Barcelona",
+        "Electronic",
+      ];
 
       render(
         <BrowserRouter>
@@ -94,6 +100,7 @@ describe("Given a FormLogin component function", () => {
       const usernameField = screen.getByLabelText("Username");
       const passwordField = screen.getByLabelText("Password");
       const emailField = screen.getByLabelText("Email");
+      const genreField = screen.getByLabelText("Collection music genre");
       const locationField = screen.getByLabelText(
         "Location (City or closer city)"
       );
@@ -103,6 +110,7 @@ describe("Given a FormLogin component function", () => {
       userEvent.type(passwordField, textInput[1]);
       userEvent.type(emailField, textInput[2]);
       userEvent.type(locationField, textInput[3]);
+      userEvent.type(genreField, textInput[4]);
 
       expect(registerButton).not.toBeDisabled();
 

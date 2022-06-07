@@ -77,7 +77,12 @@ export const loadUserCollectionThunk =
       headers: { Authorization: `Bearer ${localStorage.token}` },
     });
 
-    dispatch(loadRecordsActionCreator(records));
+    const dataRecords = records.map((record: IRecord) => ({
+      ...record,
+      image: record.image ? `${url}${record.image}` : "",
+    }));
+
+    dispatch(loadRecordsActionCreator(dataRecords));
   };
 
 export const editRecordThunk =

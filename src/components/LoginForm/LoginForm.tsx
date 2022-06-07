@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { loginThunk } from "../../redux/thunks/userThunks";
@@ -12,6 +13,7 @@ const LoginForm = (): JSX.Element => {
     password: "",
   };
 
+  toast.dismiss();
   const [formData, setFormData] = useState(blankData);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
