@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addRecordThunk } from "../../redux/thunks/recordsThunks";
+import {
+  addRecordThunk,
+  editRecordThunk,
+} from "../../redux/thunks/recordsThunks";
+import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 import { IRecord } from "../../types/types";
 import Button from "../Button/Button";
 import FormStyled from "../LoginForm/FormStyled";
@@ -24,10 +28,15 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
   };
 
   const [formData, setFormData] = useState<IRecord>(blankData);
-  const records = useAppSelector((state) => state.records);
+  const recordInfo = useAppSelector((state) => state.record);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  let record = useRef<IRecord>();
+
+  useEffect(() => {
+    if (recordId) {
+      dispatch(loadRecordThunk(recordId));
+    }
+  }, [dispatch, recordId]);
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -41,10 +50,9 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
 
   useEffect(() => {
     if (recordId) {
-      record.current = records.find((record) => record.id === recordId);
-      setFormData(record.current as IRecord);
+      setFormData(recordInfo);
     }
-  }, [recordId, records]);
+  }, [recordId, recordInfo]);
 
   const buttonDisabled = () => {
     if (
@@ -76,7 +84,9 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     newFormData.append("price", formData.price);
     newFormData.append("youtube_url", formData.youtube_url ?? "");
     newFormData.append("image", formData.image);
-    dispatch(addRecordThunk(newFormData));
+    recordId
+      ? dispatch(editRecordThunk(recordInfo.id as string, newFormData))
+      : dispatch(addRecordThunk(newFormData));
     navigate("/myCollection");
     clearData();
   };

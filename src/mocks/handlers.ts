@@ -68,4 +68,26 @@ export const handlers = [
       return res(ctx.status(404));
     }
   ),
+
+  rest.put(
+    `${process.env.REACT_APP_API_URL}myCollection/edit/1`,
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          title: "Neptune's Lairs",
+          artist: "Drexciya",
+          year: "2002",
+          genre: "Electronic",
+          price: "30",
+          conditions: "VG",
+          youtube_url: "https://www.youtube.com/watch?v=tF9rKnOqWfk",
+          image:
+            "https://i.discogs.com/MfE22D_C9EA8XEvN62IeSEjazP2mkpss7bVtzp614fg/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODY2/LTE1NDE0MzA3ODct/NzM3MC5qcGVn.jpeg",
+          owner: "6294b3038ee0cb91581a8ce6",
+          id: "1",
+        })
+      );
+    }
+  ),
 ];
