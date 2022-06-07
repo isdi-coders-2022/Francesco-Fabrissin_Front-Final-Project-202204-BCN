@@ -8,6 +8,7 @@ const UserCollectionPage = () => {
   const { userId } = useParams();
   const users = useAppSelector((state) => state.users);
   const records = useAppSelector((state) => state.records);
+
   const userInfo = users
     .filter((user) => user.id === userId)
     .map((user) => ({

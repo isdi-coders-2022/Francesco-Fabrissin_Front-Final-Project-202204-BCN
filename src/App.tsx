@@ -83,7 +83,7 @@ function App() {
           }
         />
       </Routes>
-      <Footer />
+      {logged ?? <Footer />}
       <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
