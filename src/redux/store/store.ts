@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import recordSlice from "../features/recordSlice";
 import recordsReducer from "../features/recordsSlice";
 import userReducer from "../features/userSlice";
 import usersReducer from "../features/usersSlice";
@@ -8,6 +9,7 @@ const store = configureStore({
     user: userReducer,
     users: usersReducer,
     records: recordsReducer,
+    record: recordSlice,
   },
 });
 

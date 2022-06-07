@@ -4,6 +4,7 @@ import { IRecord } from "../../types/types";
 import {
   addRecordActionCreator,
   deleteRecordActionCreator,
+  editRecordActionCreator,
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
 import { AppDispatch } from "../store/store";
@@ -77,4 +78,21 @@ export const loadUserCollectionThunk =
     });
 
     dispatch(loadRecordsActionCreator(records));
+  };
+
+export const editRecordThunk =
+  (recordId: string, recordData: any) => async (dispatch: AppDispatch) => {
+    try {
+      const {
+        data: { editedRecord },
+      } = await axios.put(`${url}myCollection/edit/${recordId}`, recordData, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+
+      if (editedRecord) {
+        dispatch(editRecordActionCreator(recordData));
+      }
+    } catch (error: any) {
+      return error.message;
+    }
   };
