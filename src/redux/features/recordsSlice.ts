@@ -28,6 +28,7 @@ export const {
   loadRecords: loadRecordsActionCreator,
   addRecord: addRecordActionCreator,
   deleteRecord: deleteRecordActionCreator,
+  editRecord: editRecordActionCreator,
 } = recordsSlice.actions;
 
 export default recordsSlice.reducer;
