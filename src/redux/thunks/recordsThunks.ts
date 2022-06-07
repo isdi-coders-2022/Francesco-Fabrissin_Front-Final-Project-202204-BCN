@@ -84,15 +84,18 @@ export const editRecordThunk =
   (recordId: string, recordData: any) => async (dispatch: AppDispatch) => {
     try {
       const {
-        data: { editedRecord },
+        data: { updatedRecord },
       } = await axios.put(`${url}myCollection/edit/${recordId}`, recordData, {
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
 
-      if (editedRecord) {
-        dispatch(editRecordActionCreator(recordData));
+      if (updatedRecord) {
+        dispatch(editRecordActionCreator(updatedRecord));
+        dispatch(loadMyRecordsThunk(localStorage.token));
+        toast.success("Record edited succesfully!");
       }
     } catch (error: any) {
+      toast.error("Unable to edit te record");
       return error.message;
     }
   };
