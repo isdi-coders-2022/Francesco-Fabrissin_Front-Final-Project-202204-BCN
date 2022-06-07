@@ -1,11 +1,13 @@
 export interface IRecord {
-  id: string;
+  id?: string;
   title: string;
   artist: string;
   year: string;
   genre: string;
   conditions: string;
   image: string;
+  price: string;
+  youtube_url?: string;
 }
 
 export interface IUser {

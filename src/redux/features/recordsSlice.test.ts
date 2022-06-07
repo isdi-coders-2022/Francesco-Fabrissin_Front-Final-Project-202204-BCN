@@ -3,6 +3,7 @@ import { IRecord } from "../../types/types";
 import recordsSlice, {
   addRecordActionCreator,
   deleteRecordActionCreator,
+  editRecordActionCreator,
   loadRecordsActionCreator,
 } from "./recordsSlice";
 
@@ -47,6 +48,33 @@ describe("Given a recordsReducer", () => {
       const delteRecordAction = deleteRecordActionCreator(idPayload);
 
       const newState = recordsSlice(initialStatus, delteRecordAction);
+
+      expect(newState).toEqual(expectedNewState);
+    });
+  });
+
+  describe("When it receives an initial state with an array of 2 records and a edit record action with the edited record", () => {
+    test("Then it should return a new records state with the array with the record edited", () => {
+      const initialStatus: IRecord[] = [mockRecords[0], mockRecords[1]];
+      const editedRecordPayload = {
+        title: "Neptune's Lairs",
+        artist: "Drexciya",
+        year: "2002",
+        genre: "Electronic",
+        price: "30",
+        conditions: "VG",
+        youtube_url: "https://www.youtube.com/watch?v=tF9rKnOqWfk",
+        image:
+          "https://i.discogs.com/MfE22D_C9EA8XEvN62IeSEjazP2mkpss7bVtzp614fg/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODY2/LTE1NDE0MzA3ODct/NzM3MC5qcGVn.jpeg",
+        owner: "6294b3038ee0cb91581a8ce6",
+        id: "6294b3fc8ee0cb91581a8ce5",
+      };
+
+      const expectedNewState = [mockRecords[0], editedRecordPayload];
+
+      const editRecordAction = editRecordActionCreator(editedRecordPayload);
+
+      const newState = recordsSlice(initialStatus, editRecordAction);
 
       expect(newState).toEqual(expectedNewState);
     });

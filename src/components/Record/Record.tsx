@@ -4,6 +4,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { IRecord } from "../../types/types";
 import { deleteRecordThunk } from "../../redux/thunks/recordsThunks";
 import { useAppDispatch } from "../../redux/hooks";
+import { useNavigate } from "react-router-dom";
 
 const Record = ({
   record: { id, image, title, artist, year, genre, conditions },
@@ -13,10 +14,16 @@ const Record = ({
   ownCollection: boolean;
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const deleteRecord = () => {
-    dispatch(deleteRecordThunk(id));
+    dispatch(deleteRecordThunk(id as string));
   };
+
+  const goToEditForm = () => {
+    navigate(`/myCollection/edit/${id}`);
+  };
+
   return (
     <RecordStyled className="record">
       <div className="body">
@@ -49,7 +56,9 @@ const Record = ({
               onClick={deleteRecord}
             />
           )}
-          {ownCollection && <FiEdit2 className="icon-edit" size={30} />}
+          {ownCollection && (
+            <FiEdit2 className="icon-edit" size={30} onClick={goToEditForm} />
+          )}
         </div>
       </div>
     </RecordStyled>

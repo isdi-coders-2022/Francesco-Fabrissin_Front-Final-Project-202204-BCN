@@ -16,6 +16,11 @@ const recordsSlice = createSlice({
     ],
     deleteRecord: (records, action: PayloadAction<string>) =>
       records.filter((record) => record.id !== action.payload),
+
+    editRecord: (records, action) =>
+      records.map((record) =>
+        record.id === action.payload.id ? action.payload : record
+      ),
   },
 });
 
@@ -23,6 +28,7 @@ export const {
   loadRecords: loadRecordsActionCreator,
   addRecord: addRecordActionCreator,
   deleteRecord: deleteRecordActionCreator,
+  editRecord: editRecordActionCreator,
 } = recordsSlice.actions;
 
 export default recordsSlice.reducer;
