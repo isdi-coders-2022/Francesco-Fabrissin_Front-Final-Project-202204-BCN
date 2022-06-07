@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addRecordThunk } from "../../redux/thunks/recordsThunks";
+import { IRecord } from "../../types/types";
 import Button from "../Button/Button";
 import FormStyled from "../LoginForm/FormStyled";
 
 interface Props {
-  edit?: string;
+  recordId?: string;
 }
 
-const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
+const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
   const blankData = {
     title: "",
     artist: "",
@@ -22,9 +23,11 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
     image: "",
   };
 
-  const [formData, setFormData] = useState(blankData);
+  const [formData, setFormData] = useState<IRecord>(blankData);
+  const records = useAppSelector((state) => state.records);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  let record = useRef<IRecord>();
 
   const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -35,6 +38,13 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
           : event.target.value,
     });
   };
+
+  useEffect(() => {
+    if (recordId) {
+      record.current = records.find((record) => record.id === recordId);
+      setFormData(record.current as IRecord);
+    }
+  }, [recordId, records]);
 
   const buttonDisabled = () => {
     if (
@@ -54,7 +64,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
     setFormData(blankData);
   };
 
-  const submitAddRecord = (event: React.FormEvent) => {
+  const submitAddEditRecord = (event: React.FormEvent) => {
     event.preventDefault();
 
     const newFormData = new FormData();
@@ -78,7 +88,7 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
         src="/images/Black-logo.png"
         alt="recordswapp logo"
       />
-      <Form className="login-form add-edit-form" onSubmit={submitAddRecord}>
+      <Form className="login-form add-edit-form" onSubmit={submitAddEditRecord}>
         <span>Details</span>
         <label className="form-label hidden" htmlFor="title">
           Title
@@ -185,9 +195,9 @@ const AddEditRecordForm = ({ edit }: Props): JSX.Element => {
             type="submit"
             disabled={buttonDisabled()}
             className="button"
-            add={edit ? false : true}
-            edit={edit ? true : false}
-            text={edit ? "Edit" : "Add record"}
+            add={recordId ? false : true}
+            edit={recordId ? true : false}
+            text={recordId ? "Edit" : "Add record"}
           />
         </div>
       </Form>

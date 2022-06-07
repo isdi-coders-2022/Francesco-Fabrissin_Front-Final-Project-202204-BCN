@@ -75,6 +75,14 @@ function App() {
           }
         />
         <Route
+          path="/myCollection/edit/:recordId"
+          element={
+            <Controller>
+              <AddEditFormPage />
+            </Controller>
+          }
+        />
+        <Route
           path="/users/:userId"
           element={
             <Controller>

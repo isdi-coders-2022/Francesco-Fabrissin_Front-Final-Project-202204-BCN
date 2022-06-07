@@ -21,6 +21,7 @@ const RecordStyled = styled.li`
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0;
+    cursor: pointer;
   }
   .image-info {
     display: flex;
