@@ -19,3 +19,5 @@ export const mockUsers = [
     genre: "Electronic",
   },
 ];
+
+export const mockAppDispatch = jest.fn();
