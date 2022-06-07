@@ -43,6 +43,7 @@ const Record = ({
         <div className="icons">
           {ownCollection && (
             <TiDeleteOutline
+              data-testid="icon-delete"
               className="icon-delete"
               size={30}
               onClick={deleteRecord}
