@@ -13,6 +13,10 @@ describe("Given a userReducer", () => {
           image: "",
         },
         logged: false,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const userInfo = mockUserLogin;
@@ -20,6 +24,10 @@ describe("Given a userReducer", () => {
       const expectedStatus = {
         userInfo: mockUserLogin,
         logged: true,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const loginAction = loginActionCreator(userInfo);
@@ -38,6 +46,10 @@ describe("Given a userReducer", () => {
           image: "image",
         },
         logged: true,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const expectedStatus = {
@@ -46,6 +58,10 @@ describe("Given a userReducer", () => {
           image: "",
         },
         logged: false,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const logoutAction = logoutActionCreator();

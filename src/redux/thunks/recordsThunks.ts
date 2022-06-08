@@ -7,6 +7,7 @@ import {
   editRecordActionCreator,
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
+import { getOtherUserInfoActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
 const url = process.env.REACT_APP_API_URL;
@@ -72,7 +73,7 @@ export const deleteRecordThunk =
 export const loadUserCollectionThunk =
   (userId: string) => async (dispatch: AppDispatch) => {
     const {
-      data: { records },
+      data: { userInfo, records },
     } = await axios.get(`${url}users/${userId}`, {
       headers: { Authorization: `Bearer ${localStorage.token}` },
     });
@@ -83,6 +84,7 @@ export const loadUserCollectionThunk =
     }));
 
     dispatch(loadRecordsActionCreator(dataRecords));
+    dispatch(getOtherUserInfoActionCreator(userInfo));
   };
 
 export const editRecordThunk =
