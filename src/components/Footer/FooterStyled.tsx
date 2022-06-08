@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FooterStlyed = styled.div`
+const FooterStyled = styled.div`
   margin-top: 1rem;
   width: 100%;
   height: 5rem;
@@ -23,4 +23,4 @@ const FooterStlyed = styled.div`
   }
 `;
 
-export default FooterStlyed;
+export default FooterStyled;

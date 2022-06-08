@@ -2,13 +2,18 @@ import { useParams } from "react-router-dom";
 import { IUser } from "../../types/types";
 import UserStyled from "./UserStyled";
 
-const User = ({ userInfo: { username, image } }: { userInfo: IUser }) => {
+const User = ({
+  userInfo: { username, image, imageBackup },
+}: {
+  userInfo: IUser;
+}) => {
   const { userId } = useParams();
+
   return (
     <UserStyled>
       <div className="user">
         <img
-          src={image ? image : "/images/no-photo-available.png"}
+          src={image ? imageBackup : "/images/no-photo-available.png"}
           alt={image ? `${username} avatar` : "unknown avatar"}
           className="user__avatar"
         />

@@ -9,6 +9,7 @@ const initialState: IRecord = {
   genre: "",
   conditions: "",
   image: "",
+  imageBackup: "",
   price: "",
   owner: "",
   youtube_url: "",

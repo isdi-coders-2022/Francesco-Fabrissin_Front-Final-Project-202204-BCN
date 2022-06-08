@@ -1,8 +1,8 @@
-import FooterStlyed from "./FooterStyled";
+import FooterStyled from "./FooterStyled";
 
 const Footer = () => {
   return (
-    <FooterStlyed>
+    <FooterStyled>
       <img
         src="/images/RecordSwapp-logo.png"
         alt="RecordSwapp logo"
@@ -10,7 +10,7 @@ const Footer = () => {
       />
 
       <span>© 2022 RecordSwapp®</span>
-    </FooterStlyed>
+    </FooterStyled>
   );
 };
 

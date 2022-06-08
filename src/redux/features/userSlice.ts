@@ -10,11 +10,13 @@ const initialState: State = {
   userInfo: {
     username: "",
     image: "",
+    imageBackup: "",
   },
   logged: false,
   otherUserInfo: {
     username: "",
     image: "",
+    imageBackup: "",
   },
 };
 
@@ -32,6 +34,7 @@ const userSlice = createSlice({
       userInfo: {
         username: "",
         image: "",
+        imageBackup: "",
       },
       logged: false,
     }),

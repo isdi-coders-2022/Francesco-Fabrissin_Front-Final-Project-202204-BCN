@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { IUserCollection } from "../../types/types";
+import checkImageResponse from "../../utils/checkImageResponse";
 import Button from "../Button/Button";
 import UserCollectionStyled from "./UserCollectionStyled";
 
 const UserCollection = ({
-  user: { id, username, location, image, genre },
+  user: { id, username, location, image, imageBackup, genre },
 }: {
   user: IUserCollection;
 }) => {
@@ -17,7 +18,7 @@ const UserCollection = ({
   return (
     <UserCollectionStyled className="card col-xs-8 col-sm-10 col-md-5 col-lg-5">
       <img
-        src={image ? image : "/images/no-photo-available.png"}
+        src={image ? imageBackup : "/images/no-photo-available.png"}
         alt=""
         className="card__img"
       />
