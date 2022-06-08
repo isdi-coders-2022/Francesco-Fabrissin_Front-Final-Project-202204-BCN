@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { IUserCollection } from "../../types/types";
-import checkImageResponse from "../../utils/checkImageResponse";
 import Button from "../Button/Button";
 import UserCollectionStyled from "./UserCollectionStyled";
 
