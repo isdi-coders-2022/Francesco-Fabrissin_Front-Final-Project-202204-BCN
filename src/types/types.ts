@@ -6,6 +6,7 @@ export interface IRecord {
   genre: string;
   conditions: string;
   image: string;
+  imageBackup?: string;
   price: string;
   youtube_url?: string;
   owner?: string;
@@ -14,12 +15,14 @@ export interface IRecord {
 export interface IUser {
   username: string;
   image: string;
+  imageBackup: string;
 }
 
 export interface IUserCollection {
   id: string;
   username: string;
   image: string;
+  imageBackup: string;
   location: string;
   genre: string;
 }
@@ -38,4 +41,5 @@ export interface ResponseApiLogin {
 export interface DecodeToken {
   username: string;
   image: string;
+  imageBackup: string;
 }

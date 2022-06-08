@@ -19,13 +19,22 @@ function App() {
   const { logged } = useAppSelector((state: { user: State }) => state.user);
 
   const token = localStorage.getItem("token");
+  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (token as string) {
-      const { username, image }: DecodeToken = jwtDecode(token as string);
-      dispatch(loginActionCreator({ username, image }));
+      const { username, image, imageBackup }: DecodeToken = jwtDecode(
+        token as string
+      );
+
+      const userInfo = {
+        username,
+        image,
+        imageBackup,
+      };
+      dispatch(loginActionCreator(userInfo));
     }
-  }, [dispatch, logged, token]);
+  }, [dispatch, logged, token, url]);
 
   return (
     <div className="d-flex flex-column align-items-center h-100">

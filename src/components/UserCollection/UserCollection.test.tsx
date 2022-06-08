@@ -17,6 +17,7 @@ describe("Given a UserCollection component", () => {
     id: "1",
     username: "Nico",
     image: "",
+    imageBackup: "",
     location: "Barcelona",
     genre: "Electronic",
   };

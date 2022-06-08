@@ -12,11 +12,13 @@ describe("Given a userReducer", () => {
         userInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
         logged: false,
         otherUserInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
       };
 
@@ -28,6 +30,7 @@ describe("Given a userReducer", () => {
         otherUserInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
       };
 
@@ -45,11 +48,13 @@ describe("Given a userReducer", () => {
         userInfo: {
           username: "fra432",
           image: "image",
+          imageBackup: "image",
         },
         logged: true,
         otherUserInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
       };
 
@@ -57,11 +62,13 @@ describe("Given a userReducer", () => {
         userInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
         logged: false,
         otherUserInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
       };
 
@@ -79,11 +86,13 @@ describe("Given a userReducer", () => {
         userInfo: {
           username: "fra432",
           image: "image",
+          imageBackup: "image",
         },
         logged: true,
         otherUserInfo: {
           username: "",
           image: "",
+          imageBackup: "",
         },
       };
 
@@ -93,6 +102,7 @@ describe("Given a userReducer", () => {
         userInfo: {
           username: "fra432",
           image: "image",
+          imageBackup: "image",
         },
         logged: true,
         otherUserInfo: mockUserLogin,

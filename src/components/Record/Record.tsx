@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 
 const Record = ({
-  record: { id, image, title, artist, year, genre, conditions },
+  record: { id, image, imageBackup, title, artist, year, genre, conditions },
   ownCollection,
 }: {
   record: IRecord;
@@ -30,7 +30,7 @@ const Record = ({
         <div className="image-info">
           <div className="image">
             <img
-              src={image ? image : "/images/generic-record.png"}
+              src={image ? imageBackup : "/images/generic-record.png"}
               alt="record cover"
               className="record__img"
             />

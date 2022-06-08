@@ -8,7 +8,6 @@ import { AppDispatch } from "../store/store";
 export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
-
     try {
       toast.loading("Loading...");
       const {
@@ -16,8 +15,14 @@ export const loginThunk =
       }: ResponseApiLogin = await axios.post(`${url}user/login`, userData);
 
       if (token) {
-        const { username, image }: DecodeToken = jwtDecode(token);
-        dispatch(loginActionCreator({ username, image }));
+        const { username, image, imageBackup }: DecodeToken = jwtDecode(token);
+
+        const userInfo = {
+          username,
+          image,
+          imageBackup,
+        };
+        dispatch(loginActionCreator(userInfo));
         localStorage.setItem("token", token);
         toast.dismiss();
         toast.success("Successfully loggedIn");

@@ -13,6 +13,7 @@ describe("Given a recordReducer", () => {
         genre: "",
         conditions: "",
         image: "",
+        imageBackup: "",
         price: "",
         owner: "",
         youtube_url: "",
