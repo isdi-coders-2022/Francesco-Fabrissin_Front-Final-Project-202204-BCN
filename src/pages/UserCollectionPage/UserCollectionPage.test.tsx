@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { mockRecords } from "../../mocks/mockRecords";
-import { mockUsers } from "../../mocks/mockUser";
 import store from "../../redux/store/store";
 import UserCollectionPage from "./UserCollectionPage";
 
@@ -13,20 +12,23 @@ jest.mock("react-router-dom", () => ({
 
 describe("Given a UserCollectionPage component", () => {
   describe("When invoked with the user Nico user id in the params", () => {
-    test("Then it should render a heading with 'Nico Collection' and the list of record in his collection", () => {
+    test("Then it should render a heading with 'nico Collection' and the list of record in his collection", () => {
       const expectedHeading = "nico Collection";
       const expectedNumberOfRecords = 3;
 
-      const actionUsers = {
-        type: "users/loadCollections",
-        payload: mockUsers,
+      const actionUser = {
+        type: "user/getOtherUserInfo",
+        payload: {
+          username: "nico",
+          image: "",
+        },
       };
       const actionRecords = {
         type: "records/loadRecords",
         payload: mockRecords,
       };
 
-      store.dispatch(actionUsers);
+      store.dispatch(actionUser);
       store.dispatch(actionRecords);
 
       render(

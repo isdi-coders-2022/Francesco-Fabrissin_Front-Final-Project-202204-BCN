@@ -1,5 +1,6 @@
 import { mockUserLogin } from "../../mocks/mockUser";
 import userSlice, {
+  getOtherUserInfoActionCreator,
   loginActionCreator,
   logoutActionCreator,
 } from "./userSlice";
@@ -13,6 +14,10 @@ describe("Given a userReducer", () => {
           image: "",
         },
         logged: false,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const userInfo = mockUserLogin;
@@ -20,6 +25,10 @@ describe("Given a userReducer", () => {
       const expectedStatus = {
         userInfo: mockUserLogin,
         logged: true,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const loginAction = loginActionCreator(userInfo);
@@ -38,6 +47,10 @@ describe("Given a userReducer", () => {
           image: "image",
         },
         logged: true,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const expectedStatus = {
@@ -46,11 +59,49 @@ describe("Given a userReducer", () => {
           image: "",
         },
         logged: false,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
       };
 
       const logoutAction = logoutActionCreator();
 
       const userStatus = userSlice(initialStatus, logoutAction);
+
+      expect(userStatus).toEqual(expectedStatus);
+    });
+  });
+
+  describe("When it receives an inital user status with other user infos and a getOtherUserInfo action", () => {
+    test("Then it should return the new user state with the otherUserInfo uploaded", () => {
+      const initialStatus = {
+        userInfo: {
+          username: "fra432",
+          image: "image",
+        },
+        logged: true,
+        otherUserInfo: {
+          username: "",
+          image: "",
+        },
+      };
+
+      const otherUserInfo = mockUserLogin;
+
+      const expectedStatus = {
+        userInfo: {
+          username: "fra432",
+          image: "image",
+        },
+        logged: true,
+        otherUserInfo: mockUserLogin,
+      };
+
+      const getOtherUserInfoAction =
+        getOtherUserInfoActionCreator(otherUserInfo);
+
+      const userStatus = userSlice(initialStatus, getOtherUserInfoAction);
 
       expect(userStatus).toEqual(expectedStatus);
     });
