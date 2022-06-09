@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -28,6 +29,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
   };
 
   const [formData, setFormData] = useState<IRecord>(blankData);
+
   const recordInfo = useAppSelector((state) => state.record);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -38,12 +40,16 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     }
   }, [dispatch, recordId]);
 
-  const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeFormData = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [event.target.id]:
         event.target.type === "file"
-          ? event.target.files?.[0] || ""
+          ? (event.target as HTMLInputElement).files?.[0] || ""
           : event.target.value,
     });
   };
@@ -84,11 +90,15 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     newFormData.append("price", formData.price);
     newFormData.append("youtube_url", formData.youtube_url ?? "");
     newFormData.append("image", formData.image);
-    recordId
-      ? dispatch(editRecordThunk(recordInfo.id as string, newFormData))
-      : dispatch(addRecordThunk(newFormData));
-    navigate("/myCollection");
-    clearData();
+    if (buttonDisabled()) {
+      toast.error("Please fill all required fields");
+    } else {
+      recordId
+        ? dispatch(editRecordThunk(recordInfo.id as string, newFormData))
+        : dispatch(addRecordThunk(newFormData));
+      navigate("/my_collection");
+      clearData();
+    }
   };
 
   return (
@@ -142,31 +152,50 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
         <label className="form-label hidden" htmlFor="genre">
           Genre
         </label>
-        <input
-          className="form-control"
-          formNoValidate
-          autoComplete="off"
+        <select
+          name="genre"
+          className="form-select"
+          onChange={changeFormData}
+          value={formData.genre}
           placeholder="Genre"
           id="genre"
-          value={formData.genre}
-          onChange={changeFormData}
-          type="text"
-        />
+        >
+          <option disabled value="">
+            Genre
+          </option>
+          <option value="Rock">Rock</option>
+          <option value="Reggae">Reggae</option>
+          <option value="Electronic">Electronic</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Funk/Soul">Funk/Soul</option>
+          <option value="Classical">Classical</option>
+          <option value="Latin">Latin</option>
+          <option value="Pop">Pop</option>
+          <option value="Alternative">Alternative</option>
+        </select>
         <label className="form-label hidden" htmlFor="conditions">
           Record Conditions
         </label>
-        <input
-          className="form-control"
-          formNoValidate
-          autoComplete="off"
+        <select
+          name="conditions"
+          className="form-select"
+          onChange={changeFormData}
+          value={formData.conditions}
           placeholder="Record Conditions"
           id="conditions"
-          value={formData.conditions}
-          onChange={changeFormData}
-          type="text"
-        />
+        >
+          <option disabled value="">
+            Record Conditions
+          </option>
+          <option value="Poor">Poor</option>
+          <option value="G">G</option>
+          <option value="VG">VG</option>
+          <option value="VG+">VG+</option>
+          <option value="NM">NM</option>
+          <option value="M">M</option>
+        </select>
         <label className="form-label hidden" htmlFor="price">
-          Record Conditions
+          Price
         </label>
         <input
           className="form-control"
@@ -179,7 +208,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           type="text"
         />
         <label className="form-label" htmlFor="youtube_url">
-          Favourite track YouTube link
+          Favourite track YouTube link (optional)
         </label>
         <input
           className="form-control"
@@ -203,7 +232,6 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
         <div className="container text-center">
           <Button
             type="submit"
-            disabled={buttonDisabled()}
             className="button"
             add={recordId ? false : true}
             edit={recordId ? true : false}

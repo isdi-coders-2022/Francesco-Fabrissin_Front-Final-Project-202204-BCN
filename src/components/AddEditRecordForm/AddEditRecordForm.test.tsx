@@ -12,10 +12,20 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
 }));
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: jest
+    .fn()
+    .mockResolvedValueOnce(null)
+    .mockResolvedValueOnce(null)
+    .mockReturnValueOnce({ recordId: "3" }),
+}));
+
 describe("Given a AddEditRecordForm component function", () => {
   describe("When invoked", () => {
-    test("Then it should render 7 input fields and 1 button", () => {
-      const expectedNumberOfInputs = 7;
+    test("Then it should render 7 input fields, 2 select fields and 1 button", () => {
+      const expectedNumberOfInputs = 5;
+      const expectedNumberOfSelects = 2;
 
       render(
         <BrowserRouter>
@@ -26,47 +36,12 @@ describe("Given a AddEditRecordForm component function", () => {
       );
 
       const inputs = screen.getAllByRole("textbox");
+      const selects = screen.getAllByRole("combobox");
       const button = screen.getByRole("button");
 
       expect(inputs).toHaveLength(expectedNumberOfInputs);
+      expect(selects).toHaveLength(expectedNumberOfSelects);
       expect(button).toBeInTheDocument();
-    });
-  });
-
-  describe("When invoked and the user doesn't fill all the required fields", () => {
-    test("Then the 'Add record' button should be disabled", () => {
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <AddEditRecordForm />
-          </Provider>
-        </BrowserRouter>
-      );
-
-      const button = screen.getByRole("button");
-
-      expect(button).toBeDisabled();
-    });
-  });
-
-  describe("When invoked and the user fills all the required fields", () => {
-    test("Then the 'Add record' button should not be disabled", () => {
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <AddEditRecordForm />
-          </Provider>
-        </BrowserRouter>
-      );
-
-      const inputs = screen.getAllByRole("textbox");
-      const button = screen.getByRole("button");
-
-      inputs.forEach((input) => {
-        userEvent.type(input, "hola");
-      });
-
-      expect(button).not.toBeDisabled();
     });
   });
 
@@ -81,12 +56,16 @@ describe("Given a AddEditRecordForm component function", () => {
       );
 
       const inputs = screen.getAllByRole("textbox");
+      const genre = screen.getByLabelText("Genre");
+      const conditions = screen.getByLabelText("Record Conditions");
       const button = screen.getByRole("button", { name: "Add record" });
 
       inputs.forEach((input) => {
         userEvent.type(input, "hola");
       });
 
+      userEvent.selectOptions(genre, "Rock");
+      userEvent.selectOptions(conditions, "VG");
       userEvent.click(button);
 
       expect(mockDispatch).toHaveBeenCalled();
