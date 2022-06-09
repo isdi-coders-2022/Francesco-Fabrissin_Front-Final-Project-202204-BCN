@@ -6,6 +6,7 @@ const RecordStyled = styled.li`
   border-bottom: 1px solid #ccc;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   .body {
     width: 100%;

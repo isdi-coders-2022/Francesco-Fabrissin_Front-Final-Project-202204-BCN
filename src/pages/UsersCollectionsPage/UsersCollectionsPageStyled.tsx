@@ -6,6 +6,7 @@ const UsersCollectionsPageStyled = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 2rem;
 
   .list-type {
     color: #4f4f4f;

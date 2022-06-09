@@ -13,6 +13,7 @@ import AntiController from "./components/AntiController/AntiCOntroller";
 import AddEditFormPage from "./pages/AddEditFormPage/AddEditFormPage";
 import Footer from "./components/Footer/Footer";
 import UserCollectionPage from "./pages/UserCollectionPage/UserCollectionPage";
+import RecordDetailsPage from "./pages/RecordDetailsPage/RecordDetailsPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -97,8 +98,16 @@ function App() {
             </Controller>
           }
         />
+        <Route
+          path="/records/:recordId"
+          element={
+            <Controller>
+              <RecordDetailsPage />
+            </Controller>
+          }
+        />
       </Routes>
-      {logged ?? <Footer />}
+      <Footer />
       <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
