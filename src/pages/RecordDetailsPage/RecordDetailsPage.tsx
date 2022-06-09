@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 import RecordDetailsPageStyled from "./RecordDetailsPageStyled";
+import { openModalActionCreator } from "../../redux/features/uiSlice";
 
 const RecordDetailsPage = () => {
   const { recordId } = useParams();
@@ -28,6 +29,14 @@ const RecordDetailsPage = () => {
   useEffect(() => {
     dispatch(loadRecordThunk(recordId as string));
   }, [dispatch, recordId]);
+
+  const showIntrest = () => {
+    dispatch(
+      openModalActionCreator(
+        "The user has been notified about  your intrest and the record was added to your wantlist!"
+      )
+    );
+  };
 
   return (
     <RecordDetailsPageStyled>
@@ -56,7 +65,12 @@ const RecordDetailsPage = () => {
           title="favourite owner track YouTube video"
           src={`https://www.youtube.com/embed/${embedId}`}
         ></iframe>
-        <Button className="button" type="button" text="Show intrest" />
+        <Button
+          className="button"
+          type="button"
+          text="Show intrest"
+          action={showIntrest}
+        />
       </div>
     </RecordDetailsPageStyled>
   );
