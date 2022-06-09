@@ -8,10 +8,12 @@ describe("Given a uiReucer", () => {
     test("Then it should return a ui state with the loading property set to false", () => {
       const initialState = {
         loading: false,
+        modal: "",
       };
 
       const expectedStatus = {
         loading: true,
+        modal: "",
       };
 
       const loadingOnAction = setLoadingOnActionCreator();
@@ -26,10 +28,12 @@ describe("Given a uiReucer", () => {
     test("Then it should return a ui state with the loading property set to true", () => {
       const initialState = {
         loading: true,
+        modal: "",
       };
 
       const expectedStatus = {
         loading: false,
+        modal: "",
       };
 
       const loadingOffAction = setLoadingOffActionCreator();

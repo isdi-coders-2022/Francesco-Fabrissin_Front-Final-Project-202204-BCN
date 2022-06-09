@@ -46,4 +46,5 @@ export interface DecodeToken {
 
 export interface UI {
   loading: boolean;
+  modal: string;
 }

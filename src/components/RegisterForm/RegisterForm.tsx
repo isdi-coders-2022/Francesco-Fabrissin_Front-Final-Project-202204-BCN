@@ -148,6 +148,7 @@ const RegisterForm = (): JSX.Element => {
           <option value="Rock">Rock</option>
           <option value="Reggae">Reggae</option>
           <option value="Electronic">Electronic</option>
+          <option value="Disco">Disco</option>
           <option value="Jazz">Jazz</option>
           <option value="Funk/Soul">Funk/Soul</option>
           <option value="Classical">Classical</option>

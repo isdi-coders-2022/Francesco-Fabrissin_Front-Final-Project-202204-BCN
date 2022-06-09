@@ -8,9 +8,11 @@ import {
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
 import {
+  openModalActionCreator,
   setLoadingOffActionCreator,
   setLoadingOnActionCreator,
 } from "../features/uiSlice";
+
 import { getOtherUserInfoActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
@@ -40,18 +42,20 @@ export const loadMyRecordsThunk = () => async (dispatch: AppDispatch) => {
 export const addRecordThunk =
   (recordData: any) => async (dispatch: AppDispatch) => {
     try {
-      toast.loading("Loading...");
+      dispatch(setLoadingOnActionCreator());
       const {
         data: { new_record },
       } = await axios.post(`${url}myCollection`, recordData, {
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
-
+      dispatch(setLoadingOffActionCreator());
       if (new_record) {
         dispatch(addRecordActionCreator(new_record));
         dispatch(loadMyRecordsThunk());
-        toast.dismiss();
-        toast.success("Record succesfully added to your collection");
+
+        dispatch(
+          openModalActionCreator("Record added succesfully to your collection")
+        );
       }
     } catch (error: any) {
       return error.message;
@@ -61,13 +65,19 @@ export const addRecordThunk =
 export const deleteRecordThunk =
   (recordId: string) => async (dispatch: AppDispatch) => {
     try {
+      dispatch(setLoadingOnActionCreator());
       const { status } = await axios.delete(`${url}myCollection/${recordId}`, {
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
-
+      dispatch(setLoadingOffActionCreator());
       if (status === 200) {
         dispatch(deleteRecordActionCreator(recordId));
-        toast.success("Record succesfully deleted from your collection");
+
+        dispatch(
+          openModalActionCreator(
+            "Record succesfully deleted from your collection"
+          )
+        );
       }
     } catch (error: any) {
       toast.error("Unable to delete the record");

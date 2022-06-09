@@ -15,11 +15,12 @@ import Footer from "./components/Footer/Footer";
 import UserCollectionPage from "./pages/UserCollectionPage/UserCollectionPage";
 import RecordDetailsPage from "./pages/RecordDetailsPage/RecordDetailsPage";
 import Loading from "./components/Loading/Loading";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   const dispatch = useAppDispatch();
   const { logged } = useAppSelector((state: { user: State }) => state.user);
-  const { loading } = useAppSelector((state) => state.ui);
+  const { loading, modal } = useAppSelector((state) => state.ui);
   const token = localStorage.getItem("token");
   const url = process.env.REACT_APP_API_URL;
 
@@ -42,6 +43,7 @@ function App() {
     <div className="d-flex flex-column align-items-center h-100">
       {logged && <Navigation />}
       {loading && <Loading />}
+      {modal && <Modal />}
       <Routes>
         <Route path="/" element={<Navigate to="/user/login" />} />
         <Route
