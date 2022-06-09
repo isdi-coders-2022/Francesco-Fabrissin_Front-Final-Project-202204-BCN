@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import { registerThunk } from "../../redux/thunks/userThunks";
@@ -19,14 +20,31 @@ const RegisterForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const changeFormData = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeFormData = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [event.target.id]:
         event.target.type === "file"
-          ? event.target.files?.[0] || ""
+          ? (event.target as HTMLInputElement).files?.[0] || ""
           : event.target.value,
     });
+  };
+
+  const buttonDisabled = () => {
+    if (
+      formData.username === "" ||
+      formData.password === "" ||
+      formData.email === "" ||
+      formData.genre === "" ||
+      formData.location === ""
+    ) {
+      return true;
+    }
+    return false;
   };
 
   const clearData = () => {
@@ -48,8 +66,12 @@ const RegisterForm = (): JSX.Element => {
     newFormData.append("genre", formData.genre);
     newFormData.append("image", formData.image);
 
-    dispatch(registerThunk(newFormData, formData.password));
-    clearData();
+    if (buttonDisabled()) {
+      toast.error("Please fill all required fields");
+    } else {
+      dispatch(registerThunk(newFormData, formData.password));
+      clearData();
+    }
   };
 
   return (
@@ -115,16 +137,25 @@ const RegisterForm = (): JSX.Element => {
         <label className="form-label" htmlFor="genre">
           Collection music genre
         </label>
-        <input
-          className="form-control"
-          formNoValidate
-          autoComplete="off"
-          placeholder="ex. Electronic"
-          id="genre"
-          value={formData.genre}
+        <select
+          name="genre"
+          className="form-select"
           onChange={changeFormData}
-          type="text"
-        />
+          value={formData.genre}
+          placeholder="Genre"
+          id="genre"
+        >
+          <option value="Rock">Rock</option>
+          <option value="Reggae">Reggae</option>
+          <option value="Electronic">Electronic</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Funk/Soul">Funk/Soul</option>
+          <option value="Classical">Classical</option>
+          <option value="Latin">Latin</option>
+          <option value="Pop">Pop</option>
+          <option value="Alternative">Alternative</option>
+          <option value="Mixed">Mixed</option>
+        </select>
         <label className="form-label" htmlFor="image">
           Profile image
         </label>
@@ -135,17 +166,7 @@ const RegisterForm = (): JSX.Element => {
           onChange={changeFormData}
         />
         <div className="containr text-center">
-          <button
-            disabled={
-              formData.username === "" ||
-              formData.password === "" ||
-              formData.location === "" ||
-              formData.email === "" ||
-              formData.genre === ""
-            }
-            className="btn button-main"
-            type="submit"
-          >
+          <button className="btn button-main" type="submit">
             Register
           </button>
         </div>
