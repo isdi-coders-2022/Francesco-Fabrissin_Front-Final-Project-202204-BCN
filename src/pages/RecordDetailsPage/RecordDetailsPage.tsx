@@ -33,7 +33,7 @@ const RecordDetailsPage = () => {
     <RecordDetailsPageStyled>
       <div className="container">
         <img
-          src={imageBackup}
+          src={imageBackup ? imageBackup : "/images/generic-record.png"}
           alt={`${title} cover`}
           className="record-cover"
         />

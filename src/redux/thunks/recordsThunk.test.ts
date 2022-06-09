@@ -22,11 +22,10 @@ describe("Given a loadMyRecordsThunk function", () => {
           ? `${process.env.REACT_APP_API_URL}${record.image}`
           : "",
       }));
-      const token = "right token";
 
       const loadRecordsAction = loadRecordsActionCreator(recordsData);
 
-      const thunk = loadMyRecordsThunk(token);
+      const thunk = loadMyRecordsThunk();
 
       await thunk(dispatch);
 

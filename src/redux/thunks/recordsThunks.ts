@@ -7,30 +7,35 @@ import {
   editRecordActionCreator,
   loadRecordsActionCreator,
 } from "../features/recordsSlice";
+import {
+  setLoadingOffActionCreator,
+  setLoadingOnActionCreator,
+} from "../features/uiSlice";
 import { getOtherUserInfoActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
 const url = process.env.REACT_APP_API_URL;
 
-export const loadMyRecordsThunk =
-  (token: string) => async (dispatch: AppDispatch) => {
-    try {
-      const {
-        data: { records },
-      } = await axios.get(`${url}myCollection`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+export const loadMyRecordsThunk = () => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(setLoadingOnActionCreator());
+    const {
+      data: { records },
+    } = await axios.get(`${url}myCollection`, {
+      headers: { Authorization: `Bearer ${localStorage.token}` },
+    });
+    dispatch(setLoadingOffActionCreator());
 
-      const dataRecords = records.map((record: IRecord) => ({
-        ...record,
-        image: record.image ? `${url}${record.image}` : "",
-      }));
+    const dataRecords = records.map((record: IRecord) => ({
+      ...record,
+      image: record.image ? `${url}${record.image}` : "",
+    }));
 
-      dispatch(loadRecordsActionCreator(dataRecords));
-    } catch (error: any) {
-      return error.message;
-    }
-  };
+    dispatch(loadRecordsActionCreator(dataRecords));
+  } catch (error: any) {
+    return error.message;
+  }
+};
 
 export const addRecordThunk =
   (recordData: any) => async (dispatch: AppDispatch) => {
@@ -44,7 +49,7 @@ export const addRecordThunk =
 
       if (new_record) {
         dispatch(addRecordActionCreator(new_record));
-        dispatch(loadMyRecordsThunk(localStorage.token));
+        dispatch(loadMyRecordsThunk());
         toast.dismiss();
         toast.success("Record succesfully added to your collection");
       }
@@ -98,7 +103,7 @@ export const editRecordThunk =
 
       if (updatedRecord) {
         dispatch(editRecordActionCreator(updatedRecord));
-        dispatch(loadMyRecordsThunk(localStorage.token));
+        dispatch(loadMyRecordsThunk());
         toast.success("Record edited succesfully!");
       }
     } catch (error: any) {

@@ -6,11 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Roboto", sans-serif;
-  height: 100%;
   background-color: #fafafa;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
-#root {
+#root > div {
   background-color: #fafafa;
+  min-height: 100%;
 }

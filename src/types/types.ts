@@ -43,3 +43,7 @@ export interface DecodeToken {
   image: string;
   imageBackup: string;
 }
+
+export interface UI {
+  loading: boolean;
+}

@@ -12,12 +12,11 @@ describe("Given a loadCollectionsThunk function", () => {
           ? `${process.env.REACT_APP_API_URL}${user.image}`
           : "",
       }));
-      const token = "right token";
 
       const loadCollectionsAction =
         loadCollectionsActionCreator(usersCollectionsData);
 
-      const thunk = loadCollectionsThunk(token);
+      const thunk = loadCollectionsThunk();
 
       await thunk(dispatch);
 
