@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { mockToast } from "../../mocks/mockHooks";
 import store from "../../redux/store/store";
 import RegisterForm from "./RegisterForm";
 
@@ -16,6 +17,10 @@ jest.mock("react-redux", () => ({
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockUseNavigate,
+}));
+
+jest.mock("react-hot-toast", () => ({
+  error: mockToast,
 }));
 
 describe("Given a FormLogin component function", () => {
@@ -63,8 +68,10 @@ describe("Given a FormLogin component function", () => {
     });
   });
 
-  describe("When the user doesn't fill the name, username or password field", () => {
-    test("Then the register button should be disabled", () => {
+  describe("When the user doesn't type in any fiels and click on the register button", () => {
+    test("Then the error toast method should be called", () => {
+      /*  jest.spyOn(toast, "error").jest.fn() */
+
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -73,9 +80,11 @@ describe("Given a FormLogin component function", () => {
         </BrowserRouter>
       );
 
-      const registerButton = screen.getByRole("button", { name: "Register" });
+      const button = screen.getByRole("button", { name: "Register" });
 
-      expect(registerButton).toBeDisabled();
+      userEvent.click(button);
+
+      expect(mockToast).toHaveBeenCalled();
     });
   });
 
@@ -110,9 +119,7 @@ describe("Given a FormLogin component function", () => {
       userEvent.type(passwordField, textInput[1]);
       userEvent.type(emailField, textInput[2]);
       userEvent.type(locationField, textInput[3]);
-      userEvent.type(genreField, textInput[4]);
-
-      expect(registerButton).not.toBeDisabled();
+      userEvent.selectOptions(genreField, "Rock");
 
       userEvent.click(registerButton);
 
