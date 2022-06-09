@@ -51,7 +51,7 @@ const Navigation = () => {
                 <NavLink
                   className="nav-link active"
                   aria-current="page"
-                  to="/myCollection"
+                  to="/my_collection"
                   onClick={closeNav}
                 >
                   My Collection

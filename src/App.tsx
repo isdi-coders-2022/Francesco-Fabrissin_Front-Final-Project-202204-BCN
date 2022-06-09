@@ -67,7 +67,7 @@ function App() {
           }
         />
         <Route
-          path="/:myCollection"
+          path="/:my_collection"
           element={
             <Controller>
               <UsersCollectionsPage />
@@ -75,7 +75,7 @@ function App() {
           }
         />
         <Route
-          path="/myCollection/addRecord"
+          path="/my_collection/addRecord"
           element={
             <Controller>
               <AddEditFormPage />
@@ -83,7 +83,7 @@ function App() {
           }
         />
         <Route
-          path="/myCollection/edit/:recordId"
+          path="/my_collection/edit/:recordId"
           element={
             <Controller>
               <AddEditFormPage />

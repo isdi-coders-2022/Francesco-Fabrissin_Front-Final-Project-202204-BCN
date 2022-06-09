@@ -11,7 +11,7 @@ import UsersCollectionsPageStyled from "./UsersCollectionsPageStyled";
 
 const UsersCollectionsPage = () => {
   const users = useAppSelector((state) => state.users);
-  const { myCollection } = useParams();
+  const { my_collection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
   const records = useAppSelector((state) => state.records);
 
@@ -19,7 +19,7 @@ const UsersCollectionsPage = () => {
   const navigate = useNavigate();
 
   const navigateToAddForm = () => {
-    navigate("/myCollection/addRecord");
+    navigate("/my_collection/addRecord");
   };
 
   const token = localStorage.getItem("token");
@@ -36,9 +36,9 @@ const UsersCollectionsPage = () => {
     <UsersCollectionsPageStyled>
       <User userInfo={userInfo} />
       <h3 className="list-type">
-        {myCollection ? "My Collection" : "Users collections"}
+        {my_collection ? "My Collection" : "Users collections"}
       </h3>
-      {myCollection && (
+      {my_collection && (
         <Button
           type="button"
           add={true}
@@ -47,7 +47,7 @@ const UsersCollectionsPage = () => {
           action={navigateToAddForm}
         />
       )}
-      {myCollection ? (
+      {my_collection ? (
         <RecordsList ownCollection={true} records={records} />
       ) : (
         <UsersCollectionsList users={users} />

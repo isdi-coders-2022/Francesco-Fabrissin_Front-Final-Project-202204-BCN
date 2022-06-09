@@ -11,7 +11,7 @@ const mockNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: () => ({ myCollection: true }),
+  useParams: () => ({ my_collection: true }),
   useNavigate: () => mockNavigate,
 }));
 

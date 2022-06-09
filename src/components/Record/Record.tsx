@@ -23,7 +23,7 @@ const Record = ({
 
   const goToEditForm = (event: React.FormEvent) => {
     event.stopPropagation();
-    navigate(`/myCollection/edit/${id}`);
+    navigate(`/my_collection/edit/${id}`);
   };
 
   const goToRecordDetails = (event: React.FormEvent) => {
