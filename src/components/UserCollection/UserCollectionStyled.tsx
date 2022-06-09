@@ -7,6 +7,10 @@ const UserCollectionStyled = styled.li`
   background-image: url("/images/records-banner.jpeg");
   background-size: cover;
 
+  :hover {
+    transform: scale(1.1);
+  }
+
   .card {
     &__img {
       position: absolute;

@@ -16,16 +16,23 @@ const Record = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const deleteRecord = () => {
+  const deleteRecord = (event: React.FormEvent) => {
+    event.stopPropagation();
     dispatch(deleteRecordThunk(id as string));
   };
 
-  const goToEditForm = () => {
+  const goToEditForm = (event: React.FormEvent) => {
+    event.stopPropagation();
     navigate(`/myCollection/edit/${id}`);
   };
 
+  const goToRecordDetails = (event: React.FormEvent) => {
+    event.preventDefault();
+    navigate(`/records/${id}`);
+  };
+
   return (
-    <RecordStyled className="record">
+    <RecordStyled onClick={goToRecordDetails} className="record">
       <div className="body">
         <div className="image-info">
           <div className="image">
@@ -57,7 +64,12 @@ const Record = ({
             />
           )}
           {ownCollection && (
-            <FiEdit2 className="icon-edit" size={30} onClick={goToEditForm} />
+            <FiEdit2
+              data-testid="icon-edit"
+              className="icon-edit"
+              size={30}
+              onClick={goToEditForm}
+            />
           )}
         </div>
       </div>
