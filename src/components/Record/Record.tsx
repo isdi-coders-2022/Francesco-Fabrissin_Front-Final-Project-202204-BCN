@@ -64,7 +64,12 @@ const Record = ({
             />
           )}
           {ownCollection && (
-            <FiEdit2 className="icon-edit" size={30} onClick={goToEditForm} />
+            <FiEdit2
+              data-testid="icon-edit"
+              className="icon-edit"
+              size={30}
+              onClick={goToEditForm}
+            />
           )}
         </div>
       </div>
