@@ -4,7 +4,7 @@ const Loading = () => {
   return (
     <LoadingStyled>
       <div className="loader">
-        <span>loading</span>
+        <span>Loading</span>
       </div>
     </LoadingStyled>
   );
