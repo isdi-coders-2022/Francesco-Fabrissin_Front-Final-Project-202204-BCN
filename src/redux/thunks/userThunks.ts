@@ -2,6 +2,10 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import toast from "react-hot-toast";
 import { DecodeToken, ResponseApiLogin, UserLogin } from "../../types/types";
+import {
+  setLoadingOffActionCreator,
+  setLoadingOnActionCreator,
+} from "../features/uiSlice";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
@@ -9,7 +13,7 @@ export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
     try {
-      toast.loading("Loading...");
+      dispatch(setLoadingOnActionCreator());
       const {
         data: { token },
       }: ResponseApiLogin = await axios.post(`${url}user/login`, userData);
@@ -24,11 +28,11 @@ export const loginThunk =
         };
         dispatch(loginActionCreator(userInfo));
         localStorage.setItem("token", token);
-        toast.dismiss();
+        dispatch(setLoadingOffActionCreator());
         toast.success("Successfully loggedIn");
       }
     } catch (error: any) {
-      toast.dismiss();
+      dispatch(setLoadingOffActionCreator());
       toast.error("Wrong username or password");
       return error.message;
     }

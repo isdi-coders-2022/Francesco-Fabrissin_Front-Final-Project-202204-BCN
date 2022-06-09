@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import recordSlice from "../features/recordSlice";
+import recordReducer from "../features/recordSlice";
 import recordsReducer from "../features/recordsSlice";
+import uiReducer from "../features/uiSlice";
 import userReducer from "../features/userSlice";
 import usersReducer from "../features/usersSlice";
 
@@ -9,7 +10,8 @@ const store = configureStore({
     user: userReducer,
     users: usersReducer,
     records: recordsReducer,
-    record: recordSlice,
+    record: recordReducer,
+    ui: uiReducer,
   },
 });
 

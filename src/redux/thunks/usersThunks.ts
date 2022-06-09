@@ -1,24 +1,25 @@
 import axios from "axios";
-import toast from "react-hot-toast";
 import { IUserCollection } from "../../types/types";
+import {
+  setLoadingOffActionCreator,
+  setLoadingOnActionCreator,
+} from "../features/uiSlice";
 import { loadCollectionsActionCreator } from "../features/usersSlice";
 import { AppDispatch } from "../store/store";
 
-export const loadCollectionsThunk =
-  (token: string) => async (dispatch: AppDispatch) => {
-    const url = process.env.REACT_APP_API_URL;
-    toast.loading("Loading...");
-    const {
-      data: { usersCollection },
-    } = await axios.get(`${url}users`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    toast.dismiss();
-    const dataCollections = usersCollection.map((user: IUserCollection) => ({
-      ...user,
-      image: user.image ? `${url}${user.image}` : "",
-    }));
+export const loadCollectionsThunk = () => async (dispatch: AppDispatch) => {
+  const url = process.env.REACT_APP_API_URL;
+  dispatch(setLoadingOnActionCreator());
+  const {
+    data: { usersCollection },
+  } = await axios.get(`${url}users`, {
+    headers: { Authorization: `Bearer ${localStorage.token}` },
+  });
+  dispatch(setLoadingOffActionCreator());
+  const dataCollections = usersCollection.map((user: IUserCollection) => ({
+    ...user,
+    image: user.image ? `${url}${user.image}` : "",
+  }));
 
-    toast.dismiss();
-    dispatch(loadCollectionsActionCreator(dataCollections));
-  };
+  dispatch(loadCollectionsActionCreator(dataCollections));
+};

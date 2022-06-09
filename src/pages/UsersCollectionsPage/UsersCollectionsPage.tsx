@@ -22,15 +22,13 @@ const UsersCollectionsPage = () => {
     navigate("/my_collection/addRecord");
   };
 
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    dispatch(loadCollectionsThunk());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(loadCollectionsThunk(token as string));
-  }, [dispatch, token]);
-
-  useEffect(() => {
-    dispatch(loadMyRecordsThunk(token as string));
-  }, [dispatch, token, navigate]);
+    dispatch(loadMyRecordsThunk());
+  }, [dispatch, navigate]);
 
   return (
     <UsersCollectionsPageStyled>
