@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { IUser } from "../../types/types";
+import { IUser, OtherUser } from "../../types/types";
 import UserStyled from "./UserStyled";
 
 const User = ({
   userInfo: { username, image, imageBackup },
 }: {
-  userInfo: IUser;
+  userInfo: IUser | OtherUser;
 }) => {
   const { userId } = useParams();
 

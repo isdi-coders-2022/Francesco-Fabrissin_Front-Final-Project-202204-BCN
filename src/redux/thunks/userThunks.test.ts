@@ -6,11 +6,12 @@ jest.mock("jwt-decode", () => () => ({
   username: "fra432",
   image: "image",
   imageBackup: "image",
+  id: "1",
 }));
 
 describe("Given a loginThunk function", () => {
   describe("When it's called", () => {
-    test("It should dispatch the loginActionCreator with the data from the token", async () => {
+    test("It should dispatch 3 actions", async () => {
       const dispatch = jest.fn();
 
       const userData = {
@@ -18,13 +19,13 @@ describe("Given a loginThunk function", () => {
         password: "fra432",
       };
 
-      const loginAction = loginActionCreator(mockUserLogin);
+      const numberOfActionDispatched = 3;
 
       const thunk = loginThunk(userData);
 
       await thunk(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(loginAction);
+      expect(dispatch).toHaveBeenCalledTimes(numberOfActionDispatched);
     });
   });
 });

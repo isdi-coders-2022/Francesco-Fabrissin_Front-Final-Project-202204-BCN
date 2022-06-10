@@ -2,6 +2,7 @@ export const mockUserLogin = {
   username: "fra432",
   image: "image",
   imageBackup: "image",
+  id: "1",
 };
 
 export const mockUsers = [

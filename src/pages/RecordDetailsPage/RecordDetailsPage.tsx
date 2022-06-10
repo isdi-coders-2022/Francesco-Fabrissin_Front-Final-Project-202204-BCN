@@ -8,6 +8,9 @@ import { openModalActionCreator } from "../../redux/features/uiSlice";
 
 const RecordDetailsPage = () => {
   const { recordId } = useParams();
+  const {
+    userInfo: { id },
+  } = useAppSelector((state) => state.user);
 
   const {
     imageBackup,
@@ -18,6 +21,7 @@ const RecordDetailsPage = () => {
     conditions,
     price,
     youtube_url,
+    owner,
   } = useAppSelector((state) => state.record);
 
   const embedId = youtube_url
@@ -65,12 +69,14 @@ const RecordDetailsPage = () => {
           title="favourite owner track YouTube video"
           src={`https://www.youtube.com/embed/${embedId}`}
         ></iframe>
-        <Button
-          className="button"
-          type="button"
-          text="Show intrest"
-          action={showIntrest}
-        />
+        {id !== owner && (
+          <Button
+            className="button"
+            type="button"
+            text="Show intrest"
+            action={showIntrest}
+          />
+        )}
       </div>
     </RecordDetailsPageStyled>
   );

@@ -165,6 +165,7 @@ const RegisterForm = (): JSX.Element => {
           id="image"
           type="file"
           onChange={changeFormData}
+          accept="image/*"
         />
         <div className="containr text-center">
           <button className="btn button-main" type="submit">
