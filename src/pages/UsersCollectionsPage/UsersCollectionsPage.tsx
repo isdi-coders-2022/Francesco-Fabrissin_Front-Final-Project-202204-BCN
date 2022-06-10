@@ -47,6 +47,10 @@ const UsersCollectionsPage = () => {
       )}
       {my_collection ? (
         <RecordsList ownCollection={true} records={records} />
+      ) : users.length === 0 ? (
+        <span>
+          Sorry, there are no collections that meet your search criterion
+        </span>
       ) : (
         <UsersCollectionsList users={users} />
       )}

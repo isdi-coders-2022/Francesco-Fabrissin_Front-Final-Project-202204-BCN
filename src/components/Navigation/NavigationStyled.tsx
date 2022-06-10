@@ -16,6 +16,7 @@ const NavigationStyled = styled.div`
   }
 
   .navbar {
+    position: relative;
     padding: 1rem;
   }
 
@@ -23,6 +24,11 @@ const NavigationStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: start;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .button-logout {
@@ -32,8 +38,27 @@ const NavigationStyled = styled.div`
     color: white;
     padding: 0;
     padding-left: 0.5rem;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    height: 2rem;
+    @media (min-width: 768px) {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translate(0, -1rem);
+    }
     @media (max-width: 768px) {
-      padding-bottom: 2rem;
+      margin-top: 1.8rem;
+      padding-bottom: 3rem;
+      margin-left: 2rem;
+    }
+
+    .icon-search {
+      cursor: pointer;
     }
   }
 `;

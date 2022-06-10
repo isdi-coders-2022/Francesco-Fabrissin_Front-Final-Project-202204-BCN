@@ -10,10 +10,14 @@ const usersSlice = createSlice({
     loadCollections: (users, action: PayloadAction<IUserCollection[]>) => [
       ...action.payload,
     ],
+    filterCollections: (users, action: PayloadAction<string>) =>
+      users.filter((users) => users.genre === action.payload),
   },
 });
 
-export const { loadCollections: loadCollectionsActionCreator } =
-  usersSlice.actions;
+export const {
+  loadCollections: loadCollectionsActionCreator,
+  filterCollections: filterCollectionsActionCreator,
+} = usersSlice.actions;
 
 export default usersSlice.reducer;
