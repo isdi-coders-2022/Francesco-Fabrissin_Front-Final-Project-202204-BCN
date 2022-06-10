@@ -229,6 +229,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           id="image"
           type="file"
           onChange={changeFormData}
+          accept="image/*"
         />
         <div className="container text-center">
           <Button
