@@ -61,6 +61,10 @@ const NavigationStyled = styled.div`
       cursor: pointer;
     }
   }
+
+  .hidden {
+    display: none;
+  }
 `;
 
 export default NavigationStyled;

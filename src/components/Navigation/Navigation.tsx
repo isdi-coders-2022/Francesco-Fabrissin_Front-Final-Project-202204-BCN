@@ -86,11 +86,15 @@ const Navigation = () => {
               {pathname === "/users/collections" && (
                 <li className="nav-item active">
                   <div className="search">
+                    <label className="form-label hidden" htmlFor="filter">
+                      Filter
+                    </label>
                     <select
                       className="form-select"
                       onChange={changeFilterOption}
                       value={filterOption}
                       placeholder="Search by genre"
+                      id="filter"
                     >
                       <option disabled value="">
                         Search by genre
@@ -108,6 +112,7 @@ const Navigation = () => {
                       <option value="All">All</option>
                     </select>
                     <CgSearch
+                      data-testid="icon-search"
                       onClick={applyFilter}
                       className="icon-search"
                       size={28}

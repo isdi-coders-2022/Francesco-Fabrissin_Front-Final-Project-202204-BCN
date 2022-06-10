@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import Navigation from "./Navigation";
+import React from "react";
 
 const mockDispatch = jest.fn();
 const mockSetState = jest.fn();
@@ -16,6 +17,10 @@ jest.mock("react", () => ({
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
+}));
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useLocation: () => ({ pathname: "/users/collections" }),
 }));
 
 describe("Given a Navbar component function", () => {
@@ -89,6 +94,26 @@ describe("Given a Navbar component function", () => {
 
       const logoutButton = screen.getByRole("button", { name: "Logout" });
       userEvent.click(logoutButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked and the user select the option 'rock' from the selector and click on the search icon", () => {
+    test("Then it should call the dispatch function", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Navigation />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const filter = screen.getByLabelText("Filter");
+      const iconSearch = screen.getByTestId("icon-search");
+
+      userEvent.selectOptions(filter, "Rock");
+      userEvent.click(iconSearch);
 
       expect(mockDispatch).toHaveBeenCalled();
     });
