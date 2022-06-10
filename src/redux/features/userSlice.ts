@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../types/types";
+import { IUser, OtherUser } from "../../types/types";
 export interface State {
   userInfo: IUser;
   logged: boolean;
-  otherUserInfo: IUser;
+  otherUserInfo: OtherUser;
 }
 
 const initialState: State = {
@@ -11,6 +11,7 @@ const initialState: State = {
     username: "",
     image: "",
     imageBackup: "",
+    id: "",
   },
   logged: false,
   otherUserInfo: {
@@ -35,6 +36,7 @@ const userSlice = createSlice({
         username: "",
         image: "",
         imageBackup: "",
+        id: "",
       },
       logged: false,
     }),

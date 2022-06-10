@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (token as string) {
-      const { username, image, imageBackup }: DecodeToken = jwtDecode(
+      const { username, image, imageBackup, id }: DecodeToken = jwtDecode(
         token as string
       );
 
@@ -34,6 +34,7 @@ function App() {
         username,
         image,
         imageBackup,
+        id,
       };
       dispatch(loginActionCreator(userInfo));
     }

@@ -13,6 +13,7 @@ describe("Given a userReducer", () => {
           username: "",
           image: "",
           imageBackup: "",
+          id: "",
         },
         logged: false,
         otherUserInfo: {
@@ -49,6 +50,7 @@ describe("Given a userReducer", () => {
           username: "fra432",
           image: "image",
           imageBackup: "image",
+          id: "1",
         },
         logged: true,
         otherUserInfo: {
@@ -63,6 +65,7 @@ describe("Given a userReducer", () => {
           username: "",
           image: "",
           imageBackup: "",
+          id: "",
         },
         logged: false,
         otherUserInfo: {
@@ -87,6 +90,7 @@ describe("Given a userReducer", () => {
           username: "fra432",
           image: "image",
           imageBackup: "image",
+          id: "1",
         },
         logged: true,
         otherUserInfo: {
@@ -103,7 +107,9 @@ describe("Given a userReducer", () => {
           username: "fra432",
           image: "image",
           imageBackup: "image",
+          id: "1",
         },
+
         logged: true,
         otherUserInfo: mockUserLogin,
       };

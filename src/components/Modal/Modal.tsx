@@ -21,8 +21,8 @@ const Modal = () => {
   }, [closeModal]);
 
   return (
-    <ModalStyled onClick={closeModal}>
-      <div className="modale">
+    <ModalStyled>
+      <div data-testid="modal" onClick={closeModal} className="modale">
         <span>{modalText}</span>
         <img
           src="/images/green_success_icon.png"
