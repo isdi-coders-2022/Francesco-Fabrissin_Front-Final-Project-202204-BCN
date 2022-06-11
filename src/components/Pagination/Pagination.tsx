@@ -8,9 +8,9 @@ import PaginationStyled from "./PaginationStyled";
 const Pagination = () => {
   const dispatch = useAppDispatch();
 
-  const loadMore = async () => {
-    await dispatch(setPaginationActionCreator());
-    await dispatch(setCurrentPageActionCreator());
+  const loadMore = () => {
+    dispatch(setPaginationActionCreator());
+    dispatch(setCurrentPageActionCreator());
   };
 
   return (
