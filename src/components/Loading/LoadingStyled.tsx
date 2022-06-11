@@ -7,7 +7,7 @@ const LoadingStyled = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(27, 8, 8, 0.5);
+  background-color: rgba(250, 250, 250, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

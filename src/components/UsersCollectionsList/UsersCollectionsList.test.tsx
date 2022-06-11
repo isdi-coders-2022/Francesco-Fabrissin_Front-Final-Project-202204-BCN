@@ -10,12 +10,12 @@ describe("Given a UsersCollectionsList component function", () => {
     test("Then it should render 2 li elements", () => {
       const expectedNumberOfUsers = 2;
 
-      const users = mockUsers;
+      const collections = mockUsers;
 
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <UsersCollectionsList users={users} />
+            <UsersCollectionsList collections={collections} />
           </Provider>
         </BrowserRouter>
       );

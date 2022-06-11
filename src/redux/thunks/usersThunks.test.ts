@@ -16,7 +16,7 @@ describe("Given a loadCollectionsThunk function", () => {
       const loadCollectionsAction =
         loadCollectionsActionCreator(usersCollectionsData);
 
-      const thunk = loadCollectionsThunk();
+      const thunk = loadCollectionsThunk("All", 5);
 
       await thunk(dispatch);
 

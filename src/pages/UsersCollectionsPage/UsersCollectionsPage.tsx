@@ -10,7 +10,7 @@ import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
 import UsersCollectionsPageStyled from "./UsersCollectionsPageStyled";
 
 const UsersCollectionsPage = () => {
-  const users = useAppSelector((state) => state.users);
+  const { collections, filter } = useAppSelector((state) => state.users);
   const { my_collection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
   const records = useAppSelector((state) => state.records);
@@ -23,8 +23,8 @@ const UsersCollectionsPage = () => {
   };
 
   useEffect(() => {
-    dispatch(loadCollectionsThunk());
-  }, [dispatch]);
+    dispatch(loadCollectionsThunk(filter, 8));
+  }, [dispatch, filter]);
 
   useEffect(() => {
     dispatch(loadMyRecordsThunk());
@@ -33,8 +33,12 @@ const UsersCollectionsPage = () => {
   return (
     <UsersCollectionsPageStyled>
       <User userInfo={userInfo} />
-      <h3 className="list-type">
-        {my_collection ? "My Collection" : "Users collections"}
+      <h3 className="page-info">
+        {my_collection
+          ? "My Collection"
+          : collections.length !== 0
+          ? `Users ${filter} Collections`
+          : "Sorry, no collections found"}
       </h3>
       {my_collection && (
         <Button
@@ -47,12 +51,14 @@ const UsersCollectionsPage = () => {
       )}
       {my_collection ? (
         <RecordsList ownCollection={true} records={records} />
-      ) : users.length === 0 ? (
-        <span>
-          Sorry, there are no collections that meet your search criterion
-        </span>
+      ) : collections.length === 0 ? (
+        <img
+          className="record-player-logo"
+          src="/images/record-player.png"
+          alt="record player logo"
+        />
       ) : (
-        <UsersCollectionsList users={users} />
+        <UsersCollectionsList collections={collections} />
       )}
     </UsersCollectionsPageStyled>
   );
