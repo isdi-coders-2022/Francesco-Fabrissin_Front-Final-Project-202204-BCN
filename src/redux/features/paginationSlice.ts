@@ -17,7 +17,7 @@ const paginationSlice = createSlice({
     }),
     setCurrentPage: (users) => ({
       ...users,
-      currentPage: users.currentPage++,
+      currentPage: users.currentPage + 1,
     }),
     resetCurrentPage: (users) => ({
       ...users,
