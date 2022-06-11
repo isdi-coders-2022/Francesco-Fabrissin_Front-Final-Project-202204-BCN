@@ -1,23 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUserCollection } from "../../types/types";
+import { IUserCollection, UsersState } from "../../types/types";
 
-const initialState: IUserCollection[] = [];
+const initialState: UsersState = {
+  collections: [],
+  filter: "All",
+  pages: 0,
+  pagination: 8,
+};
 
 const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    loadCollections: (users, action: PayloadAction<IUserCollection[]>) => [
-      ...action.payload,
-    ],
-    filterCollections: (users, action: PayloadAction<string>) =>
-      users.filter((users) => users.genre === action.payload),
+    loadCollections: (users, action: PayloadAction<IUserCollection[]>) => ({
+      ...users,
+      collections: [...action.payload],
+    }),
+    setFilter: (users, action: PayloadAction<string>) => ({
+      ...users,
+      filter: action.payload,
+    }),
   },
 });
 
 export const {
   loadCollections: loadCollectionsActionCreator,
-  filterCollections: filterCollectionsActionCreator,
+  setFilter: setFilterActionCreator,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

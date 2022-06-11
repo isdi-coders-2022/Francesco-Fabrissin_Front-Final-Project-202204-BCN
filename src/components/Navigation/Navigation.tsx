@@ -5,8 +5,8 @@ import { logoutActionCreator } from "../../redux/features/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import NavigationStyled from "./NavigationStyled";
 import { CgSearch } from "react-icons/cg";
-import { filterCollectionsActionCreator } from "../../redux/features/usersSlice";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
+import { setFilterActionCreator } from "../../redux/features/usersSlice";
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
@@ -26,21 +26,21 @@ const Navigation = () => {
     setExpanded(false);
   };
 
+  const loadAllUsers = () => {
+    dispatch(loadCollectionsThunk("All", 5));
+    closeNav();
+  };
+
   const applyFilter = async () => {
-    if (filterOption === "All") {
-      await dispatch(loadCollectionsThunk());
-      setFilterOption("");
-    } else {
-      await dispatch(loadCollectionsThunk());
-      dispatch(filterCollectionsActionCreator(filterOption));
-      setFilterOption("");
-    }
+    dispatch(setFilterActionCreator(filterOption));
+    setFilterOption("");
     closeNav();
   };
 
   const logout = () => {
     dispatch(logoutActionCreator());
     localStorage.removeItem("token");
+    dispatch(setFilterActionCreator("All"));
   };
 
   return (
@@ -63,7 +63,7 @@ const Navigation = () => {
                   className="nav-link active"
                   aria-current="page"
                   to="/users/collections"
-                  onClick={closeNav}
+                  onClick={loadAllUsers}
                 >
                   Users Collection
                 </NavLink>

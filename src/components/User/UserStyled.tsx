@@ -3,7 +3,7 @@ import styled from "styled-components";
 const UserStyled = styled.div`
   position: relative;
   width: 100%;
-  height: 2.5rem;
+  height: 4.5rem;
   background-color: #3a4042;
   margin-top: -1px;
   margin-bottom: 6.5rem;
@@ -26,6 +26,7 @@ const UserStyled = styled.div`
       height: 8rem;
       border: 2px solid #fff;
       border-radius: 5rem;
+      background-color: #fff;
     }
 
     &__username {

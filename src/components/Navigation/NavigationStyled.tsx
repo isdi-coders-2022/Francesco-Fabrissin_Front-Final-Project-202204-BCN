@@ -53,7 +53,7 @@ const NavigationStyled = styled.div`
     }
     @media (max-width: 768px) {
       margin-top: 1.8rem;
-      padding-bottom: 3rem;
+      padding-bottom: 1.5rem;
       margin-left: 2rem;
     }
 

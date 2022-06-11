@@ -32,6 +32,14 @@ export interface IUserCollection {
   imageBackup: string;
   location: string;
   genre: string;
+  records?: string[];
+}
+
+export interface UsersState {
+  collections: IUserCollection[];
+  filter: string;
+  pages: number,
+  pagination: number;
 }
 
 export interface UserLogin {

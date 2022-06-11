@@ -17,6 +17,7 @@ const UserCollectionStyled = styled.li`
       height: 7rem;
       border: 2px solid white;
       border-radius: 3.5rem;
+      background-color: #fff;
     }
   }
   .card-body {
