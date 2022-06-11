@@ -11,8 +11,6 @@ describe("Given a usersReducer", () => {
       const initialStatus: UsersState = {
         collections: [],
         filter: "All",
-        pages: 0,
-        pagination: 8,
       };
       const usersCollections = mockUsers;
       const expectedStatus = {
@@ -34,8 +32,6 @@ describe("Given a usersReducer", () => {
       const initialStatus: UsersState = {
         collections: [],
         filter: "All",
-        pages: 0,
-        pagination: 8,
       };
       const filterInfo = "Rock";
       const expectedStatus = {

@@ -38,8 +38,6 @@ export interface IUserCollection {
 export interface UsersState {
   collections: IUserCollection[];
   filter: string;
-  pages: number,
-  pagination: number;
 }
 
 export interface UserLogin {
@@ -63,4 +61,10 @@ export interface DecodeToken {
 export interface UI {
   loading: boolean;
   modal: string;
+}
+
+export interface PaginationState {
+  pages: number;
+  currentPage: number;
+  pagination: number;
 }

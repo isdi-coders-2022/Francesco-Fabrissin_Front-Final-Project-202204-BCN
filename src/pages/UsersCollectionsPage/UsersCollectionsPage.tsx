@@ -11,6 +11,7 @@ import UsersCollectionsPageStyled from "./UsersCollectionsPageStyled";
 
 const UsersCollectionsPage = () => {
   const { collections, filter } = useAppSelector((state) => state.users);
+  const { pagination } = useAppSelector((state) => state.pagination);
   const { my_collection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
   const records = useAppSelector((state) => state.records);
@@ -23,8 +24,8 @@ const UsersCollectionsPage = () => {
   };
 
   useEffect(() => {
-    dispatch(loadCollectionsThunk(filter, 8));
-  }, [dispatch, filter]);
+    dispatch(loadCollectionsThunk(filter, pagination));
+  }, [dispatch, filter, pagination]);
 
   useEffect(() => {
     dispatch(loadMyRecordsThunk());
