@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../redux/hooks";
 import { IUserCollection } from "../../types/types";
-import Pagination from "../Pagination/pagination";
+import Pagination from "../Pagination/Pagination";
 import UserCollection from "../UserCollection/UserCollection";
 
 const UsersCollectionsList = ({

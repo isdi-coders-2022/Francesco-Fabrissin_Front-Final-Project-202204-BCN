@@ -3,6 +3,7 @@ import {
   setPaginationActionCreator,
 } from "../../redux/features/paginationSlice";
 import { useAppDispatch } from "../../redux/hooks";
+import PaginationStyled from "./PaginationStyled";
 
 const Pagination = () => {
   const dispatch = useAppDispatch();
@@ -13,9 +14,9 @@ const Pagination = () => {
   };
 
   return (
-    <button onClick={loadMore} className="pagination">
+    <PaginationStyled onClick={loadMore} className="pagination">
       Load More
-    </button>
+    </PaginationStyled>
   );
 };
 
