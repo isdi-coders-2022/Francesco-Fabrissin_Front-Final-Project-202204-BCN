@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import paginationReducer from "../features/paginationSlice";
 import recordReducer from "../features/recordSlice";
 import recordsReducer from "../features/recordsSlice";
 import uiReducer from "../features/uiSlice";
@@ -12,6 +13,7 @@ const store = configureStore({
     records: recordsReducer,
     record: recordReducer,
     ui: uiReducer,
+    pagination: paginationReducer,
   },
 });
 

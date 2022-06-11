@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IUserCollection } from "../../types/types";
+import { setPagesActionCreator } from "../features/paginationSlice";
 import {
   setLoadingOffActionCreator,
   setLoadingOnActionCreator,
@@ -12,8 +13,9 @@ export const loadCollectionsThunk =
   (filter: string, limit: number) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
     dispatch(setLoadingOnActionCreator());
+
     const {
-      data: { usersCollection },
+      data: { usersCollection, pages },
     } = await axios.get(
       `${url}users/?filter=${filter === "All" ? "" : filter}&limit=${limit}`,
       {
@@ -27,4 +29,5 @@ export const loadCollectionsThunk =
     }));
 
     dispatch(loadCollectionsActionCreator(dataCollections));
+    dispatch(setPagesActionCreator(pages));
   };

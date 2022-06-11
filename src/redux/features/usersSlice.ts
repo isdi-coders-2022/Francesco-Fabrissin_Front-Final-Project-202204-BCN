@@ -4,8 +4,6 @@ import { IUserCollection, UsersState } from "../../types/types";
 const initialState: UsersState = {
   collections: [],
   filter: "All",
-  pages: 0,
-  pagination: 8,
 };
 
 const usersSlice = createSlice({

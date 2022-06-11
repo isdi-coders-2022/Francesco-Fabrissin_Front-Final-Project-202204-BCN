@@ -2,16 +2,21 @@ import { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import { logoutActionCreator } from "../../redux/features/userSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import NavigationStyled from "./NavigationStyled";
 import { CgSearch } from "react-icons/cg";
 import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
 import { setFilterActionCreator } from "../../redux/features/usersSlice";
+import {
+  resetCurrentPageActionCreator,
+  resetPaginationActionCreator,
+} from "../../redux/features/paginationSlice";
 
 const Navigation = () => {
   const dispatch = useAppDispatch();
   const [expanded, setExpanded] = useState(false);
   const [filterOption, setFilterOption] = useState("");
+  const { pagination } = useAppSelector((state) => state.pagination);
   const { pathname } = useLocation();
 
   const changeFilterOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -27,13 +32,18 @@ const Navigation = () => {
   };
 
   const loadAllUsers = () => {
-    dispatch(loadCollectionsThunk("All", 5));
+    dispatch(resetCurrentPageActionCreator());
+    dispatch(resetPaginationActionCreator());
+    dispatch(loadCollectionsThunk("All", pagination));
+    dispatch(setFilterActionCreator("All"));
     closeNav();
   };
 
   const applyFilter = async () => {
     dispatch(setFilterActionCreator(filterOption));
     setFilterOption("");
+    dispatch(resetCurrentPageActionCreator());
+    dispatch(resetPaginationActionCreator());
     closeNav();
   };
 
