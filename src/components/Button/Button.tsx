@@ -29,7 +29,7 @@ const Button = ({
       onClick={action}
     >
       {add && <RiAddFill size={30} />}
-      {edit && <FiEdit2 size={30} />}
+      {edit && <FiEdit2 size={20} />}
       {text}
     </ButtonStyled>
   );
