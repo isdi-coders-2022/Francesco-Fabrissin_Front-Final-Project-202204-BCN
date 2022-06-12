@@ -6,7 +6,7 @@ const UsersCollectionsPageStyled = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   .page-info {
     @media (min-width: 300px) {
