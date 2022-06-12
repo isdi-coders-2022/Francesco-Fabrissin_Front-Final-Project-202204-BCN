@@ -70,8 +70,6 @@ describe("Given a FormLogin component function", () => {
 
   describe("When the user doesn't type in any fiels and click on the register button", () => {
     test("Then the error toast method should be called", () => {
-      /*  jest.spyOn(toast, "error").jest.fn() */
-
       render(
         <BrowserRouter>
           <Provider store={store}>

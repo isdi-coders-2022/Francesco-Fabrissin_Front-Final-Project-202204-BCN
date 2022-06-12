@@ -13,12 +13,12 @@ import { AppDispatch } from "../store/store";
 export const loginThunk =
   (userData: UserLogin) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
+
     try {
       dispatch(setLoadingOnActionCreator());
       const {
         data: { token },
       }: ResponseApiLogin = await axios.post(`${url}user/login`, userData);
-
       if (token) {
         const { username, image, imageBackup, id }: DecodeToken =
           jwtDecode(token);

@@ -14,7 +14,7 @@ const UserCollectionStyled = styled.li`
   }
 
   @media (min-width: 400px) {
-    margin: 1.5rem 0;
+    margin: 2 rem 0;
   }
 
   @media (min-width: 600px) {
@@ -24,19 +24,38 @@ const UserCollectionStyled = styled.li`
 
   @media (min-width: 768px) {
     margin: 2.8rem 1rem;
-    max-width: 42%;
+    max-width: 45%;
   }
 
   height: 10rem;
-  background-image: url("/images/records-banner.jpeg");
+  background-image: url("/images/records-collection.jpeg");
   background-size: cover;
 
   .card {
+    display: flex;
+    justify-content: center;
     &__img {
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(0, -3.5rem);
+      @media (min-width: 300px) {
+        transform: translate(0, -5rem);
+      }
+      @media (min-width: 500px) {
+        transform: translate(0, -3.5rem);
+      }
+      @media (min-width: 600px) {
+        transform: translate(0, -3.5rem);
+      }
+
+      @media (min-width: 768px) {
+        transform: translate(0, -5rem);
+      }
+
+      @media (min-width: 1000px) {
+        transform: translate(0, -3.5rem);
+      }
+
       width: 7rem;
       height: 7rem;
       border: 2px solid white;
@@ -45,16 +64,27 @@ const UserCollectionStyled = styled.li`
     }
   }
   .card-body {
+    font-family: Helvetica, sans-serif;
     color: #fff;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
     font-weight: 400;
 
     .card-title {
-      width: 70%;
       height: 2rem;
-      overflow: scroll;
+      font-weight: 500;
+      overflow-y: scroll;
+    }
+
+    .location,
+    .genre {
+      height: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
     }
   }
 
@@ -65,7 +95,7 @@ const UserCollectionStyled = styled.li`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #3a4042;
     opacity: 0.3;
   }
 

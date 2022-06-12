@@ -1,4 +1,7 @@
+import axios from "axios";
+import { mockToast } from "../../mocks/mockHooks";
 import { mockRecords } from "../../mocks/mockRecords";
+import { mockUsers } from "../../mocks/mockUser";
 import {
   addRecordActionCreator,
   deleteRecordActionCreator,
@@ -10,7 +13,12 @@ import {
   deleteRecordThunk,
   editRecordThunk,
   loadMyRecordsThunk,
+  loadUserCollectionThunk,
 } from "./recordsThunks";
+
+jest.mock("react-hot-toast", () => ({
+  error: mockToast,
+}));
 
 describe("Given a loadMyRecordsThunk function", () => {
   describe("When it's called with an authorized token", () => {
@@ -32,6 +40,20 @@ describe("Given a loadMyRecordsThunk function", () => {
       expect(dispatch).toHaveBeenCalledWith(loadRecordsAction);
     });
   });
+
+  describe("When it's called with an authorized token but the api responds with an error", () => {
+    test("Then it should call the tost's error method", async () => {
+      const dispatch = jest.fn();
+
+      axios.get = jest.fn().mockRejectedValue({});
+
+      const thunk = loadMyRecordsThunk();
+
+      await thunk(dispatch);
+
+      expect(mockToast).toHaveBeenCalled();
+    });
+  });
 });
 
 describe("Given a addRecordThunk function", () => {
@@ -47,6 +69,21 @@ describe("Given a addRecordThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(addRecordAction);
+    });
+  });
+
+  describe("When it's called with an new record but the api responds with an error", () => {
+    test("Then it should call the tost's error method", async () => {
+      const dispatch = jest.fn();
+      const recordData = mockRecords[0];
+
+      axios.post = jest.fn().mockRejectedValue({});
+
+      const thunk = addRecordThunk(recordData);
+
+      await thunk(dispatch);
+
+      expect(mockToast).toHaveBeenCalled();
     });
   });
 });
@@ -123,6 +160,41 @@ describe("Given a editRecordThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a loadUserCollectionThunk function", () => {
+  describe("When it's called with a user id", () => {
+    test("Then it should dispatch the twice", async () => {
+      const dispatch = jest.fn();
+      const userId = "1";
+      const expectedNumberOfDispatchCalls = 4;
+
+      axios.get = jest.fn().mockResolvedValue({
+        data: { userInfo: mockUsers[0], records: mockRecords },
+      });
+
+      const thunk = loadUserCollectionThunk(userId);
+
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledTimes(expectedNumberOfDispatchCalls);
+    });
+  });
+
+  describe("When it's called with a user id but the api responds with an error", () => {
+    test("Then it should call the toast's error method", async () => {
+      const dispatch = jest.fn();
+      const userId = "1";
+
+      axios.get = jest.fn().mockRejectedValue({});
+
+      const thunk = loadUserCollectionThunk(userId);
+
+      await thunk(dispatch);
+
+      expect(mockToast).toHaveBeenCalled();
     });
   });
 });

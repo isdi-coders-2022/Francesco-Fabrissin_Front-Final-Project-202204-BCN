@@ -35,6 +35,8 @@ export const loadMyRecordsThunk = () => async (dispatch: AppDispatch) => {
 
     dispatch(loadRecordsActionCreator(dataRecords));
   } catch (error: any) {
+    dispatch(setLoadingOffActionCreator());
+    toast.error("Error while loading your records");
     return error.message;
   }
 };
@@ -58,6 +60,10 @@ export const addRecordThunk =
         );
       }
     } catch (error: any) {
+      dispatch(setLoadingOffActionCreator());
+      toast.error(
+        "An error occurred while trying to add this record to your collection"
+      );
       return error.message;
     }
   };
@@ -87,19 +93,27 @@ export const deleteRecordThunk =
 
 export const loadUserCollectionThunk =
   (userId: string) => async (dispatch: AppDispatch) => {
-    const {
-      data: { userInfo, records },
-    } = await axios.get(`${url}users/${userId}`, {
-      headers: { Authorization: `Bearer ${localStorage.token}` },
-    });
+    try {
+      dispatch(setLoadingOnActionCreator());
+      const {
+        data: { userInfo, records },
+      } = await axios.get(`${url}users/${userId}`, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+      dispatch(setLoadingOffActionCreator());
 
-    const dataRecords = records.map((record: IRecord) => ({
-      ...record,
-      image: record.image ? `${url}${record.image}` : "",
-    }));
+      const dataRecords = records.map((record: IRecord) => ({
+        ...record,
+        image: record.image ? `${url}${record.image}` : "",
+      }));
 
-    dispatch(loadRecordsActionCreator(dataRecords));
-    dispatch(getOtherUserInfoActionCreator(userInfo));
+      dispatch(loadRecordsActionCreator(dataRecords));
+      dispatch(getOtherUserInfoActionCreator(userInfo));
+    } catch (error: any) {
+      dispatch(setLoadingOffActionCreator());
+      toast.error("Error while trying to load this collection");
+      return error.message;
+    }
   };
 
 export const editRecordThunk =
