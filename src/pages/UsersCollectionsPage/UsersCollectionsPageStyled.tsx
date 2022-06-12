@@ -9,9 +9,26 @@ const UsersCollectionsPageStyled = styled.div`
   margin-bottom: 2rem;
 
   .page-info {
+    @media (min-width: 300px) {
+      width: 90%;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      width: fit-content;
+      margin-bottom: 2rem;
+    }
+
     color: #4f4f4f;
-    margin-top: 0.6rem;
-    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .my-collection {
+    color: #4f4f4f;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
     font-size: 1.2rem;
     font-weight: 600;
   }

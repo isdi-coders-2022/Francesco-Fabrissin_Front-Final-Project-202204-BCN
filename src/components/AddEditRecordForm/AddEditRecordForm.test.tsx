@@ -23,8 +23,9 @@ jest.mock("react-router-dom", () => ({
 
 describe("Given a AddEditRecordForm component function", () => {
   describe("When invoked", () => {
-    test("Then it should render 7 input fields, 2 select fields and 1 button", () => {
-      const expectedNumberOfInputs = 5;
+    test("Then it should render 3 input fields, 2 number inputs fields, 2 select fields and 1 button", () => {
+      const expectedNumberOfInputs = 3;
+      const expectedNumberOfNumberInputs = 2;
       const expectedNumberOfSelects = 2;
 
       render(
@@ -36,10 +37,12 @@ describe("Given a AddEditRecordForm component function", () => {
       );
 
       const inputs = screen.getAllByRole("textbox");
+      const numberInputs = screen.getAllByRole("spinbutton");
       const selects = screen.getAllByRole("combobox");
       const button = screen.getByRole("button");
 
       expect(inputs).toHaveLength(expectedNumberOfInputs);
+      expect(numberInputs).toHaveLength(expectedNumberOfNumberInputs);
       expect(selects).toHaveLength(expectedNumberOfSelects);
       expect(button).toBeInTheDocument();
     });
@@ -56,12 +59,17 @@ describe("Given a AddEditRecordForm component function", () => {
       );
 
       const inputs = screen.getAllByRole("textbox");
+      const numberInputs = screen.getAllByRole("spinbutton");
       const genre = screen.getByLabelText("Genre");
       const conditions = screen.getByLabelText("Record Conditions");
       const button = screen.getByRole("button", { name: "Add record" });
 
       inputs.forEach((input) => {
         userEvent.type(input, "hola");
+      });
+
+      numberInputs.forEach((input) => {
+        userEvent.type(input, "1");
       });
 
       userEvent.selectOptions(genre, "Rock");

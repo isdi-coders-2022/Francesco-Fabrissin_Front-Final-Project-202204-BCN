@@ -2,7 +2,31 @@ import styled from "styled-components";
 
 const UserCollectionStyled = styled.li`
   position: relative;
-  margin: 1.5rem;
+
+  @media (min-width: 250px) {
+    margin: 2.5rem 0;
+    width: 100%;
+  }
+
+  @media (min-width: 330px) {
+    margin: 2rem 0;
+    width: 100%;
+  }
+
+  @media (min-width: 400px) {
+    margin: 1.5rem 0;
+  }
+
+  @media (min-width: 600px) {
+    width: 70%;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    margin: 2.8rem 1rem;
+    max-width: 42%;
+  }
+
   height: 10rem;
   background-image: url("/images/records-banner.jpeg");
   background-size: cover;
@@ -21,27 +45,17 @@ const UserCollectionStyled = styled.li`
     }
   }
   .card-body {
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 400;
-      z-index: 1;
-    }
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    font-weight: 400;
 
-    @media (min-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 400;
-      z-index: 1;
+    .card-title {
+      width: 70%;
+      height: 2rem;
+      overflow: scroll;
     }
-  }
-
-  .card-title {
-    font-size: 1.9rem;
   }
 
   :before {
@@ -57,11 +71,22 @@ const UserCollectionStyled = styled.li`
 
   .button {
     &--see-collection {
-      @media (max-width: 768px) {
-        transform: translate(-16vw, 1.6rem);
+      @media (min-width: 300px) {
+        transform: translate(-4rem, 1.6rem);
       }
+      @media (min-width: 500px) {
+        transform: translate(-5rem, 1.6rem);
+      }
+      @media (min-width: 600px) {
+        transform: translate(-6rem, 1.6rem);
+      }
+
       @media (min-width: 768px) {
         transform: translate(-4rem, 1.6rem);
+      }
+
+      @media (min-width: 1000px) {
+        transform: translate(-6rem, 1.6rem);
       }
       position: absolute;
       left: 50%;

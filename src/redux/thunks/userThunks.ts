@@ -32,7 +32,7 @@ export const loginThunk =
         dispatch(loginActionCreator(userInfo));
         localStorage.setItem("token", token);
         dispatch(setLoadingOffActionCreator());
-        toast.success("Successfully loggedIn");
+        toast.success("Successfully logged In");
       }
     } catch (error: any) {
       dispatch(setLoadingOffActionCreator());
@@ -46,12 +46,10 @@ export const registerThunk =
     const url = process.env.REACT_APP_API_URL;
 
     try {
-      toast.loading("Loading...");
+      dispatch(setLoadingOnActionCreator());
       const { data } = await axios.post(`${url}user/register`, userData);
 
-      toast.dismiss();
-      toast.success("You have succesfully registered!");
-
+      dispatch(setLoadingOffActionCreator());
       if (data) {
         const newUser = {
           username: data.new_user.username,
@@ -60,7 +58,7 @@ export const registerThunk =
         dispatch(loginThunk(newUser));
       }
     } catch (error: any) {
-      toast.dismiss();
+      dispatch(setLoadingOffActionCreator());
       toast.error("Something went wrong");
       return error.message;
     }

@@ -6,7 +6,7 @@ const UserStyled = styled.div`
   height: 4.5rem;
   background-color: #3a4042;
   margin-top: -1px;
-  margin-bottom: 6.5rem;
+  margin-bottom: 5.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,6 +34,7 @@ const UserStyled = styled.div`
       font-size: 1.5rem;
       font-weight: 600;
       width: fit-content;
+      text-align: center;
     }
   }
 `;

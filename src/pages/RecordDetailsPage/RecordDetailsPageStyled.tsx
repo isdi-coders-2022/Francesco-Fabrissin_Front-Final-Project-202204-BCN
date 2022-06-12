@@ -39,7 +39,13 @@ const RecordDetailsPageStyled = styled.div`
     .info {
       display: flex;
       justify-content: space-between;
-      width: 90%;
+      @media (min-width: 300px) {
+        width: 95%;
+      }
+      @media (min-width: 800px) {
+        width: 70%;
+      }
+
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 1rem;
@@ -58,8 +64,17 @@ const RecordDetailsPageStyled = styled.div`
     }
 
     .video {
-      width: 95%;
-      height: 20rem;
+      height: 100%;
+      @media (min-width: 300px) {
+        width: 95%;
+      }
+      @media (min-width: 800px) {
+        width: 70%;
+      }
+    }
+
+    .button {
+      height: 7.5rem;
     }
   }
 `;

@@ -12,6 +12,20 @@ export interface IRecord {
   owner?: string;
 }
 
+export interface IRecordForm {
+  id?: string;
+  title: string;
+  artist: string;
+  year: number;
+  genre: string;
+  conditions: string;
+  image: string;
+  imageBackup?: string;
+  price: number;
+  youtube_url?: string;
+  owner?: string;
+}
+
 export interface IUser {
   username: string;
   image: string;

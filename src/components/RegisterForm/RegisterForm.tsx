@@ -142,15 +142,18 @@ const RegisterForm = (): JSX.Element => {
           className="form-select"
           onChange={changeFormData}
           value={formData.genre}
-          placeholder="Genre"
           id="genre"
         >
+          <option disabled value="">
+            Select Genre
+          </option>
           <option value="Rock">Rock</option>
           <option value="Reggae">Reggae</option>
           <option value="Electronic">Electronic</option>
           <option value="Disco">Disco</option>
           <option value="Jazz">Jazz</option>
           <option value="Funk/Soul">Funk/Soul</option>
+          <option value="Hip Hop">Hip Hop</option>
           <option value="Classical">Classical</option>
           <option value="Latin">Latin</option>
           <option value="Pop">Pop</option>
