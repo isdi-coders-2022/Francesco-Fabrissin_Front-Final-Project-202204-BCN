@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import Pagination from "../../components/Pagination/Pagination";
 import RecordsList from "../../components/RecordsList/RecordsList";
 import User from "../../components/User/User";
 import UsersCollectionsList from "../../components/UsersCollectionsList/UsersCollectionsList";
@@ -12,9 +13,11 @@ import UsersCollectionsPageStyled from "./UsersCollectionsPageStyled";
 const UsersCollectionsPage = () => {
   const { collections, filter } = useAppSelector((state) => state.users);
   const { pagination } = useAppSelector((state) => state.pagination);
+  const { loading } = useAppSelector((state) => state.ui);
   const { my_collection } = useParams();
   const { userInfo } = useAppSelector((state) => state.user);
   const records = useAppSelector((state) => state.records);
+  const { pages, currentPage } = useAppSelector((state) => state.pagination);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -32,36 +35,36 @@ const UsersCollectionsPage = () => {
   }, [dispatch, navigate]);
 
   return (
-    <UsersCollectionsPageStyled>
-      <User userInfo={userInfo} />
-      <h3 className="page-info">
-        {my_collection
-          ? "My Collection"
-          : collections.length !== 0
-          ? `Users ${filter} Collections`
-          : "Sorry, no collections found"}
-      </h3>
-      {my_collection && (
-        <Button
-          type="button"
-          add={true}
-          className="button"
-          text="Add record"
-          action={navigateToAddForm}
-        />
-      )}
-      {my_collection ? (
-        <RecordsList ownCollection={true} records={records} />
-      ) : collections.length === 0 ? (
-        <img
-          className="record-player-logo"
-          src="/images/record-player.png"
-          alt="record player logo"
-        />
-      ) : (
-        <UsersCollectionsList collections={collections} />
-      )}
-    </UsersCollectionsPageStyled>
+    <>
+      <UsersCollectionsPageStyled>
+        <User userInfo={userInfo} />
+        <h3 className={my_collection ? "my-collection" : "page-info"}>
+          {my_collection
+            ? "My Collection"
+            : !loading && collections.length !== 0
+            ? `Users ${filter === "All" ? "" : filter} Collections`
+            : ""}
+        </h3>
+        {!loading && collections.length === 0 && (
+          <span>Sorry, no collections found</span>
+        )}
+        {my_collection && (
+          <Button
+            type="button"
+            add={true}
+            className="button"
+            text="Add record"
+            action={navigateToAddForm}
+          />
+        )}
+        {my_collection ? (
+          <RecordsList ownCollection={true} records={records} />
+        ) : (
+          <UsersCollectionsList collections={collections} />
+        )}
+      </UsersCollectionsPageStyled>
+      {!my_collection && pages > currentPage && <Pagination />}
+    </>
   );
 };
 

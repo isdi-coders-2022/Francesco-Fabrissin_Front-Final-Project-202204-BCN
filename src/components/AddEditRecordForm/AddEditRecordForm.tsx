@@ -84,10 +84,10 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     const newFormData = new FormData();
     newFormData.append("title", formData.title);
     newFormData.append("artist", formData.artist);
-    newFormData.append("year", formData.year);
+    newFormData.append("year", formData.year.toString());
     newFormData.append("genre", formData.genre);
     newFormData.append("conditions", formData.conditions);
-    newFormData.append("price", formData.price);
+    newFormData.append("price", formData.price.toString());
     newFormData.append("youtube_url", formData.youtube_url ?? "");
     newFormData.append("image", formData.image);
     if (buttonDisabled()) {
@@ -147,7 +147,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           id="year"
           value={formData.year}
           onChange={changeFormData}
-          type="text"
+          type="number"
         />
         <label className="form-label hidden" htmlFor="genre">
           Genre
@@ -169,6 +169,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           <option value="Disco">Disco</option>
           <option value="Jazz">Jazz</option>
           <option value="Funk/Soul">Funk/Soul</option>
+          <option value="Hip Hop">Hip Hop</option>
           <option value="Classical">Classical</option>
           <option value="Latin">Latin</option>
           <option value="Pop">Pop</option>
@@ -206,7 +207,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           id="price"
           value={formData.price}
           onChange={changeFormData}
-          type="text"
+          type="number"
         />
         <label className="form-label" htmlFor="youtube_url">
           Favourite track YouTube link (optional)

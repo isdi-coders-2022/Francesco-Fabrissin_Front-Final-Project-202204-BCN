@@ -4,7 +4,7 @@ import { PaginationState } from "../../types/types";
 const initialState: PaginationState = {
   pages: 0,
   currentPage: 1,
-  pagination: 8,
+  pagination: 5,
 };
 
 const paginationSlice = createSlice({
@@ -25,11 +25,11 @@ const paginationSlice = createSlice({
     }),
     setPagination: (users) => ({
       ...users,
-      pagination: users.pagination + 8,
+      pagination: users.pagination + 5,
     }),
     resetPagination: (users) => ({
       ...users,
-      pagination: 8,
+      pagination: 5,
     }),
   },
 });

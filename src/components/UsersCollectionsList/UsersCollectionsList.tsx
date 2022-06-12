@@ -1,22 +1,33 @@
-import { useAppSelector } from "../../redux/hooks";
+import styled from "styled-components";
 import { IUserCollection } from "../../types/types";
-import Pagination from "../Pagination/Pagination";
 import UserCollection from "../UserCollection/UserCollection";
+
+const UsersCollectionListStyled = styled.ul`
+  width: 90%;
+  display: flex;
+
+  @media (min-width: 300px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
 
 const UsersCollectionsList = ({
   collections,
 }: {
   collections: IUserCollection[];
 }) => {
-  const { pages, currentPage } = useAppSelector((state) => state.pagination);
-
   return (
-    <ul className="users-list row flex-wrap justify-content-center m-0 p-0">
+    <UsersCollectionListStyled className="users-list row justify-content-center m-0 p-0">
       {collections.map((collection: IUserCollection, position) => {
         return <UserCollection key={position} user={collection} />;
       })}
-      {pages !== currentPage && <Pagination />}
-    </ul>
+    </UsersCollectionListStyled>
   );
 };
 

@@ -1,13 +1,33 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
-  @media (max-width: 768px) {
-    width: 32vw;
-    font-size: 3vw;
+  @media (min-width: 300px) {
+    width: 8rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 500px) {
+    width: 10rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 500px) {
+    width: 10rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    width: 12rem;
+    font-size: 1rem;
   }
 
   @media (min-width: 768px) {
     width: 8rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 1000px) {
+    width: 12rem;
     font-size: 1rem;
   }
 
@@ -19,6 +39,7 @@ const ButtonStyled = styled.button`
   font-weight: 500;
   color: #4f4f4f;
   z-index: 1;
+  margin-top: 1rem;
 `;
 
 export default ButtonStyled;

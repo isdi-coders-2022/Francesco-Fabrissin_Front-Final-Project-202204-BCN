@@ -13,9 +13,9 @@ const UserCollection = ({
   const navigateAndLoadRecords = () => {
     navigate(`/users/${id}`);
   };
-
+  /* col-xs-8 col-sm-10 col-md-5 col-lg-5 */
   return (
-    <UserCollectionStyled className="card col-xs-8 col-sm-10 col-md-5 col-lg-5">
+    <UserCollectionStyled className="card">
       <img
         src={image ? imageBackup : "/images/no-photo-available.png"}
         alt=""

@@ -79,13 +79,13 @@ describe("Given a paginationReducer", () => {
       const initialStatus = {
         pages: 0,
         currentPage: 1,
-        pagination: 8,
+        pagination: 5,
       };
 
       const expectedNewStatus = {
         pages: 0,
         currentPage: 1,
-        pagination: 16,
+        pagination: 10,
       };
 
       const setPaginationAction = setPaginationActionCreator();
@@ -101,13 +101,13 @@ describe("Given a paginationReducer", () => {
       const initialStatus = {
         pages: 0,
         currentPage: 1,
-        pagination: 16,
+        pagination: 10,
       };
 
       const expectedNewStatus = {
         pages: 0,
         currentPage: 1,
-        pagination: 8,
+        pagination: 5,
       };
 
       const resetPaginationAction = resetPaginationActionCreator();

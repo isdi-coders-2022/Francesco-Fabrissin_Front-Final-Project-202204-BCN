@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import { logoutActionCreator } from "../../redux/features/userSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 import NavigationStyled from "./NavigationStyled";
 import { CgSearch } from "react-icons/cg";
-import { loadCollectionsThunk } from "../../redux/thunks/usersThunks";
 import { setFilterActionCreator } from "../../redux/features/usersSlice";
 import {
   resetCurrentPageActionCreator,
@@ -16,7 +15,6 @@ const Navigation = () => {
   const dispatch = useAppDispatch();
   const [expanded, setExpanded] = useState(false);
   const [filterOption, setFilterOption] = useState("");
-  const { pagination } = useAppSelector((state) => state.pagination);
   const { pathname } = useLocation();
 
   const changeFilterOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -34,7 +32,6 @@ const Navigation = () => {
   const loadAllUsers = () => {
     dispatch(resetCurrentPageActionCreator());
     dispatch(resetPaginationActionCreator());
-    dispatch(loadCollectionsThunk("All", pagination));
     dispatch(setFilterActionCreator("All"));
     closeNav();
   };
@@ -115,10 +112,12 @@ const Navigation = () => {
                       <option value="Disco">Disco</option>
                       <option value="Jazz">Jazz</option>
                       <option value="Funk/Soul">Funk/Soul</option>
+                      <option value="Hip Hop">Hip Hop</option>
                       <option value="Classical">Classical</option>
                       <option value="Latin">Latin</option>
                       <option value="Pop">Pop</option>
                       <option value="Alternative">Alternative</option>
+                      <option value="Mixed">Mixed</option>
                       <option value="All">All</option>
                     </select>
                     <CgSearch
