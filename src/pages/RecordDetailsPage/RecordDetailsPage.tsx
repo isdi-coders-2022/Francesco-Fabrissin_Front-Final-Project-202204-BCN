@@ -88,7 +88,7 @@ const RecordDetailsPage = () => {
           <Button
             className="button"
             type="button"
-            text="Show intrest"
+            text="Show interest"
             action={showIntrest}
           />
         )}
