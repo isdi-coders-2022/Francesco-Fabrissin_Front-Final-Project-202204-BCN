@@ -68,6 +68,20 @@ const FormStyled = styled.div`
     margin-bottom: 2rem;
   }
 
+  .conditions {
+    display: flex;
+    align-items: center;
+    width: 18.1rem;
+
+    .form-select {
+      margin-right: 1rem;
+    }
+
+    .icon-info {
+      cursor: pointer;
+    }
+  }
+
   .hidden {
     display: none;
   }

@@ -16,8 +16,9 @@ import UserCollectionPage from "./pages/UserCollectionPage/UserCollectionPage";
 import RecordDetailsPage from "./pages/RecordDetailsPage/RecordDetailsPage";
 import Loading from "./components/Loading/Loading";
 import Modal from "./components/Modal/Modal";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import MyCollectionPage from "./pages/MyCollectionPage/MyCollectionPage";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import RecordConditionsPage from "./pages/RecordConditionsPage/RecordConditionsPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -110,6 +111,14 @@ function App() {
           element={
             <Controller>
               <RecordDetailsPage />
+            </Controller>
+          }
+        />
+        <Route
+          path="/record_conditions"
+          element={
+            <Controller>
+              <RecordConditionsPage />
             </Controller>
           }
         />

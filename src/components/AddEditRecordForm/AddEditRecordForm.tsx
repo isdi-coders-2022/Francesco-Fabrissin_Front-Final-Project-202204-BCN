@@ -11,6 +11,7 @@ import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 import { IRecord } from "../../types/types";
 import Button from "../Button/Button";
 import FormStyled from "../LoginForm/FormStyled";
+import { BsInfoCircle } from "react-icons/bs";
 
 interface Props {
   recordId?: string;
@@ -101,6 +102,10 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     }
   };
 
+  const seeConditionsInfo = () => {
+    navigate("/record_conditions");
+  };
+
   return (
     <FormStyled>
       <img
@@ -178,24 +183,31 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
         <label className="form-label hidden" htmlFor="conditions">
           Record Conditions
         </label>
-        <select
-          name="conditions"
-          className="form-select"
-          onChange={changeFormData}
-          value={formData.conditions}
-          placeholder="Record Conditions"
-          id="conditions"
-        >
-          <option disabled value="">
-            Record Conditions
-          </option>
-          <option value="Poor">Poor</option>
-          <option value="G">G</option>
-          <option value="VG">VG</option>
-          <option value="VG+">VG+</option>
-          <option value="NM">NM</option>
-          <option value="M">M</option>
-        </select>
+        <div className="conditions">
+          <select
+            name="conditions"
+            className="form-select"
+            onChange={changeFormData}
+            value={formData.conditions}
+            placeholder="Record Conditions"
+            id="conditions"
+          >
+            <option disabled value="">
+              Record Conditions
+            </option>
+            <option value="Poor">Poor</option>
+            <option value="G">G</option>
+            <option value="VG">VG</option>
+            <option value="VG+">VG+</option>
+            <option value="NM">NM</option>
+            <option value="M">M</option>
+          </select>
+          <BsInfoCircle
+            onClick={seeConditionsInfo}
+            size={20}
+            className="icon-info"
+          />
+        </div>
         <label className="form-label hidden" htmlFor="price">
           Price
         </label>
