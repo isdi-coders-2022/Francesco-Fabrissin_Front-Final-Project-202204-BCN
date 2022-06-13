@@ -1,13 +1,20 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 import RecordDetailsPageStyled from "./RecordDetailsPageStyled";
 import { openModalActionCreator } from "../../redux/features/uiSlice";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const RecordDetailsPage = () => {
   const { recordId } = useParams();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
   const {
     userInfo: { id },
   } = useAppSelector((state) => state.user);
@@ -44,7 +51,13 @@ const RecordDetailsPage = () => {
 
   return (
     <RecordDetailsPageStyled>
-      <div className="container">
+      <IoIosArrowRoundBack
+        size={60}
+        data-testid="icon-back"
+        className="icon-back"
+        onClick={goBack}
+      />
+      <div className="details-container">
         <img
           src={imageBackup ? imageBackup : "/images/generic-record.png"}
           alt={`${title} cover`}
@@ -64,11 +77,13 @@ const RecordDetailsPage = () => {
             <span className="price">Price: {price}€</span>
           </div>
         </div>
-        <iframe
-          className="video"
-          title="favourite owner track YouTube video"
-          src={`https://www.youtube.com/embed/${embedId}`}
-        ></iframe>
+        <div className="video-container">
+          <iframe
+            className="video"
+            title="favourite owner track YouTube video"
+            src={`https://www.youtube.com/embed/${embedId}`}
+          ></iframe>
+        </div>
         {id !== owner && (
           <Button
             className="button"

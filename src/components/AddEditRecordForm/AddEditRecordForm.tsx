@@ -195,7 +195,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
             <option disabled value="">
               Record Conditions
             </option>
-            <option value="Poor">Poor</option>
+            <option value="P">P</option>
             <option value="G">G</option>
             <option value="VG">VG</option>
             <option value="VG+">VG+</option>

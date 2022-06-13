@@ -31,24 +31,6 @@ describe("Given a RecordConditionsPage component function", () => {
     });
   });
 
-  /*   describe("When invoked and the users click on the close icon", () => {
-    test("Then the useNavigate hooks should be called", () => {
-      render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <RecordConditionsPage />
-          </Provider>
-        </BrowserRouter>
-      );
-      
-      const goBackIcon = screen.getByTestId("icon-back");
-      
-      userEvent.click(goBackIcon);
-      
-      expect(mockNavigate).toHaveBeenCalled();
-    });
-    }); */
-
   describe("When invoked", () => {
     test("Then it should render correctly the RecordConditionsPage", () => {
       const recordConditionsPage = reactTestRenderer
