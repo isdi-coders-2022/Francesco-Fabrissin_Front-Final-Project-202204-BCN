@@ -1,24 +1,26 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { mockToast } from "../../mocks/mockHooks";
 import store from "../../redux/store/store";
 import AddEditRecordForm from "./AddEditRecordForm";
 
 const mockDispatch = jest.fn();
+const mockUseNavigate = jest.fn();
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
   useDispatch: () => mockDispatch,
 }));
 
+jest.mock("react-hot-toast", () => ({
+  error: mockToast,
+}));
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useParams: jest
-    .fn()
-    .mockResolvedValueOnce(null)
-    .mockResolvedValueOnce(null)
-    .mockReturnValueOnce({ recordId: "3" }),
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe("Given a AddEditRecordForm component function", () => {
@@ -77,6 +79,67 @@ describe("Given a AddEditRecordForm component function", () => {
       userEvent.click(button);
 
       expect(mockDispatch).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked and the user click on the info icon", () => {
+    test("Then the useNavigate hook should be invoked", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <AddEditRecordForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const infoIcon = screen.getByTestId("icon-info");
+
+      userEvent.click(infoIcon);
+
+      expect(mockUseNavigate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked passing a recordId in the props and the user clics on the 'Edit' button withput filling the required fills", () => {
+    test("Then the dispatch and the toast's error methos should be invoked", async () => {
+      const recordId = "62a0a706efdbe05210132d43";
+
+      const actionLoadRecord = {
+        type: "record/loadRecord",
+        payload: {
+          title: "Neptune's Lair",
+          artist: "Drexciya",
+          year: "1999",
+          genre: "Electronic",
+          price: "25",
+          conditions: "VG",
+          youtube_url: "https://www.youtube.com/watch?v=btOstAZFJTI",
+          image: "images/1654759451150Drexciya-Neptune's Lair.jpeg",
+          imageBackup:
+            "https://firebasestorage.googleapis.com/v0/b/recordswapp-e0444.appspot.com/o/1654759451150Drexciya-Neptune's%20Lair.jpeg?alt=media&token=12330f23-f1d7-49b5-bc20-69601273b185",
+          owner: "62a0a3ad54725136008cb9d8",
+          id: "62a0a706efdbe05210132d43",
+        },
+      };
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <AddEditRecordForm recordId={recordId} />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      await waitFor(() => {
+        store.dispatch(actionLoadRecord);
+      });
+
+      const button = screen.getByRole("button", { name: "Edit" });
+
+      userEvent.click(button);
+
+      expect(mockDispatch).toHaveBeenCalled();
+      expect(mockToast).toHaveBeenCalled();
     });
   });
 });
