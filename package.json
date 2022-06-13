@@ -68,7 +68,8 @@
       "!src/react-app-env.d.ts",
       "!src/types/types.ts",
       "!src/redux/thunks/types/thunkTypes.ts",
-      "!src/components/Footer/__snapshots__/*"
+      "!src/components/Footer/__snapshots__/*",
+      "!src/pages/RecordConditionsPage/__snapshots__/*"
     ]
   }
 }
