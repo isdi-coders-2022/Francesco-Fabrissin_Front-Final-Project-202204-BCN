@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { IUserCollection } from "../../types/types";
 import { setPagesActionCreator } from "../features/paginationSlice";
 import {
@@ -13,24 +14,30 @@ export const loadCollectionsThunk =
   (filter: string, limit: number) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
 
-    dispatch(setLoadingOnActionCreator());
+    try {
+      dispatch(setLoadingOnActionCreator());
 
-    const {
-      data: { usersCollection, pages },
-    } = await axios.get(
-      `${url}users/?filter=${filter === "All" ? "" : filter}&limit=${limit}`,
-      {
-        headers: { Authorization: `Bearer ${localStorage.token}` },
-      }
-    );
+      const {
+        data: { usersCollection, pages },
+      } = await axios.get(
+        `${url}users/?filter=${filter === "All" ? "" : filter}&limit=${limit}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.token}` },
+        }
+      );
 
-    dispatch(setLoadingOffActionCreator());
+      dispatch(setLoadingOffActionCreator());
 
-    const dataCollections = usersCollection.map((user: IUserCollection) => ({
-      ...user,
-      image: user.image ? `${url}${user.image}` : "",
-    }));
+      const dataCollections = usersCollection.map((user: IUserCollection) => ({
+        ...user,
+        image: user.image ? `${url}${user.image}` : "",
+      }));
 
-    dispatch(loadCollectionsActionCreator(dataCollections));
-    dispatch(setPagesActionCreator(pages));
+      dispatch(loadCollectionsActionCreator(dataCollections));
+      dispatch(setPagesActionCreator(pages));
+    } catch (error: any) {
+      dispatch(setLoadingOffActionCreator());
+      toast.error("Error while loading users collections");
+      return error.message;
+    }
   };

@@ -37,7 +37,7 @@ const NavigationStyled = styled.div`
     background-color: #3a4042;
     color: white;
     padding-left: 0.5rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.4rem;
     @media (min-width: 768px) {
       padding-bottom: 0;
     }
