@@ -1,9 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { mockRecords } from "../../mocks/mockRecords";
-import { mockUserLogin } from "../../mocks/mockUser";
+import { mockUserLogin, mockUsers } from "../../mocks/mockUser";
 import store from "../../redux/store/store";
 import UsersCollectionsPage from "./UsersCollectionsPage";
 
@@ -21,17 +19,21 @@ describe("Give a UsersCollectionPage component", () => {
     payload: mockUserLogin,
   };
 
-  const actionRecords = {
-    type: "records/loadRecords",
-    payload: mockRecords,
-  };
-
   store.dispatch(actionUser);
-  store.dispatch(actionRecords);
-  describe("When invoked with 'myCollection' in the params", () => {
-    test("Then it should render a heading with the text 'Users collections', an 'Add record' button and the records in the user collection", () => {
-      const expectedHeading = "My Collection";
-      const expectedNumberOfRecords = 3;
+
+  describe("When invoked and the store provides users collections filtered by 'All'", () => {
+    test("Then it should render a heading with the text 'Users collections', and a list of 2 users collections", async () => {
+      const actionLoadUsers = {
+        type: "users/loadCollections",
+        payload: mockUsers,
+      };
+      const actionLoadingOff = {
+        type: "ui/setLoadingOff",
+      };
+      const expectedHeading = "Users Collections";
+      const expectedNumberOfUsers = 2;
+
+      store.dispatch(actionLoadUsers);
 
       render(
         <BrowserRouter>
@@ -40,18 +42,38 @@ describe("Give a UsersCollectionPage component", () => {
           </Provider>
         </BrowserRouter>
       );
+
+      await waitFor(() => {
+        store.dispatch(actionLoadingOff);
+      });
 
       const heading = screen.getByRole("heading", { name: expectedHeading });
-      const button = screen.getByRole("button", { name: "Add record" });
-      const records = screen.getAllByRole("listitem");
+      const users = screen.getAllByRole("listitem");
 
       expect(heading).toBeInTheDocument();
-      expect(button).toBeInTheDocument();
-      expect(records).toHaveLength(expectedNumberOfRecords);
+      expect(users).toHaveLength(expectedNumberOfUsers);
     });
   });
-  describe("When invoked with 'myCollection' in the params and the user clicks on the 'Add record' button", () => {
-    test("Then the useNavigate function should be invoked", () => {
+  describe("When invoked with a filter state 'Classical' and the store provides and empty array of users", () => {
+    test("Then it should render a span with the text 'Sorry, no collections found'", async () => {
+      const expectedText = "Sorry, no collections found";
+
+      const actionFilter = {
+        type: "users/setFilter",
+        payload: "Classical",
+      };
+      const actionLoadUsers = {
+        type: "users/loadCollections",
+        payload: [],
+      };
+
+      const actionLoadingOff = {
+        type: "ui/setLoadingOff",
+      };
+
+      store.dispatch(actionFilter);
+      store.dispatch(actionLoadUsers);
+
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -60,11 +82,13 @@ describe("Give a UsersCollectionPage component", () => {
         </BrowserRouter>
       );
 
-      const button = screen.getByRole("button", { name: "Add record" });
+      await waitFor(() => {
+        store.dispatch(actionLoadingOff);
+      });
 
-      userEvent.click(button);
+      const text = screen.getByText(expectedText);
 
-      expect(mockNavigate).toHaveBeenCalled();
+      expect(text).toBeInTheDocument();
     });
   });
 });
