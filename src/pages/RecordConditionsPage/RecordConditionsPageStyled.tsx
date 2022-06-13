@@ -6,6 +6,7 @@ const RecordConditionsPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
 
   .title {
     padding-top: 1rem;
@@ -16,7 +17,7 @@ const RecordConditionsPageStyled = styled.div`
   .conditions {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 1rem;
     gap: 1rem;
 

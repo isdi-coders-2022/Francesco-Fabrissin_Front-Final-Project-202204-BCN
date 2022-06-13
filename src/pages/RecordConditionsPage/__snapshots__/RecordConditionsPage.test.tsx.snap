@@ -2,7 +2,7 @@
 
 exports[`Given a RecordConditionsPage component function When invoked Then it should render correctly the RecordConditionsPage 1`] = `
 <div
-  className="sc-bczRLJ gmAJMU"
+  className="sc-bczRLJ jmmVkV"
 >
   <h1
     className="title"
