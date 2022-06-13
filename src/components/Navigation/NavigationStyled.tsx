@@ -36,8 +36,11 @@ const NavigationStyled = styled.div`
     border-radius: 0.5rem;
     background-color: #3a4042;
     color: white;
-    padding: 0;
     padding-left: 0.5rem;
+    padding-bottom: 1rem;
+    @media (min-width: 768px) {
+      padding-bottom: 0;
+    }
   }
 
   .search {

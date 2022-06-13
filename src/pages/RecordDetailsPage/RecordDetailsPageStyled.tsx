@@ -3,13 +3,26 @@ import styled from "styled-components";
 const RecordDetailsPageStyled = styled.div`
   background-color: #6a7478;
   width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .container {
+  .icon-back {
+    margin-top: 1rem;
+    color: #fff;
+    cursor: pointer;
+
+    @media (min-width: 800px) {
+      display: none;
+    }
+  }
+
+  .details-container {
     margin: 2rem 0;
-    height: 100vh;
+    width: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +32,10 @@ const RecordDetailsPageStyled = styled.div`
 
     .record-cover {
       width: 12rem;
+
+      @media (min-width: 1000px) {
+        width: 14rem;
+      }
     }
 
     .title-artist {
@@ -41,12 +58,14 @@ const RecordDetailsPageStyled = styled.div`
       justify-content: space-between;
       @media (min-width: 300px) {
         width: 95%;
-      }
-      @media (min-width: 800px) {
-        width: 70%;
+        font-size: 1.1rem;
       }
 
-      font-size: 1.1rem;
+      @media (min-width: 700px) {
+        width: 50%;
+        font-size: 1.2rem;
+      }
+
       font-weight: 600;
       margin-bottom: 1rem;
 
@@ -54,27 +73,48 @@ const RecordDetailsPageStyled = styled.div`
         display: flex;
         flex-direction: column;
         text-align: left;
+
+        @media (min-width: 700px) {
+          text-align: center;
+        }
       }
 
       .conditions-price {
         display: flex;
         flex-direction: column;
         text-align: left;
+
+        @media (min-width: 700px) {
+          text-align: center;
+        }
       }
     }
 
-    .video {
-      height: 100%;
+    .video-container {
+      position: relative;
       @media (min-width: 300px) {
         width: 95%;
       }
-      @media (min-width: 800px) {
-        width: 70%;
+      @media (min-width: 1000px) {
+        width: 80%;
       }
+
+      height: 0;
+      padding: 0% 0% 56.25%;
+      overflow: hidden;
+    }
+    .video-container > iframe {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     .button {
-      height: 7.5rem;
+      margin-bottom: 1rem;
     }
   }
 `;

@@ -12,6 +12,7 @@ import { AppDispatch } from "../store/store";
 export const loadCollectionsThunk =
   (filter: string, limit: number) => async (dispatch: AppDispatch) => {
     const url = process.env.REACT_APP_API_URL;
+
     dispatch(setLoadingOnActionCreator());
 
     const {
@@ -22,7 +23,9 @@ export const loadCollectionsThunk =
         headers: { Authorization: `Bearer ${localStorage.token}` },
       }
     );
-    await dispatch(setLoadingOffActionCreator());
+
+    dispatch(setLoadingOffActionCreator());
+
     const dataCollections = usersCollection.map((user: IUserCollection) => ({
       ...user,
       image: user.image ? `${url}${user.image}` : "",
