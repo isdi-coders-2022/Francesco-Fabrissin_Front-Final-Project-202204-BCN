@@ -118,4 +118,26 @@ describe("Given a Navbar component function", () => {
       expect(mockDispatch).toHaveBeenCalled();
     });
   });
+
+  describe("When invoked and the user click on the 'Users Collection link'", () => {
+    test("Then the dispatch should be called 3 times", () => {
+      const expectedNumberOfDispatchCalls = 3;
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Navigation />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const usersCollectionsLink = screen.getByRole("link", {
+        name: "Users Collection",
+      });
+
+      userEvent.click(usersCollectionsLink);
+
+      expect(mockDispatch).toHaveBeenCalledTimes(expectedNumberOfDispatchCalls);
+    });
+  });
 });

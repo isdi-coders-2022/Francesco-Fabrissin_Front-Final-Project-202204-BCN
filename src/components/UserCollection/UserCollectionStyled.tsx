@@ -18,7 +18,7 @@ const UserCollectionStyled = styled.li`
   }
 
   @media (min-width: 600px) {
-    width: 70%;
+    width: 80%;
     margin: 2rem 0;
   }
 

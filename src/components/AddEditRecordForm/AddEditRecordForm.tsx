@@ -203,6 +203,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
             <option value="M">M</option>
           </select>
           <BsInfoCircle
+            data-testid="icon-info"
             onClick={seeConditionsInfo}
             size={20}
             className="icon-info"
