@@ -51,7 +51,7 @@ describe("Given a Modal component", () => {
 
       setTimeout(() => {
         expect(mockAppDispatch).toHaveBeenCalled();
-      }, 3000);
+      }, 4000);
     });
   });
 
