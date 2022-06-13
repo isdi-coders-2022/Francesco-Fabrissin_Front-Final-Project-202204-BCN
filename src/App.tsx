@@ -16,6 +16,8 @@ import UserCollectionPage from "./pages/UserCollectionPage/UserCollectionPage";
 import RecordDetailsPage from "./pages/RecordDetailsPage/RecordDetailsPage";
 import Loading from "./components/Loading/Loading";
 import Modal from "./components/Modal/Modal";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import MyCollectionPage from "./pages/MyCollectionPage/MyCollectionPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -72,10 +74,10 @@ function App() {
           }
         />
         <Route
-          path="/:my_collection"
+          path="/my_collection"
           element={
             <Controller>
-              <UsersCollectionsPage />
+              <MyCollectionPage />
             </Controller>
           }
         />
@@ -111,6 +113,7 @@ function App() {
             </Controller>
           }
         />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
       {logged && <Footer />}
       <Toaster position="bottom-center" reverseOrder={false} />

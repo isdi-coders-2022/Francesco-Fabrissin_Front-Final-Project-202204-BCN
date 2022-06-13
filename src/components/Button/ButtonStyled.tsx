@@ -40,9 +40,6 @@ const ButtonStyled = styled.button`
   color: #4f4f4f;
   z-index: 1;
   margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default ButtonStyled;

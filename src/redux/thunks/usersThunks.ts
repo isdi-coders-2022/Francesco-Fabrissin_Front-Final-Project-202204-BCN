@@ -22,7 +22,7 @@ export const loadCollectionsThunk =
         headers: { Authorization: `Bearer ${localStorage.token}` },
       }
     );
-    dispatch(setLoadingOffActionCreator());
+    await dispatch(setLoadingOffActionCreator());
     const dataCollections = usersCollection.map((user: IUserCollection) => ({
       ...user,
       image: user.image ? `${url}${user.image}` : "",

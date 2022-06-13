@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { mockRecords } from "./mockRecords";
-import { mockUserLogin, mockUsers } from "./mockUser";
+import { mockUsers } from "./mockUser";
 
 const mockToken = "token";
 
