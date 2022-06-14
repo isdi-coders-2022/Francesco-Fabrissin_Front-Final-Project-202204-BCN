@@ -60,6 +60,7 @@ const Navigation = () => {
       >
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
+          aria-expanded="false"
           onClick={navToggle}
         />
         <Navbar.Collapse className="navbar-collapse">
