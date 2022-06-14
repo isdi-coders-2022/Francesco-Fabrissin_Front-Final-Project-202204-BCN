@@ -9,6 +9,7 @@ const FooterStyled = styled.div`
 
   .logo {
     width: 6rem;
+    height: 4rem;
   }
 
   span {

@@ -2,7 +2,7 @@
 
 exports[`Given a Footer component function When invoked Then it should render correctly a footer with the app logo and a span with '© 2022 RecordSwapp®<' 1`] = `
 <div
-  className="sc-bczRLJ ASuRC"
+  className="sc-bczRLJ dZtojo"
 >
   <img
     alt="RecordSwapp logo"

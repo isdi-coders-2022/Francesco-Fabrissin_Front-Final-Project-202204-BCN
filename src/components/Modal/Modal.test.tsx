@@ -9,8 +9,6 @@ jest.mock("../../redux/hooks", () => ({
   ...jest.requireActual("../../redux/hooks"),
   useAppDispatch: () => mockAppDispatch,
 }));
-jest.useFakeTimers();
-jest.spyOn(global, "setTimeout");
 
 describe("Given a Modal component", () => {
   describe("When invoked and a openModal action with 'Record added succesfully!' is dispatched", () => {
@@ -46,6 +44,9 @@ describe("Given a Modal component", () => {
           <Modal />
         </Provider>
       );
+
+      jest.useFakeTimers();
+      jest.spyOn(global, "setTimeout");
 
       expect(setTimeout).toHaveBeenCalled();
 

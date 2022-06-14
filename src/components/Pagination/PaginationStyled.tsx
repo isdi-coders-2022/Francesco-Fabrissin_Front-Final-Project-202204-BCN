@@ -6,7 +6,7 @@ const PaginationStyled = styled.button`
   border: none;
   font-weight: 600;
   background-color: #fafafa;
-  color: #2674e9;
+  color: #0569ff;
   cursor: pointer;
 `;
 
