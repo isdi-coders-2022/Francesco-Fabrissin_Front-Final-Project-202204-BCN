@@ -184,7 +184,7 @@ describe("Given a loadUserCollectionThunk function", () => {
   });
 
   describe("When it's called with a user id but the api responds with an error", () => {
-    test("Then it should call the toast's error method", async () => {
+    test("Then it should call the dispatch function", async () => {
       const dispatch = jest.fn();
       const userId = "1";
 
@@ -194,7 +194,7 @@ describe("Given a loadUserCollectionThunk function", () => {
 
       await thunk(dispatch);
 
-      expect(mockToast).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalled();
     });
   });
 });

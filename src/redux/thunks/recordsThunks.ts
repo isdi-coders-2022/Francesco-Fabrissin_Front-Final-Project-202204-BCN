@@ -111,7 +111,6 @@ export const loadUserCollectionThunk =
       dispatch(getOtherUserInfoActionCreator(userInfo));
     } catch (error: any) {
       dispatch(setLoadingOffActionCreator());
-      toast.error("Error while trying to load this collection");
       return error.message;
     }
   };

@@ -39,10 +39,7 @@ const UsersCollectionsPageStyled = styled.div`
   }
 
   .not-found {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 1.1rem;
   }
 `;
 

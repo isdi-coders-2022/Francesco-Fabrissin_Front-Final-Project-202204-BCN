@@ -20,20 +20,7 @@ const UserCollectionPage = () => {
   return (
     <UsersCollectionsPageStyled>
       <User userInfo={otherUserInfo} />
-      {records.length === 0 ? (
-        <div className="not-found">
-          <h3 className="page-info">
-            No records in {otherUserInfo.username} collection yet
-          </h3>
-          <img
-            className="record-player-logo"
-            src="/images/record-player.png"
-            alt="record player logo"
-          />
-        </div>
-      ) : (
-        <RecordsList ownCollection={false} records={records} />
-      )}
+      <RecordsList ownCollection={false} records={records} />
     </UsersCollectionsPageStyled>
   );
 };
