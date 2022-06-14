@@ -17,7 +17,7 @@ const UserCollection = ({
     <UserCollectionStyled className="card">
       <img
         src={image ? imageBackup : "/images/no-photo-available.png"}
-        alt=""
+        alt={`${username} avatar`}
         className="card__img"
       />
       <div className="card-body">

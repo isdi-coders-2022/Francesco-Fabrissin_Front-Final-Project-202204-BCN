@@ -4,17 +4,17 @@ const UserCollectionStyled = styled.li`
   position: relative;
 
   @media (min-width: 250px) {
-    margin: 2.5rem 0;
+    margin: 3.2rem 0;
     width: 100%;
   }
 
   @media (min-width: 330px) {
-    margin: 2rem 0;
+    margin: 3rem 0;
     width: 100%;
   }
 
   @media (min-width: 400px) {
-    margin: 2 rem 0;
+    margin: 2rem 0;
   }
 
   @media (min-width: 600px) {
@@ -23,7 +23,12 @@ const UserCollectionStyled = styled.li`
   }
 
   @media (min-width: 768px) {
-    margin: 2.8rem 1rem;
+    margin: 3.3rem 1rem;
+    max-width: 45%;
+  }
+
+  @media (min-width: 1000px) {
+    margin: 3rem 1rem;
     max-width: 45%;
   }
 
@@ -53,7 +58,7 @@ const UserCollectionStyled = styled.li`
       }
 
       @media (min-width: 1000px) {
-        transform: translate(0, -3.5rem);
+        transform: translate(0, -4.3rem);
       }
 
       width: 7rem;
@@ -76,7 +81,6 @@ const UserCollectionStyled = styled.li`
     .card-title {
       height: 2rem;
       font-weight: 500;
-      overflow-y: scroll;
     }
 
     .location,

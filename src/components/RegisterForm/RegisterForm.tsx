@@ -94,6 +94,7 @@ const RegisterForm = (): JSX.Element => {
           value={formData.username}
           onChange={changeFormData}
           type="text"
+          maxLength={10}
         />
         <label className="form-label" htmlFor="email">
           Email

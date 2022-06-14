@@ -28,7 +28,7 @@ const UsersCollectionsPage = () => {
         )}
 
         {!loading && collections.length === 0 && (
-          <span>Sorry, no collections found</span>
+          <span className="not-found">Sorry, no collections found</span>
         )}
 
         <UsersCollectionsList collections={collections} />
