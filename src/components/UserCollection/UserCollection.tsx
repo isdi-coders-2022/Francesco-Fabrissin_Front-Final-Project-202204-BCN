@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { loadUserCollectionThunk } from "../../redux/thunks/recordsThunks";
 import { IUserCollection } from "../../types/types";
 import Button from "../Button/Button";
 import UserCollectionStyled from "./UserCollectionStyled";
@@ -9,8 +11,10 @@ const UserCollection = ({
   user: IUserCollection;
 }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const navigateAndLoadRecords = () => {
+  const navigateAndLoadRecords = async () => {
+    await dispatch(loadUserCollectionThunk(id));
     navigate(`/users/${id}`);
   };
   return (

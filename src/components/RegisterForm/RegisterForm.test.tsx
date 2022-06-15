@@ -39,7 +39,7 @@ describe("Given a FormLogin component function", () => {
 
       const usernameInput = screen.getByLabelText("Username");
       const passwordInput = screen.getByLabelText("Password");
-      const inputFile = screen.getByLabelText("Profile image");
+      const inputFile = screen.getByLabelText("Profile image (optional)");
       const buttons = screen.getAllByRole("button");
 
       userEvent.upload(inputFile, fakeFile);

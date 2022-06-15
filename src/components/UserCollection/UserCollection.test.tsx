@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { mockAppDispatch } from "../../mocks/mockUser";
 import store from "../../redux/store/store";
 import UserCollection from "./UserCollection";
 
@@ -10,6 +11,11 @@ const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockNavigate,
+}));
+
+jest.mock("../../redux/hooks", () => ({
+  ...jest.requireActual("../../redux/hooks"),
+  useAppDispatch: () => mockAppDispatch,
 }));
 
 describe("Given a UserCollection component", () => {
@@ -50,7 +56,7 @@ describe("Given a UserCollection component", () => {
   });
 
   describe("When invoked and the user click on the 'See collection' button", () => {
-    test("Then the useNavigate function should be invoked", () => {
+    test("Then the dispatch function should be invoked", async () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -63,7 +69,7 @@ describe("Given a UserCollection component", () => {
 
       userEvent.click(button);
 
-      expect(mockNavigate).toHaveBeenCalled();
+      expect(mockAppDispatch).toHaveBeenCalled();
     });
   });
 });
