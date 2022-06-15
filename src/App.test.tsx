@@ -77,10 +77,6 @@ describe("Given an App component function", () => {
         store.dispatch(actionLogin);
       });
 
-      const token = "token";
-
-      window.localStorage.setItem("token", token);
-
       const navElement = screen.getByRole("navigation");
 
       expect(navElement).toBeInTheDocument();
