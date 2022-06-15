@@ -9,7 +9,7 @@ export const mockUsers = [
   {
     id: "1",
     username: "fra432",
-    image: "",
+    image: "image",
     imageBackup: "",
     location: "Barcelona",
     genre: "Electronic",

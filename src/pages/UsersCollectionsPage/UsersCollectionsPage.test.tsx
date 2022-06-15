@@ -91,4 +91,49 @@ describe("Give a UsersCollectionPage component", () => {
       expect(text).toBeInTheDocument();
     });
   });
+
+  describe("When invoked with a filter state 'Electronic' and the store provides array of 2 users", () => {
+    test("Then it should render a span with the text 'Sorry, no collections found'", async () => {
+      const expectedText = "Users Electronic Collections";
+
+      const actionFilter = {
+        type: "users/setFilter",
+        payload: "Electronic",
+      };
+
+      const actionPages = {
+        type: "pagination/setPages",
+        payload: 3,
+      };
+
+      const actionLoadUsers = {
+        type: "users/loadCollections",
+        payload: mockUsers,
+      };
+
+      const actionLoadingOff = {
+        type: "ui/setLoadingOff",
+      };
+
+      store.dispatch(actionPages);
+      store.dispatch(actionFilter);
+      store.dispatch(actionLoadUsers);
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <UsersCollectionsPage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      await waitFor(() => {
+        store.dispatch(actionLoadingOff);
+      });
+
+      const text = screen.getByText(expectedText);
+
+      expect(text).toBeInTheDocument();
+    });
+  });
 });

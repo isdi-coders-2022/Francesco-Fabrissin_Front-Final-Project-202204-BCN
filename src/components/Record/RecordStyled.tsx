@@ -30,7 +30,7 @@ const RecordStyled = styled.li`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     cursor: pointer;
   }
   .image-info {
@@ -45,6 +45,10 @@ const RecordStyled = styled.li`
     @media (min-width: 1000px) {
       gap: 14rem;
     }
+
+    @media (min-width: 1200px) {
+      gap: 20rem;
+    }
     align-items: center;
     height: 100%;
   }
@@ -58,6 +62,9 @@ const RecordStyled = styled.li`
       @media (min-width: 600px) {
         width: 10rem;
         margin-right: 0.5rem;
+      }
+      @media (min-width: 1200px) {
+        width: 12rem;
       }
     }
 
@@ -75,6 +82,10 @@ const RecordStyled = styled.li`
       }
       @media (min-width: 600px) {
         height: 10rem;
+        justify-content: space-between;
+      }
+      @media (min-width: 600px) {
+        height: 12rem;
         justify-content: space-between;
       }
 

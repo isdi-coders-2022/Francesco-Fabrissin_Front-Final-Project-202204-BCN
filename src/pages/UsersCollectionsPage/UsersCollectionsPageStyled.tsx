@@ -11,7 +11,7 @@ const UsersCollectionsPageStyled = styled.div`
   .page-info {
     @media (min-width: 300px) {
       width: 90%;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     @media (min-width: 600px) {

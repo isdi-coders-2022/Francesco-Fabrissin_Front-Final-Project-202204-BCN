@@ -29,6 +29,7 @@ describe("Given a AddEditRecordForm component function", () => {
       const expectedNumberOfInputs = 3;
       const expectedNumberOfNumberInputs = 2;
       const expectedNumberOfSelects = 2;
+      const fakeFile = new File(["test"], "test.png", { type: "image/png" });
 
       render(
         <BrowserRouter>
@@ -41,7 +42,10 @@ describe("Given a AddEditRecordForm component function", () => {
       const inputs = screen.getAllByRole("textbox");
       const numberInputs = screen.getAllByRole("spinbutton");
       const selects = screen.getAllByRole("combobox");
+      const inputFile = screen.getByLabelText("Add Cover");
       const button = screen.getByRole("button");
+
+      userEvent.upload(inputFile, fakeFile);
 
       expect(inputs).toHaveLength(expectedNumberOfInputs);
       expect(numberInputs).toHaveLength(expectedNumberOfNumberInputs);
@@ -140,6 +144,43 @@ describe("Given a AddEditRecordForm component function", () => {
 
       expect(mockDispatch).toHaveBeenCalled();
       expect(mockToast).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked an dthe users fills all the fields except the youtube_url one", () => {
+    test("Then the dispatch should be invoked", async () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <AddEditRecordForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const titleInput = screen.getByLabelText("Title");
+      const artistInput = screen.getByLabelText("Artist");
+      const yearInput = screen.getByLabelText("Year of Release");
+      const priceInput = screen.getByLabelText("Price");
+      const numberInputs = screen.getAllByRole("spinbutton");
+      const genre = screen.getByLabelText("Genre");
+      const conditions = screen.getByLabelText("Record Conditions");
+      const button = screen.getByRole("button", { name: "Add record" });
+
+      userEvent.type(titleInput, "hola");
+      userEvent.type(artistInput, "hola");
+      userEvent.type(yearInput, "hola");
+      userEvent.type(priceInput, "hola");
+
+      numberInputs.forEach((input) => {
+        userEvent.type(input, "1");
+      });
+
+      userEvent.selectOptions(genre, "Rock");
+      userEvent.selectOptions(conditions, "VG");
+
+      userEvent.click(button);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });

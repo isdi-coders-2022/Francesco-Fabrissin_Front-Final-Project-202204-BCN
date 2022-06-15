@@ -47,16 +47,17 @@ export const registerThunk =
 
     try {
       dispatch(setLoadingOnActionCreator());
+
       const { data } = await axios.post(`${url}user/register`, userData);
 
       dispatch(setLoadingOffActionCreator());
-      if (data) {
-        const newUser = {
-          username: data.new_user.username,
-          password: password,
-        };
-        dispatch(loginThunk(newUser));
-      }
+
+      const newUser = {
+        username: data.new_user.username,
+        password: password,
+      };
+
+      dispatch(loginThunk(newUser));
     } catch (error: any) {
       dispatch(setLoadingOffActionCreator());
       toast.error("Something went wrong");

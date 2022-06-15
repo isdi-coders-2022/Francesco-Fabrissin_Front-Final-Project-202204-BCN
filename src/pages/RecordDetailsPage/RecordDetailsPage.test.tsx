@@ -17,24 +17,24 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given a RecordDetailsPage component", () => {
-  const loadRecordAction = {
-    type: "record/loadRecord",
-    payload: {
-      title: "Nevermind",
-      artist: "Nirvana",
-      year: "1991",
-      genre: "Rock",
-      price: "30",
-      conditions: "VG",
-      youtube_url: "video",
-      image: "image",
-      imageBackup: "image",
-      owner: "62a0a3ad54725136008cb9d8",
-      id: "62a0a7efc41785994dfa740a",
-    },
-  };
   describe("When invoked with the record 'Nevermind' from Nirvana", () => {
     test("Then it should render an immage with the alt attribute 'Nevermine cover', 2 heading with title and artis and a 'Show intrest button'", () => {
+      const loadRecordAction = {
+        type: "record/loadRecord",
+        payload: {
+          title: "Nevermind",
+          artist: "Nirvana",
+          year: "1991",
+          genre: "Rock",
+          price: "30",
+          conditions: "VG",
+          youtube_url: "video",
+          image: "image",
+          imageBackup: "image",
+          owner: "62a0a3ad54725136008cb9d8",
+          id: "62a0a7efc41785994dfa740a",
+        },
+      };
       const expectedTitle = "Nevermind";
       const expectedArtist = "Nirvana";
       const expectedButtonText = "Show interest";
@@ -63,6 +63,23 @@ describe("Given a RecordDetailsPage component", () => {
 
   describe("When invokedand the user clicks on the 'Show interest' button", () => {
     test("Then the dispatch should be invoked", () => {
+      const loadRecordAction = {
+        type: "record/loadRecord",
+        payload: {
+          title: "Nevermind",
+          artist: "Nirvana",
+          year: "1991",
+          genre: "Rock",
+          price: "30",
+          conditions: "VG",
+          youtube_url: "video",
+          image: "image",
+          imageBackup: "image",
+          owner: "62a0a3ad54725136008cb9d8",
+          id: "62a0a7efc41785994dfa740a",
+        },
+      };
+
       store.dispatch(loadRecordAction);
 
       render(
@@ -83,6 +100,23 @@ describe("Given a RecordDetailsPage component", () => {
 
   describe("When invokedand the user clicks on the icon back", () => {
     test("Then the useNavigate hook should be invoked", () => {
+      const loadRecordAction = {
+        type: "record/loadRecord",
+        payload: {
+          title: "Nevermind",
+          artist: "Nirvana",
+          year: "1991",
+          genre: "Rock",
+          price: "30",
+          conditions: "VG",
+          youtube_url: "",
+          image: "image",
+          imageBackup: "",
+          owner: "62a0a3ad54725136008cb9d8",
+          id: "62a0a7efc41785994dfa740a",
+        },
+      };
+
       store.dispatch(loadRecordAction);
 
       render(
