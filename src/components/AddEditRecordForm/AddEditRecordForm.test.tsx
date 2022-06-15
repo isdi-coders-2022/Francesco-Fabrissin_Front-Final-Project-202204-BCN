@@ -42,7 +42,7 @@ describe("Given a AddEditRecordForm component function", () => {
       const inputs = screen.getAllByRole("textbox");
       const numberInputs = screen.getAllByRole("spinbutton");
       const selects = screen.getAllByRole("combobox");
-      const inputFile = screen.getByLabelText("Add Cover");
+      const inputFile = screen.getByLabelText("Add Cover (optional)");
       const button = screen.getByRole("button");
 
       userEvent.upload(inputFile, fakeFile);
