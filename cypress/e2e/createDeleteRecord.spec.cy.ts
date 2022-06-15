@@ -1,6 +1,6 @@
-describe("given a form", () => {
-  describe("when a user..", () => {
-    it("Then the list should show the new project", () => {
+describe("Given an App component", () => {
+  describe("when a user logs in", () => {
+    it("Then he should be able, when navigating to his collection, to create a record, visit the record page, delete the record and the log out", () => {
       const username = "test";
       const password = "1234";
       const buttonAddText = "Add record";
@@ -32,10 +32,6 @@ describe("given a form", () => {
       cy.get("button").contains(buttonAddText).click();
 
       cy.url().should("include", "my_collection");
-
-      cy.get(".record").first().click();
-
-      cy.contains("My Collection").click();
 
       cy.get('[data-testid="icon-delete"]').first().click();
 
