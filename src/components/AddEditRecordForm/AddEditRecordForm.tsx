@@ -234,7 +234,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           type="text"
         />
         <label className="form-label" htmlFor="image">
-          Add Cover
+          Add Cover (optional)
         </label>
         <input
           className="form-control"
