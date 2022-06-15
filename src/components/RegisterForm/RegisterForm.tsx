@@ -34,18 +34,12 @@ const RegisterForm = (): JSX.Element => {
     });
   };
 
-  const buttonDisabled = () => {
-    if (
-      formData.username === "" ||
-      formData.password === "" ||
-      formData.email === "" ||
-      formData.genre === "" ||
-      formData.location === ""
-    ) {
-      return true;
-    }
-    return false;
-  };
+  const buttonDisabled =
+    formData.username === "" ||
+    formData.password === "" ||
+    formData.email === "" ||
+    formData.genre === "" ||
+    formData.location === "";
 
   const clearData = () => {
     setFormData(blankData);
@@ -66,7 +60,7 @@ const RegisterForm = (): JSX.Element => {
     newFormData.append("genre", formData.genre);
     newFormData.append("image", formData.image);
 
-    if (buttonDisabled()) {
+    if (buttonDisabled) {
       toast.error("Please fill all required fields");
     } else {
       dispatch(registerThunk(newFormData, formData.password));

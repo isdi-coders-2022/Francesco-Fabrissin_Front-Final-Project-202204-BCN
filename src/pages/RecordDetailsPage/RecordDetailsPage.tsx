@@ -1,11 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import RecordDetailsPageStyled from "./RecordDetailsPageStyled";
 import { openModalActionCreator } from "../../redux/features/uiSlice";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { loadRecordThunk } from "../../redux/thunks/recordThunk";
+import { useEffect } from "react";
 
 const RecordDetailsPage = () => {
+  const {recordId} = useParams()
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {
@@ -23,6 +26,10 @@ const RecordDetailsPage = () => {
     youtube_url,
     owner,
   } = useAppSelector((state) => state.record);
+
+  useEffect(() => {
+    dispatch(loadRecordThunk(recordId as string));
+  }, [dispatch, recordId])
 
   const embedId = youtube_url
     ? youtube_url.replace("https://www.youtube.com/watch?v=", "")

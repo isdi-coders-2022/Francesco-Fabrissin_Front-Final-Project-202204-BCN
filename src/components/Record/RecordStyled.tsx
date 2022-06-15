@@ -57,14 +57,17 @@ const RecordStyled = styled.li`
     &__img {
       @media (min-width: 300px) {
         width: 8rem;
+        height: 8rem;
         margin-right: 0.5rem;
       }
       @media (min-width: 600px) {
         width: 10rem;
+        height: 10rem;
         margin-right: 0.5rem;
       }
       @media (min-width: 1200px) {
-        width: 12rem;
+        width: 11rem;
+        height: 11rem;
       }
     }
 
@@ -85,7 +88,7 @@ const RecordStyled = styled.li`
         justify-content: space-between;
       }
       @media (min-width: 600px) {
-        height: 12rem;
+        height: 11rem;
         justify-content: space-between;
       }
 
