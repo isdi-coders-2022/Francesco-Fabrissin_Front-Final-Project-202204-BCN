@@ -55,6 +55,8 @@ const RecordStyled = styled.li`
 
   .record {
     &__img {
+      object-fit: cover;
+
       @media (min-width: 300px) {
         width: 8rem;
         height: 8rem;
