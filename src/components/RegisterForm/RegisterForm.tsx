@@ -158,7 +158,7 @@ const RegisterForm = (): JSX.Element => {
           <option value="Mixed">Mixed</option>
         </select>
         <label className="form-label" htmlFor="image">
-          Profile image
+          Profile image (optional)
         </label>
         <input
           className="form-control"
