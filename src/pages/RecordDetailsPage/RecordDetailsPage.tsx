@@ -84,7 +84,6 @@ const RecordDetailsPage = () => {
           />
         )}
       </div>
-      )
     </RecordDetailsPageStyled>
   );
 };
