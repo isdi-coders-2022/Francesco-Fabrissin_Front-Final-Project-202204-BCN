@@ -48,11 +48,11 @@ describe("Given a Modal component", () => {
       jest.useFakeTimers();
       jest.spyOn(global, "setTimeout");
 
+      jest.advanceTimersByTime(3000);
+
       expect(setTimeout).toHaveBeenCalled();
 
-      setTimeout(() => {
-        expect(mockAppDispatch).toHaveBeenCalled();
-      }, 4000);
+      expect(mockAppDispatch).toHaveBeenCalled();
     });
   });
 

@@ -51,14 +51,13 @@ export const addRecordThunk =
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
       dispatch(setLoadingOffActionCreator());
-      if (new_record) {
-        dispatch(addRecordActionCreator(new_record));
-        dispatch(loadMyRecordsThunk());
 
-        dispatch(
-          openModalActionCreator("Record added succesfully to your collection")
-        );
-      }
+      dispatch(addRecordActionCreator(new_record));
+      dispatch(loadMyRecordsThunk());
+
+      dispatch(
+        openModalActionCreator("Record added succesfully to your collection")
+      );
     } catch (error: any) {
       dispatch(setLoadingOffActionCreator());
       toast.error(
@@ -118,17 +117,17 @@ export const loadUserCollectionThunk =
 export const editRecordThunk =
   (recordId: string, recordData: any) => async (dispatch: AppDispatch) => {
     try {
+      dispatch(setLoadingOnActionCreator());
       const {
         data: { updatedRecord },
       } = await axios.put(`${url}myCollection/edit/${recordId}`, recordData, {
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
+      dispatch(setLoadingOffActionCreator());
 
-      if (updatedRecord) {
-        dispatch(editRecordActionCreator(updatedRecord));
-        dispatch(loadMyRecordsThunk());
-        toast.success("Record edited succesfully!");
-      }
+      dispatch(editRecordActionCreator(updatedRecord));
+      dispatch(loadMyRecordsThunk());
+      dispatch(openModalActionCreator("Record edited succesfully!"));
     } catch (error: any) {
       toast.error("Unable to edit te record");
       return error.message;

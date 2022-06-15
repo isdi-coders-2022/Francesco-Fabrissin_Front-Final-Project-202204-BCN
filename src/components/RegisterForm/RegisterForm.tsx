@@ -94,7 +94,7 @@ const RegisterForm = (): JSX.Element => {
           value={formData.username}
           onChange={changeFormData}
           type="text"
-          maxLength={10}
+          maxLength={15}
         />
         <label className="form-label" htmlFor="email">
           Email
@@ -121,6 +121,7 @@ const RegisterForm = (): JSX.Element => {
           value={formData.password}
           onChange={changeFormData}
           type="password"
+          maxLength={15}
         />
         <label className="form-label" htmlFor="location">
           Location (City or closer city)
@@ -134,6 +135,7 @@ const RegisterForm = (): JSX.Element => {
           value={formData.location}
           onChange={changeFormData}
           type="text"
+          maxLength={15}
         />
         <label className="form-label" htmlFor="genre">
           Collection music genre

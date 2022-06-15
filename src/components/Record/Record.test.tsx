@@ -78,7 +78,7 @@ describe("Given a Record component function", () => {
   });
 
   describe("When invoked with a record , and the user click on it", () => {
-    test("Then the useNavigate hook should be invoked", async () => {
+    test("Then the dispatch should be invoked", async () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -91,7 +91,7 @@ describe("Given a Record component function", () => {
 
       userEvent.click(recordComponent);
 
-      expect(mockNavigate).toHaveBeenCalled();
+      expect(mockAppDispatch).toHaveBeenCalled();
     });
   });
 });

@@ -26,6 +26,7 @@ jest.mock("react-hot-toast", () => ({
 describe("Given a FormLogin component function", () => {
   describe("When invoked", () => {
     test("Then it should render 2 input fields and 2 buttons", () => {
+      const fakeFile = new File(["test"], "test.png", { type: "image/png" });
       const expectedNumberOfButtons = 2;
 
       render(
@@ -38,7 +39,10 @@ describe("Given a FormLogin component function", () => {
 
       const usernameInput = screen.getByLabelText("Username");
       const passwordInput = screen.getByLabelText("Password");
+      const inputFile = screen.getByLabelText("Profile image");
       const buttons = screen.getAllByRole("button");
+
+      userEvent.upload(inputFile, fakeFile);
 
       expect(usernameInput).toBeInTheDocument();
       expect(passwordInput).toBeInTheDocument();

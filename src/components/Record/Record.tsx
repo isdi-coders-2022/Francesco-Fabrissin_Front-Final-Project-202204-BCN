@@ -5,6 +5,7 @@ import { IRecord } from "../../types/types";
 import { deleteRecordThunk } from "../../redux/thunks/recordsThunks";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
+import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 
 const Record = ({
   record: { id, image, imageBackup, title, artist, year, genre, conditions },
@@ -26,8 +27,9 @@ const Record = ({
     navigate(`/my_collection/edit/${id}`);
   };
 
-  const goToRecordDetails = (event: React.FormEvent) => {
+  const goToRecordDetails = async (event: React.FormEvent) => {
     event.preventDefault();
+    await dispatch(loadRecordThunk(id as string));
     navigate(`/records/${id}`);
   };
 

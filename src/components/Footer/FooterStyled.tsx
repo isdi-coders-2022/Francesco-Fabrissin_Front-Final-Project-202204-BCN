@@ -8,6 +8,9 @@ const FooterStyled = styled.div`
   align-items: center;
 
   .logo {
+    @media (max-width: 320px) {
+      display: none;
+    }
     width: 6rem;
     height: 4rem;
   }

@@ -1,20 +1,13 @@
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { loadRecordThunk } from "../../redux/thunks/recordThunk";
 import RecordDetailsPageStyled from "./RecordDetailsPageStyled";
 import { openModalActionCreator } from "../../redux/features/uiSlice";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 const RecordDetailsPage = () => {
-  const { recordId } = useParams();
   const navigate = useNavigate();
-
-  const goBack = () => {
-    navigate(-1);
-  };
-
+  const dispatch = useAppDispatch();
   const {
     userInfo: { id },
   } = useAppSelector((state) => state.user);
@@ -35,11 +28,9 @@ const RecordDetailsPage = () => {
     ? youtube_url.replace("https://www.youtube.com/watch?v=", "")
     : "";
 
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(loadRecordThunk(recordId as string));
-  }, [dispatch, recordId]);
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const showIntrest = () => {
     dispatch(
@@ -93,6 +84,7 @@ const RecordDetailsPage = () => {
           />
         )}
       </div>
+      )
     </RecordDetailsPageStyled>
   );
 };

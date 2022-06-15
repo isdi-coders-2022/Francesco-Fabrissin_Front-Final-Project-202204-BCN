@@ -61,19 +61,13 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     }
   }, [recordId, recordInfo]);
 
-  const buttonDisabled = () => {
-    if (
-      formData.title === "" ||
-      formData.artist === "" ||
-      formData.year === "" ||
-      formData.genre === "" ||
-      formData.conditions === "" ||
-      formData.price === ""
-    ) {
-      return true;
-    }
-    return false;
-  };
+  const buttonDisabled =
+    formData.title === "" ||
+    formData.artist === "" ||
+    formData.year === "" ||
+    formData.genre === "" ||
+    formData.conditions === "" ||
+    formData.price === "";
 
   const clearData = () => {
     setFormData(blankData);
@@ -91,7 +85,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
     newFormData.append("price", formData.price.toString());
     newFormData.append("youtube_url", formData.youtube_url ?? "");
     newFormData.append("image", formData.image);
-    if (buttonDisabled()) {
+    if (buttonDisabled) {
       toast.error("Please fill all required fields");
     } else {
       recordId
@@ -145,6 +139,8 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           Year of Release
         </label>
         <input
+          min={1900}
+          max={2022}
           className="form-control"
           formNoValidate
           autoComplete="off"
@@ -213,6 +209,8 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           Price
         </label>
         <input
+          min={0}
+          max={1000}
           className="form-control"
           formNoValidate
           autoComplete="off"

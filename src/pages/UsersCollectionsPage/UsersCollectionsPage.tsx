@@ -17,6 +17,7 @@ const UsersCollectionsPage = () => {
   useEffect(() => {
     dispatch(loadCollectionsThunk(filter, pagination));
   }, [dispatch, filter, pagination]);
+
   return (
     <>
       <UsersCollectionsPageStyled>

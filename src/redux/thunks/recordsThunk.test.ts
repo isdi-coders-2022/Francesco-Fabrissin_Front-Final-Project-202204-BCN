@@ -72,6 +72,23 @@ describe("Given a addRecordThunk function", () => {
     });
   });
 
+  describe("When it's called with an new record and the api responds with a null value", () => {
+    test("Then the dispatch should not be called with the addRecordActionCreator", async () => {
+      const dispatch = jest.fn();
+      const recordData = mockRecords[0];
+
+      const addRecordAction = addRecordActionCreator(recordData);
+
+      axios.post = jest.fn().mockResolvedValue(undefined);
+
+      const thunk = addRecordThunk(recordData);
+
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalledWith(addRecordAction);
+    });
+  });
+
   describe("When it's called with an new record but the api responds with an error", () => {
     test("Then it should call the tost's error method", async () => {
       const dispatch = jest.fn();
@@ -118,6 +135,25 @@ describe("Given a delteRecordThunk function", () => {
       expect(dispatch).not.toHaveBeenCalledWith(deleteRecordAction);
     });
   });
+
+  describe("When it's called with a record id 2 and the api responds with a status 400", () => {
+    test("Then it should not call the dispatch with the deleteRecordActionCreator", async () => {
+      const dispatch = jest.fn();
+      const recordId = "2";
+
+      const deleteRecordAction = deleteRecordActionCreator(recordId);
+
+      axios.delete = jest.fn().mockResolvedValue({
+        status: 400,
+      });
+
+      const thunk = deleteRecordThunk(recordId);
+
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalledWith(deleteRecordAction);
+    });
+  });
 });
 
 describe("Given a editRecordThunk function", () => {
@@ -150,16 +186,18 @@ describe("Given a editRecordThunk function", () => {
   });
 
   describe("When it's called with an id 4 not present in the database", () => {
-    test("Then it should not call the dispatch", async () => {
+    test("Then it should not call the dispatch with the editRecordActionCreator", async () => {
       const dispatch = jest.fn();
       const idToEdit = "4";
       const recordData = mockRecords[0];
+
+      const editRecordAction = editRecordActionCreator(recordData);
 
       const thunk = editRecordThunk(idToEdit, recordData);
 
       await thunk(dispatch);
 
-      expect(dispatch).not.toHaveBeenCalled();
+      expect(dispatch).not.toHaveBeenCalledWith(editRecordAction);
     });
   });
 });

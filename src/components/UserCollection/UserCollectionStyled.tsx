@@ -81,6 +81,7 @@ const UserCollectionStyled = styled.li`
     .card-title {
       height: 2rem;
       font-weight: 500;
+      overflow-y: scroll;
     }
 
     .location,
