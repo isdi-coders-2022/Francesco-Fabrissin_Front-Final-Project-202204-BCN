@@ -221,7 +221,7 @@ const AddEditRecordForm = ({ recordId }: Props): JSX.Element => {
           type="number"
         />
         <label className="form-label" htmlFor="youtube_url">
-          Favourite track YouTube link (optional)
+          Favorite track YouTube link (optional)
         </label>
         <input
           className="form-control"

@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# RecordSwapp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RecordSwapp is an application that allow users to exchange records from their records collection. The users can open other users collections. check their records and if interested, notify the owner of their interest.
 
-## Available Scripts
+## First steps:
 
-In the project directory, you can run:
+When the users opens the application they will be immediately
+edirected to the login page, where they will be able to type they username and password if they already have an account, or they can navigate to the register form if is their first time visiting the application.
 
-### `npm start`
+When the user registers he will have to insert username, email, password, location, the main music genre of his collection and he will have the chance to submit a profile image. In the case the user doesn't submit any image, then a default image will be set as is profile picture.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Main page:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once the user is logged the app will display a list users collections. The collection will be display by groups of 5, and the user will have the opportunity to load 5 more collections every time he click on the button 'Load More'.
 
-### `npm test`
+By clicking on the 'See collection' button present in each collection the user will be redirected to the User Collection Page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## User Collection Page:
 
-### `npm run build`
+Inside the User collection page a list of the selected collection records will be displayed. Each record will have a cover image, and the main info about the release, like title, artist, year of release, genre and record conditions.
+If the user clicks on the record he will be redirected to the Record Details Page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Record Details Page:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Record Details Page will display the record cover image, all the previously displayed info about the record and in addition, the record price chosen by the owner and a YouTube video with the favorite track selected by the owner.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+At the bottom of the page there will be a 'Show interest' button that will allow the user to notify the record owner about his interest by clicking on it.
 
-### `npm run eject`
+On each page of the app, except for the login and register page, a Navigation bar will be present on the top of the page.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Navbar:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Navbar contains 2 links which allow the user to navigate to the main page, and to his personal collection page, a Logout button and, when the user is on the main page, a search bar wichh will allow the user to filter the collection by the music genre.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+When the user click on the 'My Collection' link he will be redirected to the My Collection Page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## My Collection Page:
 
-## Learn More
+This page allow the users to see his record collection. When the user first registers, his collection will be empty, and by clicking on the 'Add record' button he will have the change to add a record to his collection.
+Once the user has added a record to his collection the record will show up in the screen, and the user will have the chance to delete or edit it by clicking on the respective icons.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Add/Edit Record Form Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This Form allow the user to add the record, or to edit an existing record by inserting all the details and uploading a cover image if the user wants to.
+
+## Logout
+
+Once the user is done with his session he can open the navbar and click on the Logout button which will redirect him to the Login page.
