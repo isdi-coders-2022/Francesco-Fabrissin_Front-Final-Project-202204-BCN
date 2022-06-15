@@ -39,6 +39,8 @@ const Record = ({
         <div className="image-info">
           <div className="image">
             <img
+              width="11rem"
+              height="11rem"
               src={image ? imageBackup : "/images/generic-record.png"}
               alt="record cover"
               className="record__img"
