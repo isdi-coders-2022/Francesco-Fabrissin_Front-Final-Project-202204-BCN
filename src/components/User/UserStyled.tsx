@@ -22,6 +22,7 @@ const UserStyled = styled.div`
     align-items: center;
 
     &__avatar {
+      object-fit: cover;
       width: 8rem;
       height: 8rem;
       border: 2px solid #fff;

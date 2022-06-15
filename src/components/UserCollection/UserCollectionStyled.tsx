@@ -41,6 +41,7 @@ const UserCollectionStyled = styled.li`
     justify-content: center;
     &__img {
       position: absolute;
+      object-fit: cover;
       top: 0;
       right: 0;
       @media (min-width: 300px) {
@@ -101,7 +102,7 @@ const UserCollectionStyled = styled.li`
     width: 100%;
     height: 100%;
     background-color: #3a4042;
-    opacity: 0.3;
+    opacity: 0.4;
   }
 
   .button {
